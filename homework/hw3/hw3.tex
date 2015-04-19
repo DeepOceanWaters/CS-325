@@ -182,8 +182,80 @@
     \end{enumerate}
 
     %   PROBLEM 2
-    \item \hfill \\
+    \item I would choose the $f_C(n)$ algorithm. \\
+    \begin{enumerate}
+        \item $T(n) = \Theta\left(n^{\log_2{5}}\right)$ \\
+        Given the description $T(n) = 5T\left(\frac{ n }{ 2 }\right) + n$ \\
+        Using the Master's theorem, $a = 5$, $b = 2$, and $c = 1$ \\
+        Assume, $\log_b{a} > c$ and as a result 
+        $T(n) = \Theta\left(n^{\log_b{a}}\right)$
+        \begin{align*}
+            \log_2{5} & > 1 \\
+            2^{\log_2{5}} & > 2^1 \\
+            5 > 2
+        \end{align*}
+        Thus $T(n) = \Theta\left(n^{\log_2{5}}\right)$
 
+        \item $T(n) = \Theta\left(2^n}\right)$ \\
+        Given the description $T(n) = 2T\left(n - 1\right) + c$ \\
+        Using the iterative method
+        \begin{align*}
+            T(n) & = 2T\left(n - 1\right) + c \\
+            T(n - 1) & = 2T\left(n - 2\right) + c \\
+            \ldots & = c + 2(c + 2(c + 2(\ldots))) \\
+            & = c\sum\limits_{i=0}^k 2^i \\
+            & = c\left(\frac{ 1 - 2^k}{ 1 - 2 }\right) \\
+            & = c\left(\frac{ 1 - 2^k}{ -1 }\right) \\
+            & = -c\left(1 - 2^k\right) \\
+            & = -c + (c)(2^k) \\
+            & = -c + (c)(2^n) \\
+        \end{align*}
+        Thus $T(n) = \Theta\left(2^n\right)$
+
+        \item $T(n) = \Theta\left(n^2\log{n}\right)$ \\
+        Given the description $T(n) = 9T\left(\frac{ n }{ 3 }\right) + n^2$ \\
+        Using the Master's theorem, $a = 9$, $b = 3$, and $c = 2$ \\
+        Assume, $\log_b{a} = c$ and as a result 
+        $T(n) = \Theta\left(n^c\log{n}\right)$
+        \begin{align*}
+            \log_3{9} & = 2 \\
+            3^{\log_3{9}} & = 3^2 \\
+            9 & = 9
+        \end{align*}
+        Thus $T(n) = \Theta\left(n^2\log{n}}\right)$
+    \end{enumerate}
+    Comparing each algorithm's running time by limits will show that the fastest
+    algorithm is algorithm C. \\
+    Comparing B and C: 
+    \[
+        \lim_{n\to\infty} \frac{ f_B(n) }{ f_C(n) } = 
+        \lim_{n\to\infty} \frac{ 2^n }{ n^2\log{n} }
+    \]
+    to find what this limit approaches we must take the derivative multiple
+    times \\
+    \begin{align*}
+        \lim_{n\to\infty} \frac{ 2^n }{ n^2\log{n} } \\
+        \lim_{n\to\infty} \left(2^n\ln{2}\right)\left(
+            \frac{ \ln{10} }{ n }\right) \\
+        \lim_{n\to\infty} \frac{ 2^n\ln{10}\ln{2} }{ n } \tag{$f'(n)$} \\
+        \lim_{n\to\infty} \frac{ 2^n\ln{10}\ln{2} }{ 2n\ln{n} } 
+            \tag{$f''(n)$} \\
+        \lim_{n\to\infty} \frac{ 2^n }{ \log{n} } \tag{$f'''(n)$} \\
+        \lim_{n\to\infty} 2^nn = \infty \tag{$f''''(n)$}
+    \end{align*}
+    Thus since $f_B(n)$ approaches $\infty$ faster that $f_C(n)$ we can say
+    that $f_C(n)$ is faster than $f_B(n)$. \\
+    Next we compare C and A: 
+    \[
+        \lim_{n\to\infty} \frac{ f_A(n) }{ f_C(n) } = 
+        \lim_{n\to\infty} \frac{ n^{ \log_2{5} } }{ n^2\log{n} }
+    \]
+    and find after take the derivative that:
+    \[
+        \lim_{n\to\infty} n^{ \log_2{5} - 2}\ln{10} = \infty
+    \]
+    ($\log_2{5} > 2$ thus $\log_2{5} - 2 > 0$) \\
+    Thus we can conclude that $f_C(n)$ is the most efficient algorithm.
     %   PROBLEM 3
     \item \hfill \\
 
