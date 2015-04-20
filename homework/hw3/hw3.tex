@@ -1,6 +1,8 @@
 %-------------------------------------------------------------------------------
 %   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %-------------------------------------------------------------------------------
+% Compile using pdflatex -shell-escape hw3.tex
+%
 \documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{lastpage} % Required to determine the last page for the footer
@@ -12,6 +14,7 @@
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{minted} % code highlighting
 
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, 
@@ -71,7 +74,10 @@
 \maketitle % Print the title
 
 \begin{enumerate}
-    %   PROBLEM 1
+
+% ------------------------------------------------------------------------------    
+%   PROBLEM 1
+% ------------------------------------------------------------------------------
     \item \hfill \\
     \begin{enumerate}
         \item $T(n) = \Theta(n^2)$
@@ -181,7 +187,9 @@
     \end{proof}
     \end{enumerate}
 
-    %   PROBLEM 2
+% ------------------------------------------------------------------------------
+%   PROBLEM 2
+% ------------------------------------------------------------------------------
     \item I would choose the $f_C(n)$ algorithm. \\
     \begin{enumerate}
         \item $T(n) = \Theta\left(n^{\log_2{5}}\right)$ \\
@@ -196,7 +204,7 @@
         \end{align*}
         Thus $T(n) = \Theta\left(n^{\log_2{5}}\right)$
 
-        \item $T(n) = \Theta\left(2^n}\right)$ \\
+        \item $T(n) = \Theta\left(2^n\right)$ \\
         Given the description $T(n) = 2T\left(n - 1\right) + c$ \\
         Using the iterative method
         \begin{align*}
@@ -256,12 +264,36 @@
     \]
     ($\log_2{5} > 2$ thus $\log_2{5} - 2 > 0$) \\
     Thus we can conclude that $f_C(n)$ is the most efficient algorithm.
-    %   PROBLEM 3
-    \item \hfill \\
 
-    %   PROBLEM 4
+% ------------------------------------------------------------------------------
+%   PROBLEM 3
+% ------------------------------------------------------------------------------
+    \item $T(n) = \Theta(n)$ \\
+    The equation for number of lines printed is given by
+    \[ T(n) = 2T\left(\frac{ n }{ 2 }\right) + 1 \]
+    Assume $n = 2^k$, which can be written as $k = \lg{n}$ \\
+    Thus using the iterative method:
+    \begin{align*}
+        T(n) & = 2T\left(\frac{ n }{ 2 }\right) + 1 \\
+        T\left(\frac{ n }{ 2 }\right) & = 2T\left(\frac{ n }{ 4 }\right) + 1 \\
+        \ldots & = 1 + 2(1 + 2(1 + 2(\ldots))) \\
+        & = \sum\limits_{i=0}^k 2^k \\
+        & = \frac{ 1 - 2^k }{ 1 - 2 } \\
+        & = 2^k - 1 \\
+        & = 2^{\lg{n}} - 1 \\
+        & = n - 1
+    \end{align*}
+    Thus $T(n) = \Theta(n)$.
+% ------------------------------------------------------------------------------
+%   PROBLEM 4
+% ------------------------------------------------------------------------------
     \item \hfill \\
-    \begin{lstlisting}[language=Python]
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{python}
     Ternary-Sort(sTerm, list, low, high):
         n = high - low
         lowMid = n / 3 + low
@@ -279,8 +311,36 @@
             return Ternary-Sort(sTerm, list, lowMid, highMid)
         else
             return Ternary-Sort(sTerm, list, highMid, high)
-    \end{lstlisting}
-    %   PROBLEM 5
+    \end{minted}
+    \begin{description}
+        \item[binary] $T(n) = T\left(\frac{ n }{ 2 }\right) + c$ \\
+        Assume $n = 2^k$ \\
+        Using the iterative method:
+        \begin{align*}
+            T(n) & = T\left(\frac{ n }{ 2 }\right) + c \\
+            T\left(\frac{ n }{ 2 }\right) & = T\left(\frac{ n }{ 4 }\right) + c \\
+            \ldots & = c + (c + (c + (\ldots))) \\
+            & = ck \\
+            T(n) = c\lg{n}
+        \end{align*}
+        Thus $T(n) = \Theta(\lg{n})$
+
+        \item[ternary]$T(n) = T\left(\frac{ n }{ 3 }\right) + c$ 
+        Assume $n = 3^k$ \\
+        Using the iterative method:
+        \begin{align*}
+            T(n) & = T\left(\frac{ n }{ 3 }\right) + c \\
+            T\left(\frac{ n }{ 3 }\right) & = T\left(\frac{ n }{ 9 }\right) + c \\
+            \ldots & = c + (c + (c + (\ldots))) \\
+            & = ck \\
+            T(n) = c\log_3{n}
+        \end{align*}
+        Thus $T(n) = \Theta(\log_3{n})$ which is equivalent to $\Theta(\lg{n})$.
+    \end{description}
+    Both binary and ternary search have the same relative running time.
+% ------------------------------------------------------------------------------
+%   PROBLEM 5
+% ------------------------------------------------------------------------------
     \item \hfill \\
 \end{enumerate}
 \end{document}
