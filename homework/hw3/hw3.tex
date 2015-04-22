@@ -1,0 +1,349 @@
+%-------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% Compile using pdflatex -shell-escape hw3.tex
+%
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{minted} % code highlighting
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, 
+                                                 % the default font and small 
+                                                 % caps
+
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom
+                       % headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as 
+             % the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 
+                                 % 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2,
+                               % 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 
+                              % 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment 
+                          % this line for an assignment with lots of text
+
+%-------------------------------------------------------------------------------
+%   TITLE SECTION
+%-------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % horizontal cmd, arg = height
+\newcommand{\name}{Colin Bradford} % student name
+\newcommand{\hwnum}{3} % homework number
+\newcommand{\classnum}{CS 325} % class num with abreviation
+\newcommand{\classname}{Analysis of Algorithms} % name of class
+\newcommand{\hwtitle}{\classnum: Homework \hwnum}
+\newtheorem{theorem}{Theorem}[section]
+
+\title{ 
+    \normalfont \normalsize 
+    \textsc{Oregon State University} \\ [25pt]
+    \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+    \huge \hwtitle \\ % The assignment title
+    \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{\name} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+%-------------------------------------------------------------------------------
+%   DOCUMENT
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle % Print the title
+
+\begin{enumerate}
+
+% ------------------------------------------------------------------------------    
+%   PROBLEM 1
+% ------------------------------------------------------------------------------
+    \item \hfill \\
+    \begin{enumerate}
+        \item $T(n) = \Theta(n^2)$
+        \begin{proof}
+            Given $T(n) = T(n - 2) + n$ \\
+            Let $k$ be the number of iterations for any given $n$ \\
+            Since the size $n$ is reduce by 2 each iteration, then after some 
+            $k$ iterations $n = 1$ which will be the $T(1)$ case. Thus we know
+            that $n - 2k = 1$. Rewritten the equation looks like 
+            \begin{equation}
+                k = \frac{ n - 1 }{ 2 }
+            \end{equation}
+            Next it will be shown that $T(n) \approx n^2$ \\
+            Given the arithmetic series
+            \begin{equation}
+                \sum\limits_{i=1}^k i = \frac{(k)(k + 1)}{2}
+            \end{equation}
+            then using the iterative method we can show
+            \begin{align*}
+                T(n) &= T(n - 2) + n \\
+                T(n - 2) &= T(n - 4) + n - 2 \\
+                \ldots &= n +(n - 2 +(n - 4 + (\ldots))) \\
+                &= (n + n + \ldots + n) + (- 2 - 4 - \ldots - 2k) \\
+                &= kn + (-2)\sum\limits_{i=1}^k i \\
+                &= kn - 2\left(\frac{(k)(k + 1)}{2}\right) \tag{eq. 0.2} \\
+                &= kn - (k)(k + 1) \\
+                &= \left(\frac{ n - 1 }{ 2 }\right)\left(n\right) - 
+                \left(\frac{ n - 1 }{ 2 }\right)\left(\frac{ n - 1 }{ 2 } + 
+                \frac{ 2 }{ 2 }\right)  \tag{eq. 0.1}\\
+                &= \frac{ n^2 - n }{ 2 } - 
+                \left(\frac{ n - 1 }{ 2 }\right)\left(
+                \frac{ n + 1 }{ 2 }\right) \\
+                &= \frac{ n^2 - n }{ 2 } - \frac{ n^2 - 1 }{ 4 } \\
+                &= \frac{ 2n^2 - 2n }{ 4 } - \frac{ n^2 - 1 }{ 4 } \\
+                T(n) &= \frac{ n^2 - 2n + 1 }{ 4 } \\
+            \end{align*}
+            Thus we can see that $T(n)$ must be $\Theta(n^2)$.
+        \end{proof}
+
+    \item $T(n) = \Theta(n)$
+    \begin{proof}
+        Given $T(n) = T(n - 1) + 3$ \\
+        Let $k$ be the number of iterations for any given $n$ \\
+        Since the size $n$ is reduce by 1 each iteration, then after some 
+        $k$ iterations $n = 1$ which will be the $T(1)$ case. Thus we know
+        that $n - k = 0$ assuming we don't care about the $T(1)$ case. 
+        Rewritten the equation looks like 
+        \begin{equation}
+            k = n
+        \end{equation}
+        Using the iterative method we can show
+        \begin{align*}
+            T(n) = T(n - 1) + 3 \\
+            T(n - 1) = T(n - 2) + 3 \\
+            \ldots = 3 + (3 + (3 + (\ldots))) \\
+            T(n) = 3k \\
+            T(n) = 3n \tag{eq 0.3} \\
+        \end{align*}
+        Thus we know that $T(n)$ must be $\Theta(n)$.
+    \end{proof}
+
+    \item $T(n) = \Theta(n)$
+    \begin{proof}
+        Given $T(n) = 2T(\frac{ n }{ 4 }) + n$ \\
+        \begin{theorem}[Master's theorem]
+            Let $a \in \mathbb{Z}$ and $a \geq 1$, and $b \in \mathbb{R}$ and 
+            $b \geq 1$. Let $c \in \mathbb{R}$ and $c > 0$, and 
+            $d \in \mathbb{R}$ and $d \geq 0$. Given a recurrence of the form
+        \[
+            T(n) = 
+            \begin{cases}
+                aT(n/b) n^c, & \text{if $n > 1$}.\\
+                d, & \text{if $n = 1$}.
+            \end{cases} 
+        \]
+        then for n a power of b,
+        \begin{enumerate}
+            \item if $\log_b{a} < c$, $T(n) = \Theta\left(n^c\right)$
+            \item if $\log_b{a} = c$, $T(n) = \Theta\left(n^c\log{n}\right)$
+            \item if $\log_b{a} > c$, $T(n) = \Theta\left(n^{ \log_b{a} }\right)$
+        \end{enumerate}
+        \end{theorem}
+        Using the Master's theorem, let $a = 2$, $b = 4$, and $c = 1$ \\
+        Assume, $\log_b{a} < c$ and as a result $T(n) = \Theta\left(n^c\right)$
+        \begin{align*}
+            \log_4{2} &< 1 \\
+            4^{\log_4{2}} &< 4^1 \\
+            2 &< 4
+        \end{align*}
+        Thus we know that $T(n) = \Theta\left(n^1\right) = \Theta(n)$.
+    \end{proof}
+
+    \item $T(n) = \Theta(n^{\frac{ 5 }{ 2 }})$
+    \begin{proof}
+        Given $T(n) = 4T(\frac{ n }{ 2 }) + n^2\sqrt{n}$ \\
+        We can rewrite this equation to be
+        \[ 4T(\frac{ n }{ 2 }) + n^{5/2} \]
+        Using the Master's theorem, $a = 4$, $b = 2$, and $c = \frac{5}{2}$ \\
+        Assume, $\log_b{a} < c$ and as a result $T(n) = \Theta\left(n^c\right)$
+        \begin{align*}
+            \log_2{4} & < \frac{5}{2} \\
+            2 & < \frac{5}{2} \\
+            \frac{4}{2} & < \frac{5}{2} \\
+            4 & < 5
+        \end{align*}
+        Thus we know that $T(n) = \Theta\left(n^{5/2}\right)$.
+    \end{proof}
+    \end{enumerate}
+
+% ------------------------------------------------------------------------------
+%   PROBLEM 2
+% ------------------------------------------------------------------------------
+    \item I would choose the $f_C(n)$ algorithm. \\
+    \begin{enumerate}
+        \item $T(n) = \Theta\left(n^{\log_2{5}}\right)$ \\
+        Given the description $T(n) = 5T\left(\frac{ n }{ 2 }\right) + n$ \\
+        Using the Master's theorem, $a = 5$, $b = 2$, and $c = 1$ \\
+        Assume, $\log_b{a} > c$ and as a result 
+        $T(n) = \Theta\left(n^{\log_b{a}}\right)$
+        \begin{align*}
+            \log_2{5} & > 1 \\
+            2^{\log_2{5}} & > 2^1 \\
+            5 > 2
+        \end{align*}
+        Thus $T(n) = \Theta\left(n^{\log_2{5}}\right)$
+
+        \item $T(n) = \Theta\left(2^n\right)$ \\
+        Given the description $T(n) = 2T\left(n - 1\right) + c$ \\
+        Using the iterative method
+        \begin{align*}
+            T(n) & = 2T\left(n - 1\right) + c \\
+            T(n - 1) & = 2T\left(n - 2\right) + c \\
+            \ldots & = c + 2(c + 2(c + 2(\ldots))) \\
+            & = c\sum\limits_{i=0}^k 2^i \\
+            & = c\left(\frac{ 1 - 2^k}{ 1 - 2 }\right) \\
+            & = c\left(\frac{ 1 - 2^k}{ -1 }\right) \\
+            & = -c\left(1 - 2^k\right) \\
+            & = -c + (c)(2^k) \\
+            & = -c + (c)(2^n) \\
+        \end{align*}
+        Thus $T(n) = \Theta\left(2^n\right)$
+
+        \item $T(n) = \Theta\left(n^2\log{n}\right)$ \\
+        Given the description $T(n) = 9T\left(\frac{ n }{ 3 }\right) + n^2$ \\
+        Using the Master's theorem, $a = 9$, $b = 3$, and $c = 2$ \\
+        Assume, $\log_b{a} = c$ and as a result 
+        $T(n) = \Theta\left(n^c\log{n}\right)$
+        \begin{align*}
+            \log_3{9} & = 2 \\
+            3^{\log_3{9}} & = 3^2 \\
+            9 & = 9
+        \end{align*}
+        Thus $T(n) = \Theta\left(n^2\log{n}}\right)$
+    \end{enumerate}
+    Comparing each algorithm's running time by limits will show that the fastest
+    algorithm is algorithm C. \\
+    Comparing B and C: 
+    \[
+        \lim_{n\to\infty} \frac{ f_B(n) }{ f_C(n) } = 
+        \lim_{n\to\infty} \frac{ 2^n }{ n^2\log{n} }
+    \]
+    to find what this limit approaches we must take the derivative multiple
+    times \\
+    \begin{align*}
+        \lim_{n\to\infty} \frac{ 2^n }{ n^2\log{n} } \\
+        \lim_{n\to\infty} \left(2^n\ln{2}\right)\left(
+            \frac{ \ln{10} }{ n }\right) \\
+        \lim_{n\to\infty} \frac{ 2^n\ln{10}\ln{2} }{ n } \tag{$f'(n)$} \\
+        \lim_{n\to\infty} \frac{ 2^n\ln{10}\ln{2} }{ 2n\ln{n} } 
+            \tag{$f''(n)$} \\
+        \lim_{n\to\infty} \frac{ 2^n }{ \log{n} } \tag{$f'''(n)$} \\
+        \lim_{n\to\infty} 2^nn = \infty \tag{$f''''(n)$}
+    \end{align*}
+    Thus since $f_B(n)$ approaches $\infty$ faster that $f_C(n)$ we can say
+    that $f_C(n)$ is faster than $f_B(n)$. \\
+    Next we compare C and A: 
+    \[
+        \lim_{n\to\infty} \frac{ f_A(n) }{ f_C(n) } = 
+        \lim_{n\to\infty} \frac{ n^{ \log_2{5} } }{ n^2\log{n} }
+    \]
+    and find after take the derivative that:
+    \[
+        \lim_{n\to\infty} n^{ \log_2{5} - 2}\ln{10} = \infty
+    \]
+    ($\log_2{5} > 2$ thus $\log_2{5} - 2 > 0$) \\
+    Thus we can conclude that $f_C(n)$ is the most efficient algorithm.
+
+% ------------------------------------------------------------------------------
+%   PROBLEM 3
+% ------------------------------------------------------------------------------
+    \item $T(n) = \Theta(n)$ \\
+    The equation for number of lines printed is given by
+    \[ T(n) = 2T\left(\frac{ n }{ 2 }\right) + 1 \]
+    Assume $n = 2^k$, which can be written as $k = \lg{n}$ \\
+    Thus using the iterative method:
+    \begin{align*}
+        T(n) & = 2T\left(\frac{ n }{ 2 }\right) + 1 \\
+        T\left(\frac{ n }{ 2 }\right) & = 2T\left(\frac{ n }{ 4 }\right) + 1 \\
+        \ldots & = 1 + 2(1 + 2(1 + 2(\ldots))) \\
+        & = \sum\limits_{i=0}^k 2^k \\
+        & = \frac{ 1 - 2^k }{ 1 - 2 } \\
+        & = 2^k - 1 \\
+        & = 2^{\lg{n}} - 1 \\
+        & = n - 1
+    \end{align*}
+    Thus $T(n) = \Theta(n)$.
+% ------------------------------------------------------------------------------
+%   PROBLEM 4
+% ------------------------------------------------------------------------------
+    \item \hfill \\
+    \begin{minted}[mathescape,
+                   linenos,
+                   numbersep=5pt,
+                   gobble=2,
+                   frame=lines,
+                   framesep=2mm]{python}
+    Ternary-Sort(sTerm, list, low, high):
+        n = high - low
+        lowMid = n / 3 + low
+        highMid = (2 * n) / 3 + low
+
+        if (sTerm == list[lowMid]):
+            return lowMid
+        else if(sTerm == list[highMid]):
+            return highMid
+        else if (n == 0):
+            return -1
+        else if (sTerm < list[lowMid]):
+            return Ternary-Sort(sTerm, list, low, lowMid)
+        else if (sTerm < list[highMid]):
+            return Ternary-Sort(sTerm, list, lowMid, highMid)
+        else
+            return Ternary-Sort(sTerm, list, highMid, high)
+    \end{minted}
+    \begin{description}
+        \item[binary] $T(n) = T\left(\frac{ n }{ 2 }\right) + c$ \\
+        Assume $n = 2^k$ \\
+        Using the iterative method:
+        \begin{align*}
+            T(n) & = T\left(\frac{ n }{ 2 }\right) + c \\
+            T\left(\frac{ n }{ 2 }\right) & = T\left(\frac{ n }{ 4 }\right) + c \\
+            \ldots & = c + (c + (c + (\ldots))) \\
+            & = ck \\
+            T(n) = c\lg{n}
+        \end{align*}
+        Thus $T(n) = \Theta(\lg{n})$
+
+        \item[ternary]$T(n) = T\left(\frac{ n }{ 3 }\right) + c$ 
+        Assume $n = 3^k$ \\
+        Using the iterative method:
+        \begin{align*}
+            T(n) & = T\left(\frac{ n }{ 3 }\right) + c \\
+            T\left(\frac{ n }{ 3 }\right) & = T\left(\frac{ n }{ 9 }\right) + c \\
+            \ldots & = c + (c + (c + (\ldots))) \\
+            & = ck \\
+            T(n) = c\log_3{n}
+        \end{align*}
+        Thus $T(n) = \Theta(\log_3{n})$ which is equivalent to $\Theta(\lg{n})$.
+    \end{description}
+    Both binary and ternary search have the same relative running time.
+% ------------------------------------------------------------------------------
+%   PROBLEM 5
+% ------------------------------------------------------------------------------
+    \item \hfill \\
+\end{enumerate}
+\end{document}
+%-------------------------------------------------------------------------------
+
+

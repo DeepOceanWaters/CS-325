@@ -1,0 +1,270 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{ 
+\normalfont \normalsize 
+\textsc{Oregon State University} \\ [25pt]
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge CS 325: Homework 1 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Colin Bradford} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 1
+%----------------------------------------------------------------------------------------
+\begin{description}
+    \item[1)] (CLRS) 1.1-4 \hfill \\
+        The shortest path problem is concerned about the shortest possible path between two different
+        nodes on a graph. The traveling salesman problem is concerned about the shortest possible path
+        given that 1) the path must start and end on the same node, 2) the path must include a number
+        of other nodes, and 3) no node can be visited more than once. They are similar in that they 
+        both are trying to find the shortest path in one form or another, and no node should be visited
+        more than once. They differ in that the traveling salesman defines loosely the required path, and
+        that the path both starts and ends on the same node.
+    \item[2)] (CLRS) 1.2-2 \hfill \\
+        For this problem we are looking for two variables x and y; where x < n < y, and x, n, and 
+        $y \in$ the set of positive integers. In addition, to truly solve this problem requires a numerical method 
+        which would likely produce an $x$ and $y$ that are in the set of real numbers.
+        
+        \begin{align} 
+        \begin{split}
+            8n^2    &= 64n\lg{n}\\
+            n       &= 8\lg{n}\\
+            n       &= 8\frac{\log{n}}{\log{2}}
+        \end{split}                 
+        \end{align}
+        
+        Considering that the problem requires a numerical method, I plugged the equation into an online
+        solver (e.g. Wolfram Alpha). I could have essentially used trial and error to get a similar result. 
+        This led me to get the values of x = 2 and y = 43.
+    \item[3)] (CLRS) Problem 1-1 \hfill \\
+        \begin{tabular}{ c | c | c | c | c | c | c }
+                        & 1 second & 1 minute & 1 day & 1 month & 1 year & 1 century \\
+            \hline
+            $\lg{n}$    & $2^{10^6}$ & & & & & \\
+            $\sqrt{n}$  & & & & & & \\
+            $n$         & & & & & & \\
+            $n\lg{n}$   & & & & & & \\
+            $n^2$       & & & & & & \\
+            $n^3$       & & & & & & \\
+            $2^n$       & & & & & & \\
+            $n!$        & & & & & & \\
+
+        \end{tabular}
+    \item[4)] (CLRS) 2.3-3 \hfill \\
+        \begin{description}
+            \item[Base case: n = 2] \hfill \\
+                This is a trivial case as $T(n)$ is defined as 2 when $n = 2$ (when $k = 1$).
+            \item[Inductive case] \hfill \\
+                Assume $T(n)$ is true. $T(2n)$ is the next step so we will be proving for it.
+                \begin{align} 
+                \begin{split}
+                    2T(2n/2) + n    &= (2n)lg(2n)\\
+                    2T(n) + n       &= (2n)lg(2n)\\
+                    (2n)(lg(n) + 1)       &= (2n)lg(2n)\\
+                    (2n)(lg(n) + lg(2)) &= (2n)lg(2n)\\
+                    (2n)lg(2n) &= (2n)lg(2n)
+                \end{split}                 
+                \end{align}
+                The statement holds true and thus $T(n)$ is $nlg(n)$.
+        \end{description}
+    \item[5)] 2.3-7 \hfill \\
+        First use an O(nlg(n)) sorting algorithm to sort the set of integers given, and denote it as $S_l$, in
+        this case we can use the merge sort algorithm. Next use a similar idea as the merge sort algorithm to
+        find sums. The algorithm takes a list of sorted integers (denote it as L), the current integer to sum 
+        with (denote it as C), and the integer to sum to (denote it as X). Take the item from L at position L.
+        size/2 and sum it with C and denote the sum as S. If S is equal to X then return true. If S is less 
+        than X then call this function again but let L be the sub-array of L[L.size/2..L.size]. If S is less 
+        than X then call this function again but let L be the sub-array of L[1..L.size/2]. If L is of size 0 
+        then return false.
+
+        \begin{lstlisting}
+        // I am using the MERGE-SORT() pseudo code function described 
+        // in the book. It has an O(nlg(n)) runtime
+        def FindSum(x):
+            MERGE-SORT(L, 1, L.size)
+            isSum = false
+            for i in 1..L.size:
+                curInt = L[i]
+                isSum = FindSumHelper(L[i+1..L.size], curInt, x)
+            if isSum:
+                    break
+            return isSum
+        
+        def FindSumHelper(L, C, X):
+            if L.size == 0:
+                return false
+            middlePos = L.size/2
+            S = L[middlePos] + C
+            if C == X:
+                return true
+            else if C > X:
+                return FindSumHelper(L[1..(middlePos - 1)], C, X)
+            else:
+                return FindSumHelper(L[(middlePos + 1)..L.size], C, X)
+        \end{lstlisting}
+    \item[6)] Fibonacci Numbers: \hfill \\
+        a) Implementation
+        \begin{lstlisting}[language=Python]
+        // Written in Python
+        import time
+
+        def main():
+            test_vals = [
+                5, 10, 15, 20, 50, 
+                100, 1000, 2000, 
+                5000, 10000
+            ]
+            recur_times = []
+            iter_times = []
+            for test_val in test_vals:
+                # time recursive
+                start_time = time.time()
+                print fib(test_val)
+                recur_times.add(time.time() - start_time)
+                # time iterative
+                start_time = time.time()
+                print iter_fib(test_val)
+                iter_times.add(time.time() - start_time)
+            # print out recursive and iterative timings
+            for i in range(0, test_vals.size()):
+                print("[recursive] %s seconds" % recur_times[i])
+                print("[iterative] %s seconds" % iter_times[i])
+        
+        # recursive
+        def fib(n):
+            if n == 0:
+                return 0
+            else if n == 1:
+                return 1
+            else:
+                return fib(n-1) + fib(n-2)
+        
+        # iterative
+        def iter_fib(n):
+            cur_fib = 0
+            prev_fib = 1
+            temp_fib = 0
+            for i in range(1, n):
+                temp_fib = cur_fib + a
+                prev_fib = cur_fib
+                cur_fib = temp_fib
+            return fib
+        
+        
+        if __name__ == '__main__':
+            main()
+    \end{lstlisting}
+
+
+    b) Below are the running times for 5, 10, 15, 20, 25, and 30
+    \begin{lstlisting}
+    [recursive] 3.19480895996e-05 seconds
+    [recursive] 3.91006469727e-05 seconds
+    [recursive] 0.000456094741821 seconds
+    [recursive] 0.00445604324341 seconds
+    [recursive] 0.0501158237457 seconds
+    [recursive] 0.539262056351 seconds
+
+    [iterative] 2.50339508057e-05 seconds
+    [iterative] 6.91413879395e-06 seconds
+    [iterative] 1.81198120117e-05 seconds
+    [iterative] 2.98023223877e-05 seconds
+    [iterative] 2.78949737549e-05 seconds
+    [iterative] 2.31266021729e-05 seconds
+    \end{lstlisting}
+\end{description}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
