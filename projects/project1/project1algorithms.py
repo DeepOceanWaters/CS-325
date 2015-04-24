@@ -12,6 +12,7 @@ results = [[],[],[],[]]
 
 def max_subarray_algorithm1(array):
 	max_array = 0
+	start = end = 0
 	for i in range(0, len(array)):
 		j = i
 		for j in range(j, len(array)):
@@ -19,12 +20,15 @@ def max_subarray_algorithm1(array):
 			k = i
 			for k in range(k,j+1): #j+1, so it sums the last element of the array
 				current_sum += array[k]
-				if (current_sum > max_sum):
+				if (current_sum > max_array):
 					max_array = current_sum
-	return max_array
+					start = i
+					end = k+1
+	return array[start:end]
     
 def max_subarray_algorithm2(array):
 	max_array = 0
+	start = end = 0
 	for i in range(0, len(array)):
 		current_sum = 0
 		j = i
@@ -32,26 +36,27 @@ def max_subarray_algorithm2(array):
 			current_sum += array[j]
 			if (current_sum > max_array):
 				max_array = current_sum
-	return max_array
+				start = i
+				end = j+1
+	return array[start:end]
 	
 def max_subarray_algorithm3(array):
-    max_array = 0
-    current_sum = 0
-    for i in range(0,len(array)):
-        current_sum += array[i]
-        if  current_sum < 0:
-            current_sum = 0
-        elif max_array < current_sum:
-            max_array = current_sum
-    return max_array
+	pass
 	
 def max_subarray_algorithm4(array):
 	max_array = 0
 	current_sum = 0
+	start = end = 0
 	for i in range(0,len(array)):
-		current_sum = max(array[i],current_sum+array[i])
-		max_array = max(max_array,current_sum)
-	return max_array
+		current_sum += array[i]
+		if  current_sum < 0:
+			current_sum = 0
+			start = i+1
+		if max_array < current_sum:
+			max_array = current_sum
+			end = i+1
+	print end
+	return array[start:end]
 
 #main function
 if __name__ == '__main__':
@@ -67,16 +72,21 @@ if __name__ == '__main__':
 				
 				result = 0
 				if int(args[1]) == 1:
-					result = max_subarray_algorithm1(array)
-					#result_array = max_subarray_algorithm1(array)
-					#print result_array
-					#result = sum(result_array)
+					result_array = max_subarray_algorithm1(array)
+					print result_array
+					result = sum(result_array)
 				if int(args[1]) == 2:
-					result = max_subarray_algorithm2(array)
+					result_array = max_subarray_algorithm2(array)
+					print result_array
+					result = sum(result_array)
 				if int(args[1]) == 3:
-					result = max_subarray_algorithm3(array)
+					result_array = max_subarray_algorithm3(array)
+					print result_array
+					result = sum(result_array)
 				if int(args[1]) == 4:
-					result = max_subarray_algorithm4(array)
+					result_array = max_subarray_algorithm4(array)
+					print result_array
+					result = sum(result_array)
 				if result == solution:
 					print "Correct: %s==%s"%(result, solution)
 				else:
