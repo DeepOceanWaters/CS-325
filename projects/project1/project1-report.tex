@@ -186,6 +186,31 @@
     \item \hfill \\
     \begin{description}
         \item[Pseudo-code] \hfill \\
+        \begin{algorithmc}
+            \caption{Max-Subarray finds the subarray with the max sum of all its elements}
+            \Require{$A$ is an $n$-sized array of small integers.}
+            \Function{Max-Subarray}{$A$}
+                \State $n \gets A$.size
+                \State $maxSum \gets null$
+                \State $curSum \gets 0$
+                \State $curStart \gets 0$
+                \State $start \gets 0$
+                \State $end \gets 0$
+                \For{$i \gets 0 \textrm{ to } n - 1$}
+                    \State $curSum \gets curSum + A[i]$
+                    \If{$curSum < 0$}
+                        \State $curSum \gets 0$
+                        \State $curStart \gets i + 1$
+                    \EndIf
+                    \If{$curSum > maxSum$}
+                        \State $maxSum \gets curSum$
+                        \State $end \gets i + 1$
+                        \State $start \gets curStart$
+                    \EndIf
+                \EndFor
+                \State \Return $A[start..end]$
+            \EndFunction
+        \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
     \end{description}
 \end{enumerate}
