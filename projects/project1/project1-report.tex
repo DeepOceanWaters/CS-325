@@ -13,6 +13,7 @@
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{enumitem}
+\usepackage{fontspec}
 
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, 
@@ -39,6 +40,15 @@
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment 
                           % this line for an assignment with lots of text
+
+\setmainfont{Hoefler Text}
+\newcommand*\DNA{\textsc{dna}}
+
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\algrenewcommand\alglinenumber[1]{
+    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
+\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
 
 %-------------------------------------------------------------------------------
 %   TITLE SECTION
@@ -98,6 +108,36 @@
     \item \hfill \\
     \begin{description}
         \item[Pseudo-code] \hfill \\
+        \begin{algorithm}
+            \caption{Counting mismatches between two packed \DNA strings
+            \label{alg:3}}
+            \begin{algorithmic}[1]
+              \Require{$A$ is an $n$-sized array of small integers, and $k$
+                        is the size of the subarray.}
+              \Statex
+              \Function{Max-Subarray}{$A, k$}
+                \Let{$n$}{$A$.size}
+                \If{$n < k$}
+                  \Return{null}
+                \EndIf
+                \Let{$mid$}{$n / 2$} \Comment{}
+                \Let{$sum$}{$0$}
+                \Let{$low$}{$\max{(0, mid - k)}$}
+                \For{$i \gets mid - k \textrm{ to } mid$}
+                  \Let{$j$}{$i + k$}
+                  \If{$j \geq n$}
+                    break
+                  \EndIf
+                \EndFor
+                \For{$i \gets 1 \textrm{ to } n$}
+                  \If{$z_i \neq 0$}
+                    \Let{$\delta$}{$\delta + 1$}
+                  \EndIf
+                \EndFor
+                \State \Return{$\delta$}
+              \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
         \item[Run-time Analysis] \hfill \\
     \end{description}
 
