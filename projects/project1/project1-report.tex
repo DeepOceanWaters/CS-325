@@ -149,40 +149,45 @@
     \begin{description}
         \item[Pseudo-code] \hfill \\
         \begin{algorithmc}
-            \caption{Max-Subarray finds the subarray with the max sum of all its elements}
-            \Require{$A$ is an $n$-sized array of small integers, and $k$
-                      is the size of the subarray.}
-            \Function{Max-Subarray}{$A, k$}
-                \State $midArray \gets $(sum: null, sub-array: null)
+            \caption{Algorithm 3: Divide and Conquer}
+            \Require{$A$ is an $n$-sized array of small integers.}
+            \Function{Max-Subarray}{$A$}
                 \State $n \gets A$.size
-                \If{$n < k$}
-                  \State \Return{null}
-                \EndIf
+                \State $maxSum \gets$ null
+                \State $curSum \gets 0$
                 \State $mid \gets n / 2$
-                \State $low \gets \max{(0, mid - k)}$
-                \State $sum \gets 0$
-                \State $j \gets low + k$
-                \If{$j < n$}
-                    \For{$i \gets low \textrm{ to } mid$}
-                        \State $sum \gets sum + A[i]$
-                    \EndFor
-                    \State $midArray. \textrm{sum} \gets sum$
-                    \State $midArray. \textrm{sub-array} \gets A[low..low + k]$
-                \EndIf
-                \For{$i \gets low \textrm{ to } mid$}
-                    \State $j \gets j + 1$
-                    \If{$j \geq n$}
-                        \State break
-                    \EndIf
-                    \State $sum \gets sum - A[i] + A[j]$
-                    \If{$sum > midArray. \textrm{sum}$}
-                        \State $midArray. \textrm{sum} \gets sum$
-                        \State $midArray. \textrm{sub-array} \gets A[i + 1..j]$
-                    \EndIf
+                \For{$i \gets 0 \textrm{ to } mid$}
+                    $curSum \gets curSum + A[i]$
                 \EndFor
-                \State $leftArray \gets$ \Call{Max-Subarray}{$A[low..mid]$, $k$}
-                \State $rightArray \gets$ \Call{Max-Subarray}{$A[mid + 1..n - 1]$, $k$}
-                \State \Return{$\max{(leftArray, midArray, rightArray)}$}
+                \For{$i \gets 0 \textrm{ to } mid$}
+                    \For{$j \gets mid + 1 \textrm{ to } n$}
+                        \State $curSum \gets curSum + A[j]$
+                        \If{$curSum > maxSum$}
+                            \State $maxSum \gets curSum$
+                            \State $start \gets i$
+                            \State $end \gets j$
+                        \EndIf
+                    \EndFor
+                    \State $curSum \gets curSum - A[i]$
+                \EndFor
+                \State $maxArray \gets A[start..end]$
+                \State $leftArray \gets$ \Call{Max-Subarray}{$A[0..mid]$}
+                \State $rightArray \gets$ \Call{Max-Subarray}{$A[mid + 1..n]$}
+                \If{\Call{Sum}{$leftArray$}$> maxSum$}
+                    \State $maxArray \gets leftArray$
+                \EndIf
+                \If{\Call{Sum}{$rightArray$}$ > maxSum$}
+                    \State $maxArray \gets rightArray$
+                \EndIf
+                \State \Return{$maxArray$}
+            \EndFunction
+            \Function{Sum}{$A$}
+                \State $n \gets A$.size
+                \State $sum \gets 0$
+                \For{$i \gets 0 \textrm{ to } n$}
+                    \State $sum \gets sum + A[i]$
+                \EndFor
+                \State \Return{$sum$}
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
