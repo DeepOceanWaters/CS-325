@@ -85,6 +85,26 @@
     \item \hfill \\
     \begin{description}
         \item[Pseudo-code] \hfill \\
+        \begin{algorithmc}
+            \caption{Max-Subarray finds the subarray with the max sum of all its elements}
+            \Require{$A$ is an $n$-sized array of small integers, and $k$
+                      is the size of the subarray. Assume that $k < n$.}
+            \Function{Max-Subarray}{$A, k$}
+                \State $maxArray \gets $(sum: null, sub-array: null)
+                \State $n \gets A$.size
+                \For{$i \gets 0 \textrm{ to } n - 1 - k$}
+                    \State $sum \gets 0$
+                    \For{$j \gets i \textrm{ to } i + k$}
+                        \State $sum \gets sum + A[j]$
+                    \EndFor
+                    \If{$sum > maxArray. \textrm{sum}$}
+                        \State $maxArray. \textrm{sum} \gets sum$
+                        \State $maxArray. \textrm{sub-array} \gets A[i..i + k]$
+                    \EndIf
+                \EndFor
+                \State \Return $maxArray$
+            \EndFunction
+        \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
     \end{description}
 
