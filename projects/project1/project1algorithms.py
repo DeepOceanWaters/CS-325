@@ -65,14 +65,12 @@ if __name__ == '__main__':
 	if len(args) == 2:
 		with open("./MSS_Problems.txt","r") as f:
 			file = f.read() #bad if taking in big file
-			regL = "(\[.*\])\r\n(\[.*\])\r\n(\d+)"
-			regW = "(\[.*\])\n(\[.*\])\n(\d+)"
 			if sys.platform == "win32":
-				reg = regW
+				reg = "(\[.*\])\n(\[.*\])\n(\d+)"
 			else:
-				reg = regL
+				reg = "(\[.*\])\r\n(\[.*\])\r\n(\d+)"
 			for m in re.findall(reg,file):
-			#for m in re.findall("(\[.*\])",file):  #regex line to read the final input file
+			#for m in re.findall("(\[.*\])\r\n",file):  #regex line to read the final input file
 				if m == None: continue
 				array = eval(m[0])  #interpret the square bracketed stuff as python list
 				solution = int(m[2])  #cast the string number to an int
