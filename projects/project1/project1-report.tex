@@ -13,7 +13,7 @@
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{enumitem}
-\usepackage{fontspec}
+\usepackage{algpseudocode}
 
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, 
@@ -41,15 +41,6 @@
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment 
                           % this line for an assignment with lots of text
 
-\setmainfont{Hoefler Text}
-\newcommand*\DNA{\textsc{dna}}
-
-\newcommand*\Let[2]{\State #1 $\gets$ #2}
-\algrenewcommand\alglinenumber[1]{
-    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
-\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
-\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
-
 %-------------------------------------------------------------------------------
 %   TITLE SECTION
 %-------------------------------------------------------------------------------
@@ -64,7 +55,7 @@
 \title{ 
     \normalfont \normalsize 
     \textsc{Oregon State University} \\ [25pt]
-    \large Project Group #21
+    \large Project Group 21
     \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
     \huge \hwtitle \\ % The assignment title
     \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
@@ -108,36 +99,43 @@
     \item \hfill \\
     \begin{description}
         \item[Pseudo-code] \hfill \\
-        \begin{algorithm}
-            \caption{Counting mismatches between two packed \DNA strings
-            \label{alg:3}}
-            \begin{algorithmic}[1]
-              \Require{$A$ is an $n$-sized array of small integers, and $k$
-                        is the size of the subarray.}
-              \Statex
-              \Function{Max-Subarray}{$A, k$}
-                \Let{$n$}{$A$.size}
+        \begin{algorithmc}
+            \caption{Max-Subarray finds the subarray with the max sum of all its elements}
+            \Require{$A$ is an $n$-sized array of small integers, and $k$
+                      is the size of the subarray.}
+            \Function{Max-Subarray}{$A, k$}
+                \State $midArray \gets $(sum: null, sub-array: null)
+                \State $n \gets A$.size
                 \If{$n < k$}
-                  \Return{null}
+                  \State \Return{null}
                 \EndIf
-                \Let{$mid$}{$n / 2$} \Comment{}
-                \Let{$sum$}{$0$}
-                \Let{$low$}{$\max{(0, mid - k)}$}
-                \For{$i \gets mid - k \textrm{ to } mid$}
-                  \Let{$j$}{$i + k$}
-                  \If{$j \geq n$}
-                    break
-                  \EndIf
+                \State $mid \gets n / 2$ \Comment{hi}
+                \State $low \gets \max{(0, mid - k)}$
+                \State $sum \gets 0$
+                \State $j \gets low + k$
+                \If{$j < n$}
+                    \For{$i \gets low \textrm{ to } mid$}
+                        \State $sum \gets sum + A[i]$
+                    \EndFor
+                    \State $midArray. \textrm{sum} \gets sum$
+                    \State $midArray. \textrm{sub-array} \gets A[low..low + k]$
+                \EndIf
+                \For{$i \gets low \textrm{ to } mid$}
+                    \State $j \gets j + 1$
+                    \If{$j \geq n$}
+                        \State break
+                    \EndIf
+                    \State $sum \gets sum - A[i] + A[j]$
+                    \If{$sum > midArray. \textrm{sum}$}
+                        \State $midArray. \textrm{sum} \gets sum$
+                        \State $midArray. \textrm{sub-array} \gets A[i + 1..j]$
+                    \EndIf
                 \EndFor
-                \For{$i \gets 1 \textrm{ to } n$}
-                  \If{$z_i \neq 0$}
-                    \Let{$\delta$}{$\delta + 1$}
-                  \EndIf
-                \EndFor
-                \State \Return{$\delta$}
-              \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
+                \State $leftArray \gets$ \Call{Max-Subarray}{$A[low..mid]$, $k$}
+                \State $rightArray \gets$ \Call{Max-Subarray}{$A[mid + 1..n - 1]$, $k$}
+                \State \Return{$\max{(leftArray, midArray, rightArray)}$}
+            \EndFunction
+        \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
     \end{description}
 
