@@ -133,7 +133,7 @@ if __name__ == '__main__':
 			n = sizes2[i]
 			setup4 = "import random;from __main__ import max_subarray_algorithm2;array = [random.randint(-1000, 1000) for i in xrange(%s)]"%(n) 
 			test4 = "max_subarray_algorithm2(array)"
-			result4 = timeit.timeit(test2, setup=setup2, number=reps)
+			result4 = timeit.timeit(test4, setup=setup4, number=reps)
 			results[3].append(result4)
 		r = [float(math.log(o)) for o in results[3]]
 		coefficient = math.exp(numpy.polyfit(sizes2, r, 1)[0])
