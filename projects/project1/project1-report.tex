@@ -13,6 +13,7 @@
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{enumitem}
+\usepackage{algpseudocode}
 
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, 
@@ -54,7 +55,7 @@
 \title{ 
     \normalfont \normalsize 
     \textsc{Oregon State University} \\ [25pt]
-    \large Project Group #21
+    \large Project Group 21
     \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
     \huge \hwtitle \\ % The assignment title
     \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
@@ -98,6 +99,43 @@
     \item \hfill \\
     \begin{description}
         \item[Pseudo-code] \hfill \\
+        \begin{algorithmc}
+            \caption{Max-Subarray finds the subarray with the max sum of all its elements}
+            \Require{$A$ is an $n$-sized array of small integers, and $k$
+                      is the size of the subarray.}
+            \Function{Max-Subarray}{$A, k$}
+                \State $midArray \gets $(sum: null, sub-array: null)
+                \State $n \gets A$.size
+                \If{$n < k$}
+                  \State \Return{null}
+                \EndIf
+                \State $mid \gets n / 2$
+                \State $low \gets \max{(0, mid - k)}$
+                \State $sum \gets 0$
+                \State $j \gets low + k$
+                \If{$j < n$}
+                    \For{$i \gets low \textrm{ to } mid$}
+                        \State $sum \gets sum + A[i]$
+                    \EndFor
+                    \State $midArray. \textrm{sum} \gets sum$
+                    \State $midArray. \textrm{sub-array} \gets A[low..low + k]$
+                \EndIf
+                \For{$i \gets low \textrm{ to } mid$}
+                    \State $j \gets j + 1$
+                    \If{$j \geq n$}
+                        \State break
+                    \EndIf
+                    \State $sum \gets sum - A[i] + A[j]$
+                    \If{$sum > midArray. \textrm{sum}$}
+                        \State $midArray. \textrm{sum} \gets sum$
+                        \State $midArray. \textrm{sub-array} \gets A[i + 1..j]$
+                    \EndIf
+                \EndFor
+                \State $leftArray \gets$ \Call{Max-Subarray}{$A[low..mid]$, $k$}
+                \State $rightArray \gets$ \Call{Max-Subarray}{$A[mid + 1..n - 1]$, $k$}
+                \State \Return{$\max{(leftArray, midArray, rightArray)}$}
+            \EndFunction
+        \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
     \end{description}
 
