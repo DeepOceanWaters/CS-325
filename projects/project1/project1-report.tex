@@ -193,22 +193,21 @@
                 \State $n \gets A$.size
                 \State $maxSum \gets null$
                 \State $curSum \gets 0$
+                \State $curStart \gets 0$
                 \State $start \gets 0$
                 \State $end \gets 0$
                 \For{$i \gets 0 \textrm{ to } n - 1$}
                     \State $curSum \gets curSum + A[i]$
                     \If{$curSum < 0$}
                         \State $curSum \gets 0$
-                        \State $start \gets i + 1$
+                        \State $curStart \gets i + 1$
                     \EndIf
                     \If{$curSum > maxSum$}
                         \State $maxSum \gets curSum$
                         \State $end \gets i + 1$
+                        \State $start \gets curStart$
                     \EndIf
                 \EndFor
-                \If{$start \geq end$}
-                    \State $start \gets 0$
-                \EndIf
                 \State \Return $A[start..end]$
             \EndFunction
         \end{algorithmc}
