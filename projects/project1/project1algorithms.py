@@ -40,6 +40,8 @@ def max_subarray_algorithm2(array):
 	
 def max_subarray_algorithm3(array):
 	max_array = max_sum = current_sum = start = end = 0
+	if len(array) <=0:
+		return 0
 	mid = int(math.floor(len(array)/2))
 
 	for i in range(0,mid):
@@ -49,8 +51,7 @@ def max_subarray_algorithm3(array):
 				max_array = current_sum
 				start = i
 				end = j
-	print start
-	print end
+				
 	max_array = array[start:end]
 	left_array = max_subarray_algorithm3(array[0:mid])
 	right_array = max_subarray_algorithm3(array[(mid+1):len(array)])
