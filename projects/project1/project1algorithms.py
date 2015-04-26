@@ -11,8 +11,7 @@ sizes2 = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000
 results = [[],[],[],[]]
 
 def max_subarray_algorithm1(array):
-	max_array = 0
-	start = end = 0
+	max_array = current_sum = start = end = 0
 	for i in range(0, len(array)):
 		j = i
 		for j in range(j, len(array)):
@@ -27,8 +26,7 @@ def max_subarray_algorithm1(array):
 	return array[start:end]
     
 def max_subarray_algorithm2(array):
-	max_array = 0
-	start = end = 0
+	max_array = current_sum = start = end = 0
 	for i in range(0, len(array)):
 		current_sum = 0
 		j = i
@@ -41,12 +39,29 @@ def max_subarray_algorithm2(array):
 	return array[start:end]
 	
 def max_subarray_algorithm3(array):
-	pass
+	max_array = max_sum = current_sum = start = end = 0
+	mid = int(math.floor(len(array)/2))
+
+	for i in range(0,mid):
+		for j in range(mid+1,len(array)):
+			current_sum += array[j]
+			if(current_sum > max_sum):
+				max_array = current_sum
+				start = i
+				end = j
+	print start
+	print end
+	max_array = array[start:end]
+	left_array = max_subarray_algorithm3(array[0:mid])
+	right_array = max_subarray_algorithm3(array[(mid+1):len(array)])
+	if sum(left_array) > max_sum:
+		max_array = left_array
+	if sum(right_array) > max_sum:
+		max_array = right_array
+	return max_array
 	
 def max_subarray_algorithm4(array):
-	max_array = 0
-	current_sum = 0
-	start = end = 0
+	max_array = current_sum = start = end = 0
 	for i in range(0,len(array)):
 		current_sum += array[i]
 		if  current_sum < 0:
@@ -68,8 +83,6 @@ if __name__ == '__main__':
 			reg = "(\[.*\])(?:\n|\r\n)(\[.*\])(?:\n|\r\n)(\d+)"
 			#reg = "(\[.*\])(?:\n|\r\n)"
 			for m in re.findall(reg,file): 
-				print m
-				print type(m)
 				if m == None: continue
 				array = eval(m[0])  #interpret the square bracketed stuff as python list
 				solution = int(m[2])  #cast the string number to an int
