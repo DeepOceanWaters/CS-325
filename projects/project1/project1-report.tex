@@ -228,7 +228,39 @@
 
 \section{Proof of Correctness (Algorithm 3)}
 \begin{proof}
+    The loop returns the sum of all elements $A[1]$ through $A[n]$. \\
+    Let our loop invariant be: $S = $ sum of the first $k$ elements of $A$. \\
+    \underline{Initialization:} before for the loop starts,
+    $k = 0$ and $S = 0$, which satisfies our loop invariant trivially as
+    the sum of 0 elements is 0. \\
+    \underline{Maintenance:} Assume after a loop that $S$ will be equal to
+    the sum of the first $k + 1$ elements of $A$. Let $S$ be the sum of the 
+    first $k$ elements of $A$ before the loop. After the loop we have 
+    $S \gets S + A[k + 1]$. The loop invariant holds for Maintenance. \\
+    \underline{Termination:} The loop terminates when $k = n$. Since we know
+    that $S$ is the sum of the first $k$ elements, and $k = n$, then we can 
+    say that $S$ is the sum of the first $n$ elements. Thus we have proven the claim. \\
+    In addition we know that when the loop terminates, the maximum subarray will
+    be described by $A[start..end]$ which is maintained throughout the loop.
 \end{proof}
+\begin{proof}
+    \underline{Base Case $n = 1$} \\
+    Trivial as the max subarray of an array of size 1 will be itself. \\
+    \underline{Inductive Case} \\
+    Assume Max-Subarray correctly returns the max subarray for all arrays
+    for 1 through $k$. \\
+    Let $A$ be an array with size $n$ \\
+    Let $n = 2^{k + 1}$ \\
+    We can see that there are two Max-Subarray calls each with a subarray of
+    size $n/2$. Thus we can say that these calls are made with subarrays of
+    size $2^k$ as $2^{k + 1} / 2 = 2^k$. Thus based on our assumptions they 
+    will return the max subarray. \\
+    In the proof above, we have proven that for any array of size $n$ the 
+    array will find the max subarray. Thus when we find the max of each the left,
+    right and middle subarrays, we will return the max subarray. Thus the algorithm
+    returns correctly.
+\end{proof}
+
 
 \section{Testing}
 (Filler text)
