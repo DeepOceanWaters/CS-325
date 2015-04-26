@@ -2,8 +2,7 @@ import sys
 import math
 import re
 import timeit
-import matplotlib as mat 
-import numpy
+
 	
 sizes1 = [100,200,300,400,500,600,700,800] #currently takes about 10 minutes
 sizes2 = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
@@ -80,44 +79,58 @@ def max_subarray_algorithm4(array):
 if __name__ == '__main__':
 	args = sys.argv
 	if len(args) == 2:
-		with open("./MSS_Problems.txt","r") as f:
-			file = f.read() #bad if taking in big file
-			reg = "(\[.*\])(?:\n|\r\n)(\[.*\])(?:\n|\r\n)(\d+)"
-			#reg = "(\[.*\])(?:\n|\r\n)"
-			for m in re.findall(reg,file): 
-				if m == None: continue
-				array = eval(m[0])  #interpret the square bracketed stuff as python list
-				solution = int(m[2])  #cast the string number to an int
-			 	print array	
-				result = 0
-				if int(args[1]) == 1:
-					result_array = max_subarray_algorithm1(array)
-					print result_array
-					result = sum(result_array)
-				if int(args[1]) == 2:
-					result_array = max_subarray_algorithm2(array)
-					print result_array
-					result = sum(result_array)
-				if int(args[1]) == 3:
-					result = max_subarray_algorithm3(array)
-					for i in range(0,len(array)-1):
-						check = 0
-						j = i
-						while check != result and j <= len(array)-1:
-							check += array[j]
-							j += 1
-						if check == result:
-							break
-					print array[i:j]
-				if int(args[1]) == 4:
+		if args[1] == 'results':
+			with open("./MSS_Problemst.txt","r") as f:
+				r = open("./MSS_Results.txt","a")
+				file = f.read() #bad if taking in big file
+				reg = "(\[.*\])(?:\n|\r\n)"
+				for m in re.findall(reg,file): 
+					if m == None: continue
+					array = eval(m)
 					result_array = max_subarray_algorithm4(array)
-					print result_array
-					result = sum(result_array)
-				if result == solution:
-					print "Correct: %s==%s"%(result, solution)
-				else:
-					print "Wrong: %s!=%s"%(result, solution)
+					r.writelines("Original Array: %s\n"%(str(array)))
+					r.writelines("Subarray: %s\n"%(str(result_array)))
+					r.writelines("Max Sum: %s\n\n"%(str(sum(result_array))))
+		else:	 
+			with open("./MSS_Problems.txt","r") as f:
+				file = f.read() #bad if taking in big file
+				reg = "(\[.*\])(?:\n|\r\n)(\[.*\])(?:\n|\r\n)(\d+)"
+				for m in re.findall(reg,file): 
+					if m == None: continue
+					array = eval(m[0])  #interpret the square bracketed stuff as python list
+					solution = int(m[2])  #cast the string number to an int
+					print array	
+					result = 0
+					if int(args[1]) == 1:
+						result_array = max_subarray_algorithm1(array)
+						print result_array
+						result = sum(result_array)
+					if int(args[1]) == 2:
+						result_array = max_subarray_algorithm2(array)
+						print result_array
+						result = sum(result_array)
+					if int(args[1]) == 3:
+						result = max_subarray_algorithm3(array)
+						for i in range(0,len(array)-1):
+							check = 0
+							j = i
+							while check != result and j <= len(array)-1:
+								check += array[j]
+								j += 1
+							if check == result:
+								break
+						print array[i:j]
+					if int(args[1]) == 4:
+						result_array = max_subarray_algorithm4(array)
+						print result_array
+						result = sum(result_array)
+					if result == solution:
+						print "Correct: %s==%s"%(result, solution)
+					else:
+						print "Wrong: %s!=%s"%(result, solution)
 	else:
+		from matplotlib import pyplot as plt
+		import numpy
 		reps = 10
 		test = 1
 		for i in range(0,len(sizes1)):
@@ -160,13 +173,12 @@ if __name__ == '__main__':
 		coefficient = math.exp(numpy.polyfit(sizes2, r, 1)[0])
 		print 'algorithm 4: ' + str(coefficient)
 		
-		algorithm1,= mat.pyplot.loglog(sizes1,results[0], label='algorithm 1')
-		algorithm2,= mat.pyplot.loglog(sizes2,results[1], label='algorithm 2')
-		algorithm3,= mat.pyplot.loglog(sizes2,results[2], label='algorithm 3')
-		algorithm4,= mat.pyplot.loglog(sizes2,results[3], label='algorithm 4')
+		algorithm1,= plt.loglog(sizes1,results[0], label='algorithm 1')
+		algorithm2,= plt.loglog(sizes2,results[1], label='algorithm 2')
+		algorithm3,= plt.loglog(sizes2,results[2], label='algorithm 3')
+		algorithm4,= plt.loglog(sizes2,results[3], label='algorithm 4')
 		plt.title('loglog plot of runtime vs. array size',fontsize=10)
 		plt.ylabel('log(runtime)',fontsize=12)
 		plt.xlabel('log(array size)',fontsize=12)
 		plt.legend(handles = [algorithm1,algorithm2,algorithm3,algorithm4],loc = 'upper left', prop={'size':5})
 		plt.savefig("algorithm runtimes.pdf", papertype = 'letter', format = 'pdf')
-		plt.show()
