@@ -39,27 +39,30 @@ def max_subarray_algorithm2(array):
 	return array[start:end]
 	
 def max_subarray_algorithm3(array):
-	max_array = max_sum = current_sum = start = end = 0
-	if len(array) <=0:
+	current_sum = start = end = 0
+	if len(array) == 0:
 		return 0
-	mid = int(math.floor(len(array)/2))
-
-	for i in range(0,mid):
-		for j in range(mid+1,len(array)):
-			current_sum += array[j]
-			if(current_sum > max_sum):
-				max_array = current_sum
-				start = i
-				end = j
-				
-	max_array = array[start:end]
+	if len(array) == 1:
+		return array[0]
+	mid = int(math.floor((len(array)/2))-1)
 	left_array = max_subarray_algorithm3(array[0:mid])
 	right_array = max_subarray_algorithm3(array[(mid+1):len(array)])
-	if sum(left_array) > max_sum:
-		max_array = left_array
-	if sum(right_array) > max_sum:
-		max_array = right_array
-	return max_array
+	left_max = array[mid]
+	right_max = array[mid+1]
+	for i in range(mid,-1,-1):
+		current_sum += array[i]
+		if current_sum > left_max:
+			left_max = current_sum
+			start = i
+	current_sum = 0
+	for i in range(mid+1,len(array)):
+		current_sum += array[i]
+		if current_sum > right_max:
+			right_max = current_sum
+			end = i
+	print start
+	print end
+	return max(max(left_array,right_array),(left_max+right_max))
 	
 def max_subarray_algorithm4(array):
 	max_array = current_sum = start = end = 0
@@ -98,9 +101,9 @@ if __name__ == '__main__':
 					print result_array
 					result = sum(result_array)
 				if int(args[1]) == 3:
-					result_array = max_subarray_algorithm3(array)
-					print result_array
-					result = sum(result_array)
+					result = max_subarray_algorithm3(array)
+					#print result_array
+					#result = sum(result_array)
 				if int(args[1]) == 4:
 					result_array = max_subarray_algorithm4(array)
 					print result_array
