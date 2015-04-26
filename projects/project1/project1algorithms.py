@@ -53,16 +53,14 @@ def max_subarray_algorithm3(array):
 		current_sum += array[i]
 		if current_sum > left_max:
 			left_max = current_sum
-			start = i
+			start = i-1
 	current_sum = 0
 	for i in range(mid+1,len(array)):
 		current_sum += array[i]
 		if current_sum > right_max:
 			right_max = current_sum
-			end = i
-	print start
-	print end
-	return max(max(left_array,right_array),(left_max+right_max))
+			end = i+1
+	return max(left_array,right_array,(left_max+right_max))
 	
 def max_subarray_algorithm4(array):
 	max_array = current_sum = start = end = 0
@@ -102,8 +100,15 @@ if __name__ == '__main__':
 					result = sum(result_array)
 				if int(args[1]) == 3:
 					result = max_subarray_algorithm3(array)
-					#print result_array
-					#result = sum(result_array)
+					for i in range(0,len(array)-1):
+						check = 0
+						j = i
+						while check != result and j <= len(array)-1:
+							check += array[j]
+							j += 1
+						if check == result:
+							break
+					print array[i:j]
 				if int(args[1]) == 4:
 					result_array = max_subarray_algorithm4(array)
 					print result_array
@@ -137,8 +142,8 @@ if __name__ == '__main__':
 		
 		for i in range(0,len(sizes2)):
 			n = sizes2[i]
-			setup3 = "import random;from __main__ import max_subarray_algorithm2;array = [random.randint(-1000, 1000) for i in xrange(%s)]"%(n) 
-			test3 = "max_subarray_algorithm2(array)"
+			setup3 = "import random;from __main__ import max_subarray_algorithm3;array = [random.randint(-1000, 1000) for i in xrange(%s)]"%(n) 
+			test3 = "max_subarray_algorithm3(array)"
 			result3 = timeit.timeit(test3, setup=setup3, number=reps)
 			results[2].append(result3)
 		r = [float(math.log(o)) for o in results[2]]
@@ -147,8 +152,8 @@ if __name__ == '__main__':
 		
 		for i in range(0,len(sizes2)):
 			n = sizes2[i]
-			setup4 = "import random;from __main__ import max_subarray_algorithm2;array = [random.randint(-1000, 1000) for i in xrange(%s)]"%(n) 
-			test4 = "max_subarray_algorithm2(array)"
+			setup4 = "import random;from __main__ import max_subarray_algorithm4;array = [random.randint(-1000, 1000) for i in xrange(%s)]"%(n) 
+			test4 = "max_subarray_algorithm4(array)"
 			result4 = timeit.timeit(test4, setup=setup4, number=reps)
 			results[3].append(result4)
 		r = [float(math.log(o)) for o in results[3]]
