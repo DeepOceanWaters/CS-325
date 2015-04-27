@@ -1,14 +1,48 @@
+# PROJECT GROUP 21 - PROJECT 1
+# ---------------------------------------
+# Members: Albert Le
+# 		   <leal@onid.oregonstate.edu>
+# 		   
+# 		   Charles Jenkins
+#		   <jenkinch@onid.oregonstate.edu>
+#
+#		   Colin Bradford
+#		   <bradfoco@onid.oregonstate.edu>
+#
+# Class:   CS325 Analysis of Algorithms
+#
+# Description: Program uses four different
+# algorithms to find the maximum subarray
+# of a given array. 
+# ---------------------------------------
+
 import sys
 import math
 import re
 import timeit
 import numpy
+
+try:
+	import matplotlib.pyplot as plt
+	plotting = True
+except RuntimeError:
+	plotting = False
 	
-sizes1 = [100,200,300,400,500,600,700,800] #currently takes about 10 minutes
+sizes1 = [100,200,300,400,500,600,700,800,900,1000]
 sizes2 = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
 
 results = [[],[],[],[]]
 
+# ---------------------------------------
+# Name:        max_subarray_algorithm1
+#
+# Description: Finds max subarray using
+#			   enumeration.
+#
+# Receives:    array
+#
+# Returns:     max subarray
+# ---------------------------------------
 def max_subarray_algorithm1(array):
 	max_array = current_sum = start = end = 0
 	for i in range(0, len(array)):
@@ -23,7 +57,17 @@ def max_subarray_algorithm1(array):
 					start = i
 					end = k+1
 	return array[start:end]
-    
+	
+# ---------------------------------------
+# Name:        max_subarray_algorithm2
+#
+# Description: Finds max subarray using
+#			   better enumeration.
+#
+# Receives:    array
+#
+# Returns:     max subarray
+# ---------------------------------------     
 def max_subarray_algorithm2(array):
 	max_array = current_sum = start = end = 0
 	for i in range(0, len(array)):
@@ -37,6 +81,18 @@ def max_subarray_algorithm2(array):
 				end = j+1
 	return array[start:end]
 	
+
+
+# ---------------------------------------
+# Name:        max_subarray_algorithm3_helper
+#
+# Description: Actual algorithm, finds max result 
+#				using divide and conquer.
+#
+# Receives:    array
+#
+# Returns:     max sum
+# ---------------------------------------
 def max_subarray_algorithm3_helper(array):
 	current_sum = 0
 	if len(array) == 0:
@@ -58,7 +114,17 @@ def max_subarray_algorithm3_helper(array):
 		if current_sum > right_max:
 			right_max = current_sum
 	return max(left_array,right_array,(left_max+right_max))
-	
+
+# ---------------------------------------
+# Name:        max_subarray_algorithm3
+#
+# Description: Finds max subarray using result found
+#			    from max_subarray_algorithm3_helper.
+#
+# Receives:    array
+#
+# Returns:     max subarray sum
+# ---------------------------------------
 def max_subarray_algorithm3(array):
 	start = end = 0
 	result = max_subarray_algorithm3_helper(array)
@@ -71,7 +137,17 @@ def max_subarray_algorithm3(array):
 		if check == result:
 			break
 	return array[start:end]
-	
+
+# ---------------------------------------
+# Name:        max_subarray_algorithm4
+#
+# Description: Finds max subarray using
+#			   dynamic programming.
+#
+# Receives:    array
+#
+# Returns:     max subarray
+# ---------------------------------------
 def max_subarray_algorithm4(array):
 	max_array = current_sum = start = end = 0
 	for i in range(0,len(array)):
@@ -159,7 +235,7 @@ if __name__ == '__main__':
 					else:
 						print "Wrong: %s!=%s"%(result, solution)
 	else:
-
+		# Time and plot (plotting doesn't work on flip) results of all algorithms for random arrays of size n
 		reps = 10
 		test = 1
 		for i in range(0,len(sizes1)):
@@ -203,12 +279,13 @@ if __name__ == '__main__':
 		print 'algorithm 4: ' + str(coefficient)
 		
 		print results
-		#algorithm1,= plt.loglog(sizes1,results[0], label='algorithm 1')
-		#algorithm2,= plt.loglog(sizes2,results[1], label='algorithm 2')
-		#algorithm3,= plt.loglog(sizes2,results[2], label='algorithm 3')
-		#algorithm4,= plt.loglog(sizes2,results[3], label='algorithm 4')
-		#plt.title('loglog plot of runtime vs. array size',fontsize=10)
-		#plt.ylabel('log(runtime)',fontsize=12)
-		#plt.xlabel('log(array size)',fontsize=12)
-		#plt.legend(handles = [algorithm1,algorithm2,algorithm3,algorithm4],loc = 'upper left', prop={'size':5})
-		#plt.savefig("algorithm runtimes.pdf", papertype = 'letter', format = 'pdf')
+		if plotting:
+			algorithm1,= plt.loglog(sizes1,results[0], label='algorithm 1')
+			algorithm2,= plt.loglog(sizes2,results[1], label='algorithm 2')
+			algorithm3,= plt.loglog(sizes2,results[2], label='algorithm 3')
+			algorithm4,= plt.loglog(sizes2,results[3], label='algorithm 4')
+			plt.title('loglog plot of runtime vs. array size',fontsize=10)
+			plt.ylabel('log(runtime)',fontsize=12)
+			plt.xlabel('log(array size)',fontsize=12)
+			plt.legend(handles = [algorithm1,algorithm2,algorithm3,algorithm4],loc = 'upper left', prop={'size':5})
+			plt.savefig("algorithm runtimes.pdf", papertype = 'letter', format = 'pdf')
