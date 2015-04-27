@@ -233,6 +233,15 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = 2T(n/2) + n \]
+        Let $n = 2^k$
+        \begin{align*}
+            T(n/2) & = 2T(n/4) + n/2 \\
+            \ldots & = n + 2(n/2 + 2(n/4 + 2(\ldots))) \\
+            T(n) & = n\sum\limits_{i=0}^k i = \frac{(k)(k + 1)}{2}
+        \end{align*}
     \end{description}
 
     % Algo 4
