@@ -91,7 +91,7 @@ if __name__ == '__main__':
 	args = sys.argv
 	if len(args) == 2:
 		if args[1] == 'results':
-			with open("./MSS_Problemst.txt","r") as f:
+			with open("./MSS_Problems.txt","r") as f:
 				r = open("./MSS_Results.txt","a")
 				file = f.read() #bad if taking in big file
 				reg = "(\[.*\])(?:\n|\r\n)"
