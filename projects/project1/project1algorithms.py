@@ -43,7 +43,7 @@ def max_subarray_algorithm3_helper(array):
 		return 0
 	if len(array) == 1:
 		return array[0]
-	mid = (len(array)/2)-1
+	mid = int(math.floor(len(array)/2)-1)
 	left_array = max_subarray_algorithm3_helper(array[0:mid])
 	right_array = max_subarray_algorithm3_helper(array[(mid+1):len(array)])
 	left_max = array[mid]
@@ -62,7 +62,7 @@ def max_subarray_algorithm3_helper(array):
 def max_subarray_algorithm3(array):
 	start = end = 0
 	result = max_subarray_algorithm3_helper(array)
-	for start in range(0,len(array)-1):
+	for start in range(0,len(array)):
 		check = 0
 		end = start
 		while check != result and end <= len(array)-1:
@@ -101,33 +101,33 @@ if __name__ == '__main__':
 					array = eval(m)
 					result_array = max_subarray_algorithm1(array)
 					
-					r.writelines("Original Array: %s\n"%(str(array)))
-					r.writelines("Subarray: %s\n"%(str(result_array)))
-					r.writelines("Max Sum: %s\n\n"%(str(sum(result_array))))
+					r.writelines("\tOriginal Array: %s\n"%(str(array)))
+					r.writelines("\tSubarray: %s\n"%(str(result_array)))
+					r.writelines("\tMax Sum: %s\n\n"%(str(sum(result_array))))
 				r.writelines("Algorithm 2 Output:\n")
 				for m in re.findall(reg,file): 
 					if m == None: continue
 					array = eval(m)
 					result_array = max_subarray_algorithm2(array)
-					r.writelines("Original Array: %s\n"%(str(array)))
-					r.writelines("Subarray: %s\n"%(str(result_array)))
-					r.writelines("Max Sum: %s\n\n"%(str(sum(result_array))))
+					r.writelines("\tOriginal Array: %s\n"%(str(array)))
+					r.writelines("\tSubarray: %s\n"%(str(result_array)))
+					r.writelines("\tMax Sum: %s\n\n"%(str(sum(result_array))))
 				r.writelines("Algorithm 3 Output:\n")
 				for m in re.findall(reg,file): 
 					if m == None: continue
 					array = eval(m)
 					result_array = max_subarray_algorithm3(array)
-					r.writelines("Original Array: %s\n"%(str(array)))
-					r.writelines("Subarray: %s\n"%(str(result_array)))
-					r.writelines("Max Sum: %s\n\n"%(str(sum(result_array))))
+					r.writelines("\tOriginal Array: %s\n"%(str(array)))
+					r.writelines("\tSubarray: %s\n"%(str(result_array)))
+					r.writelines("\tMax Sum: %s\n\n"%(str(sum(result_array))))
 				r.writelines("Algorithm 4 Output:\n")
 				for m in re.findall(reg,file): 
 					if m == None: continue
 					array = eval(m)
 					result_array = max_subarray_algorithm4(array)
-					r.writelines("Original Array: %s\n"%(str(array)))
-					r.writelines("Subarray: %s\n"%(str(result_array)))
-					r.writelines("Max Sum: %s\n\n"%(str(sum(result_array))))
+					r.writelines("\tOriginal Array: %s\n"%(str(array)))
+					r.writelines("\tSubarray: %s\n"%(str(result_array)))
+					r.writelines("\tMax Sum: %s\n\n"%(str(sum(result_array))))
 		else:	 
 			with open("./MSS_Problems.txt","r") as f:
 				file = f.read() #bad if taking in big file
