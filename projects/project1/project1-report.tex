@@ -240,8 +240,9 @@
         \begin{align*}
             T(n/2) & = 2T(n/4) + n/2 \\
             \ldots & = n + 2(n/2 + 2(n/4 + 2(\ldots))) \\
-            T(n) & = n\sum\limits_{i=0}^k i = \frac{(k)(k + 1)}{2}
+            T(n) & = n\lg{n} + n
         \end{align*}
+        Therefore $T(n) = \Theta(n\lg{n})$
     \end{description}
 
     % Algo 4
@@ -299,35 +300,39 @@
 \section{Extrapolation and Interpretation}
 % Example of how to include a graphic below
 % \includegraphics[width=\textwidth]{algo1Plot}
-\begin{enumerate}[label=\bfseries Algorithm \arabic*:]
+\begin{description}
     % Algo 1
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 2E-08n^3 - 1E-06n^2 + 0.0003n$ This matches our theoretical runtime of O(n^3). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-08n^3$ - $1E-06n^2 + 0.0003n$ --> $n = 5646$ \\
     \end{description}
 
     % Algo 2
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 7E-08n^2 - 7E-06n$  This matches our theoretical runtime of O(n^2). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $7E-08n^2 - 7E-06n$ --> $n = 226829$ \\
     \end{description}
 
     % Algo 3
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 4E-06n - 0.0003$  Our experimental data gave us
+        what looks to be a linear trend line leading to the above equation. Our theoretical runtime 
+        should be O(nlogn). We may not have increased n enough to see this type of asymptotic behavior.
+        The one-hour calculation below assumes the experimental linear equation above, however, 
+        given a more accurate nlogn function, the number would be expected to be much lower. \\
+        \item[Biggest n in an hour]  \\
     \end{description}
 
     % Algo 4
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function]  $f(n) = 2E-07n$ This matches our theoretical runtime of O(n). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-07n$ --> $n = 18000000000$ \\
     \end{description}
-\end{enumerate}
+\end{description}
 \end{document}
 %-------------------------------------------------------------------------------
 
