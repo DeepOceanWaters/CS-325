@@ -249,7 +249,7 @@
                 \State $curStart \gets 0$
                 \State $start \gets 0$
                 \State $end \gets 0$
-                \For{$i \gets 0 \textrm{ to } n - 1$}
+                \For{$i \gets 0 \textrm{ to } n$}
                     \State $curSum \gets curSum + A[i]$
                     \If{$curSum < 0$}
                         \State $curSum \gets 0$
@@ -265,6 +265,15 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = T(n - 1) + c \]
+        \begin{align*}
+            T(n - 1) & = T(n - 2) + c \\
+            \ldots & = c + c + c + \ldots + c \\
+            T(n) & = nc
+        \end{align*}
+        Therefore $T(n) = \Theta(n)$.
     \end{description}
 \end{enumerate}
 
