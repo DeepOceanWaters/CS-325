@@ -112,6 +112,31 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = T(n - 1) + T_1(n) \]
+        \[ T_1(n) = T_1(n - 1) + T_2(n) \]
+        \[ T_2(n) = T_2(n - 1) + c \]
+        We can reduce both $T_1(n)$ and $T_2(n)$ to their time complexities
+        and then finally $T(n)$
+        \begin{align*}
+            T_2(n - 1) & = T_2(n - 2) + c \\
+            \ldots & = c + c + c + \ldots + c \\
+            T_2(n) & = nc
+        \end{align*}
+        Therefore $T_2(n) = \Theta(n)$.
+        \begin{align*}
+            T_1(n - 1) & = T_2(n - 2) + \Theta(n) \\
+            \ldots & = \Theta(n) + \Theta(n) + \Theta(n) + \ldots + \Theta(n) \\
+            T_1(n) & = n\Theta(n)
+        \end{align*}
+        Therefore $T_1(n) = \Theta(n^2)$.
+        \begin{align*}
+            T(n - 1) & = T(n - 2) + \Theta(n^2) \\
+            \ldots & = \Theta(n^2) + \Theta(n^2) + \Theta(n^2) + \ldots + \Theta(n^2) \\
+            T(n) & = n\Theta(n^2)
+        \end{align*}
+        Therefore $T(n) = \Theta(n^3)$.
     \end{description}
 
     % Algo 2
@@ -142,6 +167,23 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = T(n - 1) + T_1(n) \]
+        \[ T_1(n) = T_1(n - 1) + c \]
+        We can reduce $T_1(n)$ to its time complexities and then finally $T(n)$
+        \begin{align*}
+            T_1(n - 1) & = T_1(n - 2) + c \\
+            \ldots & = c + c + c + \ldots + c \\
+            T_1(n) & = nc
+        \end{align*}
+        Therefore $T_1(n) = \Theta(n)$.
+        \begin{align*}
+            T(n - 1) & = T(n - 2) + \Theta(n) \\
+            \ldots & = \Theta(n) + \Theta(n) + \Theta(n) + \ldots + \Theta(n) \\
+            T(n) & = n\Theta(n)
+        \end{align*}
+        Therefore $T(n) = \Theta(n^2)$.
     \end{description}
 
     % Algo 3
@@ -191,6 +233,16 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = 2T(n/2) + n \]
+        Let $n = 2^k$
+        \begin{align*}
+            T(n/2) & = 2T(n/4) + n/2 \\
+            \ldots & = n + 2(n/2 + 2(n/4 + 2(\ldots))) \\
+            T(n) & = n\lg{n} + n
+        \end{align*}
+        Therefore $T(n) = \Theta(n\lg{n})$
     \end{description}
 
     % Algo 4
@@ -207,7 +259,7 @@
                 \State $curStart \gets 0$
                 \State $start \gets 0$
                 \State $end \gets 0$
-                \For{$i \gets 0 \textrm{ to } n - 1$}
+                \For{$i \gets 0 \textrm{ to } n$}
                     \State $curSum \gets curSum + A[i]$
                     \If{$curSum < 0$}
                         \State $curSum \gets 0$
@@ -223,6 +275,15 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = T(n - 1) + c \]
+        \begin{align*}
+            T(n - 1) & = T(n - 2) + c \\
+            \ldots & = c + c + c + \ldots + c \\
+            T(n) & = nc
+        \end{align*}
+        Therefore $T(n) = \Theta(n)$.
     \end{description}
 \end{enumerate}
 
@@ -239,35 +300,39 @@
 \section{Extrapolation and Interpretation}
 % Example of how to include a graphic below
 % \includegraphics[width=\textwidth]{algo1Plot}
-\begin{enumerate}[label=\bfseries Algorithm \arabic*:]
+\begin{description}
     % Algo 1
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 2E-08n^3 - 1E-06n^2 + 0.0003n$ This matches our theoretical runtime of O(n^3). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-08n^3$ - $1E-06n^2 + 0.0003n$ --> $n = 5646$ \\
     \end{description}
 
     % Algo 2
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 7E-08n^2 - 7E-06n$  This matches our theoretical runtime of O(n^2). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $7E-08n^2 - 7E-06n$ --> $n = 226829$ \\
     \end{description}
 
     % Algo 3
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function] $f(n) = 4E-06n - 0.0003$  Our experimental data gave us
+        what looks to be a linear trend line leading to the above equation. Our theoretical runtime 
+        should be O(nlogn). We may not have increased n enough to see this type of asymptotic behavior.
+        The one-hour calculation below assumes the experimental linear equation above, however, 
+        given a more accurate nlogn function, the number would be expected to be much lower. \\
+        \item[Biggest n in an hour]  \\
     \end{description}
 
     % Algo 4
     \item \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] \hfill \\
-        \item[Biggest n in an hour] \hfill \\
+        \item[Experimental Run-time Function]  $f(n) = 2E-07n$ This matches our theoretical runtime of O(n). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-07n$ --> $n = 18000000000$ \\
     \end{description}
-\end{enumerate}
+\end{description}
 \end{document}
 %-------------------------------------------------------------------------------
 
