@@ -112,6 +112,31 @@
             \EndFunction
         \end{algorithmc}
         \item[Run-time Analysis] \hfill \\
+        Based on the pseudo-code we can conclude that the equation for 
+        time complexity can be given by
+        \[ T(n) = T(n - 1) + T_1(n) \]
+        \[ T_1(n) = T_1(n - 1) + T_2(n) \]
+        \[ T_2(n) = T_2(n - 1) + c \]
+        We can reduce both $T_1(n)$ and $T_2(n)$ to their time complexities
+        and then finally $T(n)$
+        \begin{align*}
+            T_2(n - 1) & = T_2(n - 2) + c \\
+            \ldots & = c + c + c + \ldots + c \\
+            T_2(n) & = nc
+        \end{align*}
+        Therefore $T_2(n) = \Theta(n)$.
+        \begin{align*}
+            T_1(n - 1) & = T_2(n - 2) + \Theta(n) \\
+            \ldots & = \Theta(n) + \Theta(n) + \Theta(n) + \ldots + \Theta(n) \\
+            T_1(n) & = n\Theta(n)
+        \end{align*}
+        Therefore $T_1(n) = \Theta(n^2)$.
+        \begin{align*}
+            T(n - 1) & = T(n - 2) + \Theta(n^2) \\
+            \ldots & = \Theta(n^2) + \Theta(n^2) + \Theta(n^2) + \ldots + \Theta(n^2) \\
+            T(n) & = n\Theta(n^2)
+        \end{align*}
+        Therefore $T(n) = \Theta(n^3)$.
     \end{description}
 
     % Algo 2
