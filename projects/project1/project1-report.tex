@@ -324,45 +324,59 @@
 
 
 \section{Testing}
-(Filler text)
+Testing was automated to read in test sets from files such as 
+MSS\_TestSetsSp15.txt and check our solutions against them. A variety of test 
+cases were used to explore cases of arrays that were long, short, 
+predominately negative, predominately positive, palindromic, ending with 
+an empty subarray, containing a single value, etc. All our test cases
+passed for all four algorithms.
 
 \section{Experimental Analysis}
-(Filler text)
+\includegraphics[width=\textwidth]{algo1Plot}
+\includegraphics[width=\textwidth]{alg1_table}
+\includegraphics[width=\textwidth]{algo2Plot}
+\includegraphics[width=\textwidth]{alg2_table}
+\includegraphics[width=\textwidth]{algo3Plot}
+\includegraphics[width=\textwidth]{alg3_table}
+\includegraphics[width=\textwidth]{algo4Plot}
+\includegraphics[width=\textwidth]{alg4_table}
+\includegraphics[width=\textwidth]{all4Plot}
+
 
 \section{Extrapolation and Interpretation}
 % Example of how to include a graphic below
 % \includegraphics[width=\textwidth]{algo1Plot}
 \begin{description}
     % Algo 1
-    \item \hfill \\
+    \item[Algorithm 1] \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] $f(n) = 2E-08n^3 - 1E-06n^2 + 0.0003n$ This matches our theoretical runtime of O(n^3). \\
-        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-08n^3$ - $1E-06n^2 + 0.0003n$ --> $n = 5646$ \\
+        \item[Experimental Run-time Function] $f(n) = 2E^{-08}n^3 - 1E^{-06}n^2 + 0.0003n$ This matches our theoretical runtime of $\Theta(n^3)$. \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E^{-08}n^3$ - $1E^{-06}n^2 + 0.0003n$ --> $n = 5646$ \\
     \end{description}
 
     % Algo 2
-    \item \hfill \\
+    \item[Algorithm 2] \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] $f(n) = 7E-08n^2 - 7E-06n$  This matches our theoretical runtime of O(n^2). \\
-        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $7E-08n^2 - 7E-06n$ --> $n = 226829$ \\
+        \item[Experimental Run-time Function] $f(n) = 7E^{-08}n^2 - 7E^{-06}n$  This matches our theoretical runtime of $\Theta(n^2)$. \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $7E^{-08}n^2 - 7E^{-06}n$ --> $n = 226829$ \\
     \end{description}
 
     % Algo 3
-    \item \hfill \\
+    \item[Algorithm 3] \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function] $f(n) = 4E-06n - 0.0003$  Our experimental data gave us
+        \item[Experimental Run-time Function] $f(n) = 4E^{-06}n - 0.0003$  Our experimental data gave us
         what looks to be a linear trend line leading to the above equation. Our theoretical runtime 
-        should be O(nlogn). We may not have increased n enough to see this type of asymptotic behavior.
+        should be $\Theta(n\log{n})$. We may not have increased n enough to see this type of asymptotic behavior.
         The one-hour calculation below assumes the experimental linear equation above, however, 
         given a more accurate nlogn function, the number would be expected to be much lower. \\
-        \item[Biggest n in an hour]  \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $4E^{-06}n - 0.0003$ --> $n = 900000075$ \\
     \end{description}
 
     % Algo 4
-    \item \hfill \\
+    \item[Algorithm 4] \hfill \\
     \begin{description}
-        \item[Experimental Run-time Function]  $f(n) = 2E-07n$ This matches our theoretical runtime of O(n). \\
-        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E-07n$ --> $n = 18000000000$ \\
+        \item[Experimental Run-time Function]  $f(n) = 2E^{-07}n$ This matches our theoretical runtime of O(n). \\
+        \item[Biggest n in an hour] In one hour the biggest solvable instance is: 3600 sec = $2E^{-07}n$ --> $n = 18000000000$ \\
     \end{description}
 \end{description}
 \end{document}
