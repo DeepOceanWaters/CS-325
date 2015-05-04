@@ -1,5 +1,6 @@
 import ast
 import sys
+import copy
 
 def main():
     args = sys.argv
@@ -16,6 +17,7 @@ def main():
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
             C, m = changedp(test[0], test[1])
+            C, m = changeslow(test[0], test[1])
             f.write(repr(C))
             f.write("\n")
             f.write(repr(m))
@@ -27,7 +29,21 @@ def main():
 # A = target total coin value (e.g. 32)
 # Brute force algorithm
 def changeslow(V, A):
-    return
+    coins = [0]*len(V)
+    min_c = None
+    for i, coin in list(enumerate(V)):
+        if coin == A:
+            coins[i] = 1
+            min_c = 1
+            return coins, min_c
+    for i in range(A - 1, 0, -1):
+        C, m = changeslow(V, i)
+        C2, m2 = changeslow(V, A - i)
+        if min_c == None or (m + m2) < min_c:
+            min_c = m + m2
+            for j in range(0, len(C)):
+                coins[j] = C[j] + C2[j]
+    return coins, min_c
 
 # Greedy algorithm
 def changegreedy(V, A):
