@@ -6,8 +6,10 @@ def main():
     args = sys.argv
     if len(args) < 2:
         print "Not enough arguments, please use the format: project2.py [filename]"
-    inputs = []
     tests = []
+    results_slow = []
+    results_greedy = []
+    results_dp = []
     with open(args[1] + ".txt", "r") as f:
         coins = f.readline()
         while coins != '':
@@ -16,12 +18,14 @@ def main():
             coins = f.readline()
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
-            C, m = changedp(test[0], test[1])
-            C, m = changeslow(test[0], test[1])
-            f.write(repr(C))
+            results_slow += changedp(test[0], test[1])
+            results_greedy += changeslow(test[0], test[1])
+            results_dp += changegreedy(test[0], test[1])
+            f.write(repr(results_slow))
             f.write("\n")
-            f.write(repr(m))
+            f.write(repr(results_greedy))
             f.write("\n")
+            f.write(repr(results_dp))
         
 
 
@@ -47,7 +51,14 @@ def changeslow(V, A):
 
 # Greedy algorithm
 def changegreedy(V, A):
-    return
+    coins = [0]*len(V)
+    min_c = 0
+    for i, coin in list(enumerate(V)):
+        while A >= coin:
+            coins[i] += 1
+            min_c += 1
+            A -= coin
+    return coins, min_c
 
 # Dynamic algorithm
 def changedp(V, A):
