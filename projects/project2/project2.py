@@ -21,11 +21,12 @@ def main():
             results_slow += changedp(test[0], test[1])
             results_greedy += changeslow(test[0], test[1])
             results_dp += changegreedy(test[0], test[1])
-            f.write(repr(results_slow))
-            f.write("\n")
-            f.write(repr(results_greedy))
-            f.write("\n")
-            f.write(repr(results_dp))
+        f.write("slow: " + repr(results_slow))
+        f.write("\n")
+        f.write("greedy: " + repr(results_greedy))
+        f.write("\n")
+        f.write("dp: " + repr(results_dp))
+        f.write("\n")
         
 
 
@@ -53,7 +54,7 @@ def changeslow(V, A):
 def changegreedy(V, A):
     coins = [0]*len(V)
     min_c = 0
-    for i, coin in list(enumerate(V)):
+    for i, coin in reversed(list(enumerate(V))):
         while A >= coin:
             coins[i] += 1
             min_c += 1
