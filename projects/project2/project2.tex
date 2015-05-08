@@ -136,6 +136,39 @@
                 \Return $coins, min_m$
             \EndFunction
         \end{algorithmc}
+
+        \item[changedp]
+        \begin{algorithmc}
+            \caption{Algorithm 1: changedp}
+            \Require{$A$ is the target change value, and $V$ is an array of all
+                     the coin values.}
+            \Function{changedp}{$V$, $A$}
+                \State $n \gets V$.size
+                \State $C \gets$ []
+                \State $T \gets$ []
+                \State $vals \gets$ []
+                \For{$i \gets n \textrm{ to } 0$}
+                    \State $k \gets 0$
+                    \State $j \gets V[i]$
+                    \While{$j \leq A$}
+                        \State $k \gets k + 1$
+                        \If{$k < T[j]$}
+                            \State $T[j] \gets k$
+                            \State $coins[j] \gets i$
+                        \Else
+                            \State $k \gets T[j]$
+                        \EndIf
+                    \EndWhile
+                \EndFor
+                \State $j \gets A$
+                \While{$j > 0$}
+                    \State $i \gets vals[j]$
+                    \State $C[i] \gets C[i] + 1$
+                    \State $j \gets j - V[i]$
+                \EndWhile
+                \Return $C, T[A]$
+            \EndFunction
+        \end{algorithmc}
     \end{description}
 \end{enumerate}
 
