@@ -117,6 +117,25 @@
                 \State \Return $coins, min_m$
             \EndFunction
         \end{algorithmc}
+
+        \item[changegreedy]
+        \begin{algorithmc}
+            \caption{Algorithm 1: changegreedy}
+            \Require{$A$ is the target change value, and $V$ is an array of all
+                     the coin values.}
+            \Function{changegreedy}{$V$, $A$}
+                \State $n \gets V$.size
+                \State $coins \gets$ []
+                \State $min_m \gets \infty$
+                \For{$i \gets n \textrm{ to } 0$}
+                    \While{$A \geq V[i]$}
+                        \State $coins[i] \gets coins[i] + 1$
+                        \State $min_m \gets min_m + 1$
+                    \EndWhile
+                \EndFor
+                \Return $coins, min_m$
+            \EndFunction
+        \end{algorithmc}
     \end{description}
 \end{enumerate}
 
