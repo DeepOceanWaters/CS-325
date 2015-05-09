@@ -4,8 +4,10 @@ import copy
 
 def main():
     args = sys.argv
+
     if len(args) < 2:
-        print "Not enough arguments, please use the format: project2.py [filename]"
+        sys.exit("Not enough arguments, please use the format: project2.py [filename]")
+    
     tests = []
     results_slow = []
     results_greedy = []
@@ -18,17 +20,25 @@ def main():
             coins = f.readline()
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
-            results_slow += changedp(test[0], test[1])
-            results_greedy += changeslow(test[0], test[1])
-            results_dp += changegreedy(test[0], test[1])
-        f.write("slow: " + repr(results_slow))
-        f.write("\n")
-        f.write("greedy: " + repr(results_greedy))
-        f.write("\n")
-        f.write("dp: " + repr(results_dp))
-        f.write("\n")
-        
-
+            results_slow += changeslow(test[0], test[1])
+            results_greedy += changegreedy(test[0], test[1])
+            results_dp += changedp(test[0], test[1])
+        for i in range(0,3):
+            if(i == 0):
+                 f.write("Slow:\n")
+                for j in range(0, len(results_slow), 2):
+                    f.write(str(results_slow[j]) + "\n")
+                    f.write(str(results_slow[j+1]) + "\n")
+            elif(i == 1):
+                f.write("Greedy:\n")
+                for j in range(0, len(results_greedy), 2):
+                    f.write(str(results_greedy[j]) + "\n")
+                    f.write(str(results_greedy[j+1]) + "\n")
+            elif(i == 2):
+                f.write("DP:\n")
+                for j in range(0, len(results_dp), 2):
+                    f.write(str(results_dp[j]) + "\n")
+                    f.write(str(results_dp[j+1]) + "\n")
 
 # V = array of coin values (e.g. [1, 5, 10, 15])
 # A = target total coin value (e.g. 32)
