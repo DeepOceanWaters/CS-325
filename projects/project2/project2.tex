@@ -89,8 +89,11 @@
     \item Pseudo-code
     \begin{description}
         \item[changeslow]
-        \begin{algorithmc}
+        \begin{algorithmic}
+        	\begin{table}
             \caption{Algorithm 1: changeslow}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changeslow}{$V$, $A$}
@@ -116,11 +119,14 @@
                 \EndFor
                 \State \Return $coins, min_m$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
 
         \item[changegreedy]
-        \begin{algorithmc}
+        \begin{algorithmic}
+            \begin{table}
             \caption{Algorithm 1: changegreedy}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changegreedy}{$V$, $A$}
@@ -135,11 +141,14 @@
                 \EndFor
                 \Return $coins, min_m$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
 
         \item[changedp]
-        \begin{algorithmc}
+        \begin{algorithmic}
+        	\begin{table}
             \caption{Algorithm 1: changedp}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changedp}{$V$, $A$}
@@ -168,7 +177,7 @@
                 \EndWhile
                 \Return $C, T[A]$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
     \end{description}
 \end{enumerate}
 
