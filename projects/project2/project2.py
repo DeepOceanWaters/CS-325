@@ -1,3 +1,21 @@
+# PROJECT GROUP 21 - PROJECT 1
+# ---------------------------------------
+# Albert Le
+# <leal@onid.oregonstate.edu>
+# 		   
+# Charles Jenkins
+# <jenkinch@onid.oregonstate.edu>
+#
+# Colin Bradford
+# <bradfoco@onid.oregonstate.edu>
+#
+# Class: CS325 Analysis of Algorithms
+#
+# Description: Program uses four different
+# algorithms to find the maximum subarray
+# of a given array. 
+# ---------------------------------------
+
 import ast
 import sys
 import copy
@@ -25,7 +43,7 @@ def main():
             results_dp += changedp(test[0], test[1])
         for i in range(0,3):
             if(i == 0):
-                 f.write("Slow:\n")
+                f.write("Slow:\n")
                 for j in range(0, len(results_slow), 2):
                     f.write(str(results_slow[j]) + "\n")
                     f.write(str(results_slow[j+1]) + "\n")
@@ -40,9 +58,21 @@ def main():
                     f.write(str(results_dp[j]) + "\n")
                     f.write(str(results_dp[j+1]) + "\n")
 
+# ---------------------------------------
+# Name: changeslow
+#
+# Description: Finds min number of coins
+# necessary to make change for given value.
+# Uses brute force algorithm.
+#
+# Receives: 
 # V = array of coin values (e.g. [1, 5, 10, 15])
 # A = target total coin value (e.g. 32)
-# Brute force algorithm
+#
+# Returns:
+# coins = array of coins necessary
+# min_c = min number of coins necessary
+# ---------------------------------------
 def changeslow(V, A):
     coins = [0]*len(V)
     min_c = None
@@ -60,7 +90,21 @@ def changeslow(V, A):
                 coins[j] = C[j] + C2[j]
     return coins, min_c
 
-# Greedy algorithm
+# ---------------------------------------
+# Name: changegreedy
+#
+# Description: Finds min number of coins
+# necessary to make change for given value.
+# Uses greedy algorithm.
+#
+# Receives: 
+# V = array of coin values (e.g. [1, 5, 10, 15])
+# A = target total coin value (e.g. 32)
+#
+# Returns:
+# coins = array of coins necessary
+# min_c = min number of coins necessary
+# ---------------------------------------
 def changegreedy(V, A):
     coins = [0]*len(V)
     min_c = 0
@@ -71,7 +115,21 @@ def changegreedy(V, A):
             A -= coin
     return coins, min_c
 
-# Dynamic algorithm
+# ---------------------------------------
+# Name: changedp
+#
+# Description: Finds min number of coins
+# necessary to make change for given value.
+# Uses dynamic programming algorithm.
+#
+# Receives: 
+# V = array of coin values (e.g. [1, 5, 10, 15])
+# A = target total coin value (e.g. 32)
+#
+# Returns:
+# coins = array of coins necessary
+# min_c = min number of coins necessary
+# ---------------------------------------
 def changedp(V, A):
     T = [None]*(A + 1)
     C = [0]*len(V)
@@ -95,7 +153,6 @@ def changedp(V, A):
         C[i] += 1
         j -= V[i]
     return C, T[A]
-
 
 # Call main function
 if __name__ == '__main__':
