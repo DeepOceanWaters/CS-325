@@ -1,4 +1,4 @@
-# PROJECT GROUP 21 - PROJECT 1
+# PROJECT GROUP 21 - PROJECT 2
 # ---------------------------------------
 # Albert Le
 # <leal@onid.oregonstate.edu>
