@@ -18,11 +18,11 @@ def main():
             coins = f.readline()
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
-            results_slow += changedp(test[0], test[1])
-            results_greedy += changeslow(test[0], test[1])
-            results_dp += changegreedy(test[0], test[1])
-        f.write("slow: " + repr(results_slow))
-        f.write("\n")
+            #results_slow += changeslow(test[0], test[1])
+            results_greedy += changegreedy(test[0], test[1])
+            results_dp += changedp(test[0], test[1])
+        #f.write("slow: " + repr(results_slow))
+        #f.write("\n")
         f.write("greedy: " + repr(results_greedy))
         f.write("\n")
         f.write("dp: " + repr(results_dp))
@@ -68,17 +68,16 @@ def changedp(V, A):
     vals = [None]*(A + 1)
     T[0] = 0
 
-    # Assumes the list is ordered for best speed 
-    for i, coin in reversed(list(enumerate(V))):
-        # k = # of coins required currently
-        k = 0
-        for j in range(coin, A + 1, coin):
-            k += 1
-            if T[j] is None or k < T[j]:
-                T[j] = k
-                vals[j] = i
-            else:
-                k = T[j]
+    # i is cur_pos
+    for i in range(1, A + 1):
+        for j, coin in list(enumerate(V)):
+            prev_pos = i - coin
+            # continue if we can't get to this pos via cur coin
+            if prev_pos < 0:
+                continue
+            if T[i] is None or T[prev_pos] + 1 < T[i]:
+                T[i] = T[prev_pos] + 1
+                vals[i] = j
     j = A
     while j > 0:
         i = vals[j]
