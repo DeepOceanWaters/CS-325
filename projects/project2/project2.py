@@ -18,11 +18,11 @@ def main():
             coins = f.readline()
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
-            #results_slow += changeslow(test[0], test[1])
+            results_slow += changeslow(test[0], test[1])
             results_greedy += changegreedy(test[0], test[1])
             results_dp += changedp(test[0], test[1])
-        #f.write("slow: " + repr(results_slow))
-        #f.write("\n")
+        f.write("slow: " + repr(results_slow))
+        f.write("\n")
         f.write("greedy: " + repr(results_greedy))
         f.write("\n")
         f.write("dp: " + repr(results_dp))
@@ -36,18 +36,16 @@ def main():
 def changeslow(V, A):
     coins = [0]*len(V)
     min_c = None
+    if A == 0:
+        return coins, 0
     for i, coin in list(enumerate(V)):
-        if coin == A:
-            coins[i] = 1
-            min_c = 1
-            return coins, min_c
-    for i in range(A - 1, 0, -1):
-        C, m = changeslow(V, i)
-        C2, m2 = changeslow(V, A - i)
-        if min_c == None or (m + m2) < min_c:
-            min_c = m + m2
-            for j in range(0, len(C)):
-                coins[j] = C[j] + C2[j]
+        if A - coin < 0:
+            continue
+        C, m = changeslow(V, A - coin)
+        if min_c is None or m + 1 < min_c:
+            coins = C
+            coins[i] += 1
+            min_c = m + 1
     return coins, min_c
 
 # Greedy algorithm
