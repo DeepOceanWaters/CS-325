@@ -176,7 +176,23 @@
     
     \item <PLOT RUNNING TIMES AS FUNCTION OF NUMBER OF DENOMINATIONS> <DOES SIZE OF N INFLUENCE RUNNING TIMES?>
     
-    \item <HOW DO DP AND GREEDY APPROACHES COMPARE WHEN $V = [p^0, p^1, p^2, ..., p^n]$>
+    \item
+    Given that the set of coins $V = [p^0, p^1, p^2, \ldots, p^n]$, then we know
+    that the greedy algortihm will always return a correct result. We can see
+    this if we consider that any $A$ can be written as 
+    \[ A = x_0p^0 + x_1p^1 + x_2p^2 + \ldots + x_np^n \]
+    where $x_k \in \mathbb{Z}$ and $0 \leq x_k \leq p - 1$
+    
+    We will not prove that this claim is true as it is used in practice: 
+    computers store positive integers in bytes where each bit represents $p^k$ 
+    and its value represents $x_k$ ($p = 2$ in this case). Thus in this 
+    scenario, it would be best to use the greedy algorithm as it will always 
+    return the correct result, and is faster than the dynamic programming 
+    algorithm. 
+
+    The greedy algorithm will have a run time of roughly $\Theta(n)$ where $n$
+    is the number of coins. While the dp algorithm will have a run time of
+    roughly $\Theta(An)$.
 \end{enumerate}
 
 \end{document}
