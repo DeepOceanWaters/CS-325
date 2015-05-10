@@ -89,8 +89,11 @@
     \item Pseudo-code
     \begin{description}
         \item[changeslow]
-        \begin{algorithmc}
+        \begin{algorithmic}
+            \begin{table}
             \caption{Algorithm 1: changeslow}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changeslow}{$V$, $A$}
@@ -116,11 +119,14 @@
                 \EndFor
                 \State \Return $coins, min_m$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
 
         \item[changegreedy]
-        \begin{algorithmc}
-            \caption{Algorithm 1: changegreedy}
+        \begin{algorithmic}
+            \begin{table}
+            \caption{Algorithm 2: changegreedy}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changegreedy}{$V$, $A$}
@@ -135,11 +141,14 @@
                 \EndFor
                 \Return $coins, min_m$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
 
         \item[changedp]
-        \begin{algorithmc}
-            \caption{Algorithm 1: changedp}
+        \begin{algorithmic}
+            \begin{table}
+            \caption{Algorithm 3: changedp}
+            \end{table}
+            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changedp}{$V$, $A$}
@@ -147,18 +156,16 @@
                 \State $C \gets$ []
                 \State $T \gets$ []
                 \State $vals \gets$ []
-                \For{$i \gets n \textrm{ to } 0$}
-                    \State $k \gets 0$
-                    \State $j \gets V[i]$
-                    \While{$j \leq A$}
-                        \State $k \gets k + 1$
-                        \If{$k < T[j]$}
-                            \State $T[j] \gets k$
-                            \State $coins[j] \gets i$
-                        \Else
-                            \State $k \gets T[j]$
+                \For{$i \gets 0 \textrm{ to } A$}
+                    \For{$j \gets 0 \textrm{ to } n$}
+                        \State $prev_pos \gets i - V[j]$
+                        \If{$prev_pos \geq 0$}
+                            \If{$T[prev_pos] + 1 < T[i]$}
+                                \State $T[i] \gets T[prev_pos] + 1$
+                                \State $vals[i] \gets j$
+                            \EndIf
                         \EndIf
-                    \EndWhile
+                    \EndFor
                 \EndFor
                 \State $j \gets A$
                 \While{$j > 0$}
@@ -168,8 +175,22 @@
                 \EndWhile
                 \Return $C, T[A]$
             \EndFunction
-        \end{algorithmc}
+        \end{algorithmic}
     \end{description}
+    
+    \item <Proof of correctness of dynamic programming approach>
+    
+    \item Supposing $V = [1, 5, 10, 25, 50]$, for each integer value of A in $[2010, 2015, 2020, ..., 2200]$ the number of coins required by changegreedy and changedp are plotted below: <INSERT GREEDY PLOT> <INSERT DP PLOT> <NEED SLOW???> <COMPARE APPROACHES>
+    
+    \item Supposing $V_1 = [1, 2, 6, 12, 24, 48, 60]$ and $V_2 = [1, 6, 13, 37, 150]$, for each integer value of A in $[2000, 2001, 2002, ..., 2200]$ the number of coins required by changegreedy and changedp are plotted below: <INSERT V1 GREEDY PLOT> <INSERT V1 DP PLOT> <NEED V1 SLOW???> <INSERT V2 GREEDY PLOT> <INSERT V2 DP PLOT> <NEED V2 SLOW???> <COMPARE APPROACHES>
+    
+    \item Supposing $V = [1, 2, 4, 6, 8, 10, 12, ..., 30]$ for each integer value of A in $[2000, 2001, 2002, ..., 2200]$ the number of coins required by changegreedy and changedp are plotted below: <INSERT GREEDY PLOT> <INSERT DP PLOT> <NEED SLOW???>
+    
+    \item <INSERT TREND LINE EQUATIONS AND FIND RUNTIME> <INSERT RUNNING TIME GRAPH> <COMPARE RUNNING TIMES>
+    
+    \item <PLOT RUNNING TIMES AS FUNCTION OF NUMBER OF DENOMINATIONS> <DOES SIZE OF N INFLUENCE RUNNING TIMES?>
+    
+    \item <HOW DO DP AND GREEDY APPROACHES COMPARE WHEN $V = [p^0, p^1, p^2, ..., p^n]$>
 \end{enumerate}
 
 \end{document}
