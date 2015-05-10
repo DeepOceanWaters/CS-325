@@ -11,9 +11,10 @@
 #
 # Class: CS325 Analysis of Algorithms
 #
-# Description: Program uses four different
-# algorithms to find the maximum subarray
-# of a given array. 
+# Description: Program uses three different
+# algorithms to find the minimum number of
+# coins necessary to make change for a given
+# amount.
 # ---------------------------------------
 
 import ast
@@ -23,6 +24,7 @@ import copy
 def main():
     args = sys.argv
 
+    # Basic argument validation
     if len(args) < 2:
         sys.exit("Not enough arguments, please use the format: project2.py [filename]")
     
@@ -30,12 +32,16 @@ def main():
     results_slow = []
     results_greedy = []
     results_dp = []
+    
+    # Open and read from tests from file
     with open(args[1] + ".txt", "r") as f:
         coins = f.readline()
         while coins != '':
             A = ast.literal_eval(f.readline())
             tests.append([ast.literal_eval(coins), A])
             coins = f.readline()
+    
+    # Create file, execute algorithms, and write results to file
     with open(args[1] + "change.txt", "w") as f:
         for test in tests:
             results_slow += changeslow(test[0], test[1])
@@ -76,18 +82,16 @@ def main():
 def changeslow(V, A):
     coins = [0]*len(V)
     min_c = None
+    if A == 0:
+        return coins, 0
     for i, coin in list(enumerate(V)):
-        if coin == A:
-            coins[i] = 1
-            min_c = 1
-            return coins, min_c
-    for i in range(A - 1, 0, -1):
-        C, m = changeslow(V, i)
-        C2, m2 = changeslow(V, A - i)
-        if min_c == None or (m + m2) < min_c:
-            min_c = m + m2
-            for j in range(0, len(C)):
-                coins[j] = C[j] + C2[j]
+        if A - coin < 0:
+            continue
+        C, m = changeslow(V, A - coin)
+        if min_c is None or m + 1 < min_c:
+            coins = C
+            coins[i] += 1
+            min_c = m + 1
     return coins, min_c
 
 # ---------------------------------------
@@ -136,17 +140,16 @@ def changedp(V, A):
     vals = [None]*(A + 1)
     T[0] = 0
 
-    # Assumes the list is ordered for best speed 
-    for i, coin in reversed(list(enumerate(V))):
-        # k = # of coins required currently
-        k = 0
-        for j in range(coin, A + 1, coin):
-            k += 1
-            if T[j] is None or k < T[j]:
-                T[j] = k
-                vals[j] = i
-            else:
-                k = T[j]
+    # i is cur_pos
+    for i in range(1, A + 1):
+        for j, coin in list(enumerate(V)):
+            prev_pos = i - coin
+            # continue if we can't get to this pos via cur coin
+            if prev_pos < 0:
+                continue
+            if T[i] is None or T[prev_pos] + 1 < T[i]:
+                T[i] = T[prev_pos] + 1
+                vals[i] = j
     j = A
     while j > 0:
         i = vals[j]
