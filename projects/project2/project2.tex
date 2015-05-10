@@ -88,45 +88,35 @@
 
     \item Pseudo-code
     \begin{description}
-        \item[changeslow]
+        \item[changeslow] \hfill \\
         \begin{algorithmic}
-            \begin{table}
-            \caption{Algorithm 1: changeslow}
-            \end{table}
-            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changeslow}{$V$, $A$}
                 \State $n \gets V$.size
                 \State $coins \gets$ []
                 \State $min_m \gets \infty$
+                \If{$A == 0$}
+                    \State $min_m \gets 0$
+                    \Return $coins, min_m$
+                \EndIf
                 \For{$i \gets 0 \textrm{ to } n$}
-                    \If{$V[i] == A$}
-                        \State $coins[i] \gets 1$
-                        \State $min_m \gets 1$
-                        \Return $coins, min_m$
-                    \EndIf
-                \EndFor
-                \For{$i \gets A - 1 \textrm{ to } 0$}
-                    \State $C, m \gets $ \Call{changeslow}{$V$, $i$}
-                    \State $C2, m2 \gets $ \Call{changeslow}{$V$, $A - i$}
-                    \If{$(m + m2) < min_m$}
-                        \State $min_m \gets m + m2$
-                        \For{$j \gets 0 \textrm{ to } n$}
-                            \State $coins[j] \gets C[j] + C2[j]$
-                        \EndFor
+                    \State $next_pos \gets A - V[i]$
+                    \If{$next_pos \geq 0$}
+                        \State $C, m \gets$ \Call{changeslow}{$V, next_pos$}
+                        \If{$m + 1 < min_m$}
+                            \State $min_m \gets m + 1$
+                            \State $coins = C$
+                            \State $C[i] += 1$
+                        \EndIf
                     \EndIf
                 \EndFor
                 \State \Return $coins, min_m$
             \EndFunction
         \end{algorithmic}
 
-        \item[changegreedy]
+        \item[changegreedy] \hfill \\
         \begin{algorithmic}
-            \begin{table}
-            \caption{Algorithm 2: changegreedy}
-            \end{table}
-            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changegreedy}{$V$, $A$}
@@ -143,12 +133,8 @@
             \EndFunction
         \end{algorithmic}
 
-        \item[changedp]
+        \item[changedp] \hfill \\
         \begin{algorithmic}
-            \begin{table}
-            \caption{Algorithm 3: changedp}
-            \end{table}
-            \item[]
             \Require{$A$ is the target change value, and $V$ is an array of all
                      the coin values.}
             \Function{changedp}{$V$, $A$}
