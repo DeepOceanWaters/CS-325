@@ -180,7 +180,13 @@
         \end{algorithmic}
     \end{description}
     
-    \item <Proof of correctness of dynamic programming approach>
+    \item \textbf{Proof of correctness of dynamic programming approach using induction:}
+    
+    \textbf{Base Case:} $T[0] = 0$, which is trivially correct as provided in the definition because it takes zero coins to make zero cents.
+    
+    \textbf{Inductive Hypothesis:} Let $T[k]$ be the minimum amount of coins necessary to make change for some value k.
+    
+    \textbf{Inductive Case:} Using induction we prove the formula by showing the correctness of the next value k+1 in the sequence. $T[k+1] = min_{V[i]<=k}\left\{T[k - V[i]] + 1\right\} + 1$ or $T[k+1] <= min_{V[i]<=k}\left\{T[k - V[i]] + 1\right\}$ since the optimal substructure of the problem dictates that the optimal way to make k+1 cents is to either use the optimal set of coins to make k cents with the addition of another coin or it is to use some optimal number of coins less than or equal to the optimal number to make k cents. Since both of these scenarios must be inherently optimal, we've proven both the inductive and base cases and thus the algorithm is correct.
     
     \item Supposing $V = [1, 5, 10, 25, 50]$, for each integer value of A in $[2010, 2015, 2020, ..., 2200]$ the number of coins required by changegreedy and changedp are plotted below: <INSERT GREEDY PLOT> <INSERT DP PLOT> <NEED SLOW???> <COMPARE APPROACHES>
     
