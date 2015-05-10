@@ -80,11 +80,11 @@
 \maketitle % Print the title
 
 \begin{enumerate}
-    \item The dynamic programming table is filled in by basically marking how
-    many coins it takes to get to multiples of a coin value. It is similar to
-    taking coin values and saying that certain array positions are "next" to each
-    other. For example, if you had a 5-cent coin then you could say that the array
-    positions 0, 5, 10, etc. are 1 space away from each other.
+    \item The dynamic programming table is filled in by determining what positions
+    in the table are "next" to each other. Two values or needed for the table:
+    the amount of coins required to get to the current change, and the previous
+    table position (which can be found if you have the coin value). It basically
+    creates multiple paths to different values.
 
     \item Pseudo-code
     \begin{description}
