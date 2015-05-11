@@ -81,10 +81,15 @@
 
 \begin{enumerate}
     \item The dynamic programming table is filled in by determining what positions
-    in the table are "next" to each other. Two values or needed for the table:
-    the amount of coins required to get to the current change, and the previous
-    table position (which can be found if you have the coin value). It basically
-    creates multiple paths to different values.
+    in the table are "next" to each other. It basically creates multiple paths 
+    to different values. Two values are needed for the table: the amount of coins 
+    required to get to the current change, and the previous table position 
+    (which can be found if you have the coin value). Assuming that all table
+    positions already visited have the minimum number of coins required to get
+    to that amount of change, then we can see that if we use previous table
+    positions to determine which coin will provide the minimum number of coins
+    to get to the current position that all table positions will correctly have
+    the minimum number of coins and provide a way to find which coins.
 
     \item Pseudo-code
     \begin{description}
