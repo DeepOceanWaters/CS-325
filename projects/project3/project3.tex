@@ -82,11 +82,180 @@
 \section{Problem 1}
 \textbf{Part A:}
 
-    \textbf{i.}
+    \textbf{i. Linear Problem Formulation}\newline
     
-    \textbf{ii.}
+    Let each route be represented as variables of the form "SourceDestination." For example a route from Plant 1 to Warehouse 1 would be "p1w1."\newline
     
-    \textbf{iii.}
+
+    Objective function:\newline
+    
+    Minimize:\newline
+    
+    10 p1w1 + 15 p1w2 + 11 p2w1 + 8 p2w2 + 13 p3w1 + 8 p3w2 + 9 p3w3 
+	  + 14 p4w2 + 8 p4w3 + 5 w1r1 + 6 w1r2 + 7 w1r3 + 10 w1r4 + 12 w2r3 
+	  + 8 w2r4 + 10 w2r5 + 14 w2r6 + 14 w3r4 + 12 w3r5 + 12 w3r6 + 6 w3r7\newline
+	  
+	
+	Subject To:\newline
+		
+		Supply Constraints:\newline
+		   p1w1 + p1w2 = 150\newline
+		   p2w1 + p2w2 = 450\newline
+		   p3w1 + p3w2 + p3w3 = 250\newline
+		   p4w2 + p4w3 = 150\newline
+		
+		Demand Constraints:\newline
+		   w1r1 = 100\newline
+		   w1r2 = 150\newline
+		   w1r3 + w2r3 = 100\newline
+		   w1r4 + w2r4 + w3r4 = 200\newline
+		   w2r5 + w3r5 = 200\newline
+		   w2r6 + w3r6 = 150\newline
+		   w3r7 = 100\newline
+		
+		Balancing Constraints:\newline
+		   p1w1 + p2w1 + p3w1 - w1r1 - w1r2 - w1r3 - w1r4 <= 0\newline
+		   p1w2 + p2w2 + p3w2 + p4w2 - w2r3 - w2r4 - w2r5 - w2r6 <= 0\newline
+		   p3w3 + p4w3 - w3r4 - w3r5 - w3r6 - w3r7 <= 0\newline
+		
+		Non-negativity Constraints:\newline
+		   p1w1, p1w2, p2w1, p2w2, p3w1, p3w2, p3w3, p4w2, p4w3, w1r1, w1r2, w1r3, w1r4, w2r3, w2r4, w2r5, w2r6, w3r4, w3r5, w3r6, w3r7 >= 0\newline
+    
+    \textbf{ii. LINDO Code and Output}
+    
+    \begin{verbatim}
+	MIN 10 p1w1 + 15 p1w2 + 11 p2w1 + 8 p2w2 + 13 p3w1 + 8 p3w2 + 9 p3w3 
+	  + 14 p4w2 + 8 p4w3 + 5 w1r1 + 6 w1r2 + 7 w1r3 + 10 w1r4 + 12 w2r3 
+	  + 8 w2r4 + 10 w2r5 + 14 w2r6 + 14 w3r4 + 12 w3r5 + 12 w3r6 + 6 w3r7
+	ST
+		   p1w1 + p1w2 = 150
+		   p2w1 + p2w2 = 450
+		   p3w1 + p3w2 + p3w3 = 250
+		   p4w2 + p4w3 = 150	
+		   w1r1 = 100
+		   w1r2 = 150
+		   w1r3 + w2r3 = 100
+		   w1r4 + w2r4 + w3r4 = 200	
+		   w2r5 + w3r5 = 200
+		   w2r6 + w3r6 = 150
+		   w3r7 = 100
+		   p1w1 + p2w1 + p3w1 - w1r1 - w1r2 - w1r3 - w1r4 <= 0 
+		   p1w2 + p2w2 + p3w2 + p4w2 - w2r3 - w2r4 - w2r5 - w2r6 <= 0
+		   p3w3 + p4w3 - w3r4 - w3r5 - w3r6 - w3r7 <= 0 
+		   p1w1 > 0
+		   p1w2 > 0
+		   p2w1 > 0
+		   p2w2 > 0
+		   p3w1 > 0
+		   p3w2 > 0
+		   p3w3 > 0
+		   p4w2 > 0
+		   p4w3 > 0
+		   w1r1 > 0
+		   w1r2 > 0
+		   w1r3 > 0
+		   w1r4 > 0
+		   w2r3 > 0
+		   w2r4 > 0
+		   w2r5 > 0
+		   w2r6 > 0
+		   w3r4 > 0
+		   w3r5 > 0
+		   w3r6 > 0
+		   w3r7 > 0
+	END
+	
+	
+ LP OPTIMUM FOUND AT STEP     13
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      17100.00
+
+  VARIABLE        VALUE          REDUCED COST
+      P1W1       150.000000          0.000000
+      P1W2         0.000000          8.000000
+      P2W1       200.000000          0.000000
+      P2W2       250.000000          0.000000
+      P3W1         0.000000          2.000000
+      P3W2       150.000000          0.000000
+      P3W3       100.000000          0.000000
+      P4W2         0.000000          7.000000
+      P4W3       150.000000          0.000000
+      W1R1       100.000000          0.000000
+      W1R2       150.000000          0.000000
+      W1R3       100.000000          0.000000
+      W1R4         0.000000          5.000000
+      W2R3         0.000000          2.000000
+      W2R4       200.000000          0.000000
+      W2R5       200.000000          0.000000
+      W2R6         0.000000          1.000000
+      W3R4         0.000000          7.000000
+      W3R5         0.000000          3.000000
+      W3R6       150.000000          0.000000
+      W3R7       100.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000        -10.000000
+        3)         0.000000        -11.000000
+        4)         0.000000        -11.000000
+        5)         0.000000        -10.000000
+        6)         0.000000         -5.000000
+        7)         0.000000         -6.000000
+        8)         0.000000         -7.000000
+        9)         0.000000         -5.000000
+       10)         0.000000         -7.000000
+       11)         0.000000        -10.000000
+       12)         0.000000         -4.000000
+       13)         0.000000          0.000000
+       14)         0.000000          3.000000
+       15)         0.000000          2.000000
+       16)       150.000000          0.000000
+       17)         0.000000          0.000000
+       18)       200.000000          0.000000
+       19)       250.000000          0.000000
+       20)         0.000000          0.000000
+       21)       150.000000          0.000000
+       22)       100.000000          0.000000
+       23)         0.000000          0.000000
+       24)       150.000000          0.000000
+       25)       100.000000          0.000000
+       26)       150.000000          0.000000
+       27)       100.000000          0.000000
+       28)         0.000000          0.000000
+       29)         0.000000          0.000000
+       30)       200.000000          0.000000
+       31)       200.000000          0.000000
+       32)         0.000000          0.000000
+       33)         0.000000          0.000000
+       34)         0.000000          0.000000
+       35)       150.000000          0.000000
+       36)       100.000000          0.000000
+
+ NO. ITERATIONS=      13
+    \end{verbatim}
+    \textbf{iii. Optimal Shipping Routes and Minimum Cost}\newline
+    
+    The optimal shipping routes and quantity of refrigerators per route are:
+    \begin{verbatim}
+	  Route      Refrigerators
+      P1W1       150
+      P2W1       200
+      P2W2       250
+      P3W2       150
+      P3W3       100
+      P4W3       150
+      W1R1       100
+      W1R2       150
+      W1R3       100
+      W2R4       200
+      W2R5       200
+      W3R6       150
+      W3R7       100
+    \end{verbatim}
+
+	The optimal minimum cost is \$17,100    
     
 \textbf{Part B:}
     
