@@ -297,10 +297,150 @@
 	\includegraphics[width=\textwidth]{p1b-err}
 	\includegraphics[width=\textwidth]{p1b}
 	
-	There is no feasible solution here because Warehouse 3's total possible supply (400) is not capable of supporting the combined demand of R4, R5, R6, and R7 (650). On the other hand, Warehouse 1 is in fact capable of supporting R1, R2, R3, and R4 with its 850 supply to 550 demand ratio, but that still does not solve the larger supply chain deficit and feasibility issue. Overall, we need Warehouse 2 to supplement the supply to R3, R4, R5, and R6 and sufficiently "spread the load" on the warehouses.
+	There is no feasible solution here because Warehouse 3's total possible supply (400) is not capable of supporting the combined demand of R4, R5, R6, and R7 (650). On the other hand, Warehouse 1 is in fact capable of supporting R1, R2, R3, and R4 with its 850 supply to 550 demand ratio, but that still does not solve the larger supply chain deficit and feasibility issue. Overall, we need Warehouse 2 to supplement the supply to R3, R4, R5, and R6 and sufficiently "spread the load" on the warehouses.\newline
     
-\textbf{Part C:}
+\textbf{Part C:}\newline
 
+To simulate the limitation of 100 shipments (inbound and outbound) on Warehouse 2, we add two new constraints to our code for Part A. The constraints limit the inbound and outbound shipments to being less than or equal to 100.\newline
+
+LINDO Code and Output:
+\begin{verbatim}
+MIN 10 p1w1 + 15 p1w2 + 11 p2w1 + 8 p2w2 + 13 p3w1 + 8 p3w2 + 9 p3w3 
+  + 14 p4w2 + 8 p4w3 + 5 w1r1 + 6 w1r2 + 7 w1r3 + 10 w1r4 + 12 w2r3 
+  + 8 w2r4 + 10 w2r5 + 14 w2r6 + 14 w3r4 + 12 w3r5 + 12 w3r6 + 6 w3r7
+ST
+	   p1w1 + p1w2 = 150
+	   p2w1 + p2w2 = 450
+	   p3w1 + p3w2 + p3w3 = 250
+	   p4w2 + p4w3 = 150	
+	   w1r1 = 100
+	   w1r2 = 150
+	   w1r3 + w2r3 = 100
+	   w1r4 + w2r4 + w3r4 = 200	
+	   w2r5 + w3r5 = 200
+	   w2r6 + w3r6 = 150
+	   w3r7 = 100
+	   p1w1 + p2w1 + p3w1 - w1r1 - w1r2 - w1r3 - w1r4 <= 0 
+	   p1w2 + p2w2 + p3w2 + p4w2 - w2r3 - w2r4 - w2r5 - w2r6 <= 0
+	   p3w3 + p4w3 - w3r4 - w3r5 - w3r6 - w3r7 <= 0 
+	   p1w1 > 0
+	   p1w2 > 0
+	   p2w1 > 0
+	   p2w2 > 0
+	   p3w1 > 0
+	   p3w2 > 0
+	   p3w3 > 0
+	   p4w2 > 0
+	   p4w3 > 0
+	   w1r1 > 0
+	   w1r2 > 0
+	   w1r3 > 0
+	   w1r4 > 0
+	   w2r3 > 0
+	   w2r4 > 0
+	   w2r5 > 0
+	   w2r6 > 0
+	   w3r4 > 0
+	   w3r5 > 0
+	   w3r6 > 0
+	   w3r7 > 0
+	   p1w2 + p2w2 + p3w2 + p4w2 <= 100
+	   w2r3 + w2r4 + w2r5 + w2r6 <= 100
+END
+
+
+ LP OPTIMUM FOUND AT STEP      7
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      18300.00
+
+  VARIABLE        VALUE          REDUCED COST
+      P1W1       150.000000          0.000000
+      P1W2         0.000000          8.000000
+      P2W1       350.000000          0.000000
+      P2W2       100.000000          0.000000
+      P3W1         0.000000          4.000000
+      P3W2         0.000000          2.000000
+      P3W3       250.000000          0.000000
+      P4W2         0.000000          9.000000
+      P4W3       150.000000          0.000000
+      W1R1       100.000000          0.000000
+      W1R2       150.000000          0.000000
+      W1R3       100.000000          0.000000
+      W1R4       150.000000          0.000000
+      W2R3         0.000000          7.000000
+      W2R4        50.000000          0.000000
+      W2R5        50.000000          0.000000
+      W2R6         0.000000          4.000000
+      W3R4         0.000000          4.000000
+      W3R5       150.000000          0.000000
+      W3R6       150.000000          0.000000
+      W3R7       100.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000        -20.000000
+        3)         0.000000        -21.000000
+        4)         0.000000        -19.000000
+        5)         0.000000        -18.000000
+        6)         0.000000          5.000000
+        7)         0.000000          4.000000
+        8)         0.000000          3.000000
+        9)         0.000000          0.000000
+       10)         0.000000         -2.000000
+       11)         0.000000         -2.000000
+       12)         0.000000          4.000000
+       13)         0.000000         10.000000
+       14)         0.000000         13.000000
+       15)         0.000000         10.000000
+       16)       150.000000          0.000000
+       17)         0.000000          0.000000
+       18)       350.000000          0.000000
+       19)       100.000000          0.000000
+       20)         0.000000          0.000000
+       21)         0.000000          0.000000
+       22)       250.000000          0.000000
+       23)         0.000000          0.000000
+       24)       150.000000          0.000000
+       25)       100.000000          0.000000
+       26)       150.000000          0.000000
+       27)       100.000000          0.000000
+       28)       150.000000          0.000000
+       29)         0.000000          0.000000
+       30)        50.000000          0.000000
+       31)        50.000000          0.000000
+       32)         0.000000          0.000000
+       33)         0.000000          0.000000
+       34)       150.000000          0.000000
+       35)       150.000000          0.000000
+       36)       100.000000          0.000000
+       37)         0.000000          0.000000
+       38)         0.000000          5.000000
+
+ NO. ITERATIONS=       7
+\end{verbatim}
+
+We see that this is a feasible solution, though it raises our optimal cost from \$17,100 to \$18,300.
+
+The optimal shipping routes and quantity of refrigerators per route are:
+    \begin{verbatim}
+	  Route      Refrigerators
+      P1W1       150
+      P2W1       350
+      P2W2       100
+      P3W3       250
+      P4W3       150
+      W1R1       100
+      W1R2       150
+      W1R3       100
+      W1R4       150
+      W2R4        50
+      W2R5        50
+      W3R5       150
+      W3R6       150
+      W3R7       100
+    \end{verbatim}
 \textbf{Part D:}
 
 \section{Problem 2}

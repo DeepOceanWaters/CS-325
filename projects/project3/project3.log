@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  24 MAY 2015 11:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  24 MAY 2015 11:38
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -491,32 +491,64 @@ File: p1b.png Graphic file (type png)
  <use p1b.png>
 Package pdftex.def Info: p1b.png used on input line 298.
 (pdftex.def)             Requested size: 418.25555pt x 519.368pt.
- [6 <Z:/cs325/projects/CS-325/projects/project3/p1b-err.png>] [7 <Z:/cs325/proj
-ects/CS-325/projects/project3/p1b.png>] 
+ [6 <Z:/cs325/projects/CS-325/projects/project3/p1b-err.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+
+ []
+
+[7 <Z:/cs325/projects/CS-325/projects/project3/p1b.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
+
+ []
+
+
+Overfull \hbox (28.5039pt too wide) in paragraph at lines 422--422
+[]\T1/pcr/m/n/10.95 MIN 10 p1w1 + 15 p1w2 + 11 p2w1 + 8 p2w2 + 13 p3w1 + 8 p3w2
+ + 9 p3w3[] 
+ []
+
+
+Overfull \hbox (21.93391pt too wide) in paragraph at lines 422--422
+[]  \T1/pcr/m/n/10.95 + 14 p4w2 + 8 p4w3 + 5 w1r1 + 6 w1r2 + 7 w1r3 + 10 w1r4 +
+ 12 w2r3[] 
+ []
+
+
+Overfull \hbox (35.0739pt too wide) in paragraph at lines 422--422
+[]  \T1/pcr/m/n/10.95 + 8 w2r4 + 10 w2r5 + 14 w2r6 + 14 w3r4 + 12 w3r5 + 12 w3r
+6 + 6 w3r7[] 
+ []
+
+[8] [9] [10] 
 AED: lastpage setting LastPage
-[8] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
+[11] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
 Here is how much of TeX's memory you used:
  6489 strings out of 493921
  94675 string characters out of 3147291
- 213452 words of memory out of 3000000
+ 213454 words of memory out of 3000000
  9683 multiletter control sequences out of 15000+200000
  16231 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 39i,12n,47p,534b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program File
-s/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTeX
-\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Local
-\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <C:\Users\cj\AppDat
-a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\cj
-\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\U
-sers\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk
-> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm
-1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
-00\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
-
-Output written on project3.pdf (8 pages, 91768 bytes).
+ 39i,12n,47p,542b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Fil
+es/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Loca
+l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <C:\Users\cj\AppDa
+ta\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\c
+j\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\
+Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.p
+k> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
+m1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
+600\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb
+>
+Output written on project3.pdf (11 pages, 95106 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
+ 242 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
