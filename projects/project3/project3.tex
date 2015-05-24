@@ -255,9 +255,49 @@
       W3R7       100
     \end{verbatim}
 
-	The optimal minimum cost is \$17,100    
+	The optimal minimum cost is \$17,100\newline
     
-\textbf{Part B:}
+\textbf{Part B:}\newline
+	To remove Warehouse 2 and all its associated routes, we remove all variables in our equation that contain "w2" in it. The resulting LINDO code is as follows:
+
+	\begin{verbatim}
+	MIN 10 p1w1 + 11 p2w1 + 13 p3w1 + 9 p3w3 + 8 p4w3 + 5 w1r1 + 6 w1r2 
+	   + 7 w1r3 + 10 w1r4 + 14 w3r4 + 12 w3r5 + 12 w3r6 + 6 w3r7
+	ST
+	   p1w1 = 150
+	   p2w1 = 450
+	   p3w1 + p3w3 = 250
+	   p4w3 = 150	
+	   w1r1 = 100
+	   w1r2 = 150
+	   w1r3 = 100
+	   w1r4 + w3r4 = 200	
+	   w3r5 = 200
+	   w3r6 = 150
+	   w3r7 = 100
+	   p1w1 + p2w1 + p3w1 - w1r1 - w1r2 - w1r3 - w1r4 <= 0 
+	   p3w3 + p4w3 - w3r4 - w3r5 - w3r6 - w3r7 <= 0 
+	   p1w1 > 0
+	   p2w1 > 0
+	   p3w1 > 0
+	   p3w3 > 0
+	   p4w3 > 0
+	   w1r1 > 0
+	   w1r2 > 0
+	   w1r3 > 0
+	   w1r4 > 0
+	   w3r4 > 0
+	   w3r5 > 0
+	   w3r6 > 0
+	   w3r7 > 0
+	END
+	\end{verbatim}
+	
+	Upon execution of the code, we are met with these solution infeasibility notices:\newline
+	\includegraphics[width=\textwidth]{p1b-err}
+	\includegraphics[width=\textwidth]{p1b}
+	
+	There is no feasible solution here because Warehouse 3's total possible supply (400) is not capable of supporting the combined demand of R4, R5, R6, and R7 (650). On the other hand, Warehouse 1 is in fact capable of supporting R1, R2, R3, and R4 with its 850 supply to 550 demand ratio, but that still does not solve the larger supply chain deficit and feasibility issue. Overall, we need Warehouse 2 to supplement the supply to R3, R4, R5, and R6 and sufficiently "spread the load" on the warehouses.
     
 \textbf{Part C:}
 

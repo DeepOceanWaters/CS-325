@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  23 MAY 2015 20:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  24 MAY 2015 11:25
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -469,17 +469,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
-[4] [5] 
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+
+Overfull \hbox (21.93391pt too wide) in paragraph at lines 294--294
+[]\T1/pcr/m/n/10.95 MIN 10 p1w1 + 11 p2w1 + 13 p3w1 + 9 p3w3 + 8 p4w3 + 5 w1r1 
++ 6 w1r2[] 
+ []
+
+[5] <p1b-err.png, id=25, 379.4175pt x 184.43906pt>
+File: p1b-err.png Graphic file (type png)
+ <use p1b-err.png>
+Package pdftex.def Info: p1b-err.png used on input line 297.
+(pdftex.def)             Requested size: 418.25555pt x 203.3226pt.
+
+<p1b.png, id=27, 224.33812pt x 278.54062pt>
+File: p1b.png Graphic file (type png)
+ <use p1b.png>
+Package pdftex.def Info: p1b.png used on input line 298.
+(pdftex.def)             Requested size: 418.25555pt x 519.368pt.
+ [6 <Z:/cs325/projects/CS-325/projects/project3/p1b-err.png>] [7 <Z:/cs325/proj
+ects/CS-325/projects/project3/p1b.png>] 
 AED: lastpage setting LastPage
-[6] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
+[8] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
 Here is how much of TeX's memory you used:
- 6478 strings out of 493921
- 94543 string characters out of 3147291
+ 6489 strings out of 493921
+ 94675 string characters out of 3147291
  213452 words of memory out of 3000000
- 9675 multiletter control sequences out of 15000+200000
+ 9683 multiletter control sequences out of 15000+200000
  16231 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 39i,12n,47p,273b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,47p,534b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program File
 s/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTeX
 \2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Local
@@ -491,9 +514,9 @@ sers\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk
 1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
 00\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
 
-Output written on project3.pdf (6 pages, 77368 bytes).
+Output written on project3.pdf (8 pages, 91768 bytes).
 PDF statistics:
- 211 PDF objects out of 1000 (max. 8388607)
+ 232 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
