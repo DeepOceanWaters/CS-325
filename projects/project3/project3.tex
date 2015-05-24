@@ -441,7 +441,16 @@ The optimal shipping routes and quantity of refrigerators per route are:
       W3R6       150
       W3R7       100
     \end{verbatim}
-\textbf{Part D:}
+\textbf{Part D:}\newline
+For some cost $c_{ab}$ and some route $x_{ab}$ where their subscripts represent the route from a to b, the objective function is:\newline
+$Min (\sum_{p}{ \sum_{w}{c_{pw} x_{pw}}} + \sum_{w}{ \sum_{r}{c_{wr} x_{wr}}})$\newline
+
+$s.t.$\newline
+(Supply Constraint) For each source node p, where s is supply: $\sum_{w}{x_{pw}} = s_{p}$\newline
+(Demand Constraint) For each destination node r, where d is demand: $\sum_{w}{x_{wr}} = d_{r}$\newline
+(Balancing Constraint) For each intermediate node w: $\sum_{p}{x_{pw}} - \sum_{r}{x_{wr}} <= 0$\newline
+(Non-negativity Constraint) For all nodes p and r: $x_{pw}, x_{wr} >= 0$\newline
+
 
 \section{Problem 2}
 \textbf{Part A:}
