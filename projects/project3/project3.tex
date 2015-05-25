@@ -455,12 +455,76 @@ $s.t.$\newline
 \section{Problem 2}
 \textbf{Part A:}
 
-    \textbf{i.}
+    \textbf{i. General Problem Statement}\newline
+	Objective:\newline    
+    $Min \sum_{i=1}^{n}{b_i}$, for some b representing $\sum_{i=1}^{n}{|y_i - (a_1x_i + a_0)|}$\newline
+    s.t.\newline
+    For each i = 1...n, $b_i - (y_i - (a_1x_i + a_0)) >= 0$\newline
+    For each i = 1...n, $b_i + (y_i - (a_1x_i + a_0)) >= 0$\newline
     
-    \textbf{ii.}
+    \textbf{ii. LINDO Code and Output}\newline
+    \begin{verbatim}
+MIN b1 + b2 + b3 + b4 + b5 + b6 + b7
+ST
+	   b1 + 22 a1 + 7 a0 >= 71
+	   b1 - 22 a1 - 7 a0 >= -71
+	   b2 + 22 a1 + 7 a0 >= 71
+	   b2 - 22 a1 - 7 a0 >= -71
+	   b3 + 22 a1 + 7 a0 >= 71
+	   b3 - 22 a1 - 7 a0 >= -71
+	   b4 + 22 a1 + 7 a0 >= 71
+	   b4 - 22 a1 - 7 a0 >= -71
+	   b5 + 22 a1 + 7 a0 >= 71
+	   b5 - 22 a1 - 7 a0 >= -71
+	   b6 + 22 a1 + 7 a0 >= 71
+	   b6 - 22 a1 - 7 a0 >= -71
+	   b7 + 22 a1 + 7 a0 >= 71
+	   b7 - 22 a1 - 7 a0 >= -71
+END
+
+
+ LP OPTIMUM FOUND AT STEP      1
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)     0.0000000E+00
+
+  VARIABLE        VALUE          REDUCED COST
+        B1         0.000000          1.000000
+        B2         0.000000          1.000000
+        B3         0.000000          1.000000
+        B4         0.000000          1.000000
+        B5         0.000000          1.000000
+        B6         0.000000          1.000000
+        B7         0.000000          1.000000
+        A1         3.227273          0.000000
+        A0         0.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000          0.000000
+        3)         0.000000          0.000000
+        4)         0.000000          0.000000
+        5)         0.000000          0.000000
+        6)         0.000000          0.000000
+        7)         0.000000          0.000000
+        8)         0.000000          0.000000
+        9)         0.000000          0.000000
+       10)         0.000000          0.000000
+       11)         0.000000          0.000000
+       12)         0.000000          0.000000
+       13)         0.000000          0.000000
+       14)         0.000000          0.000000
+       15)         0.000000          0.000000
+
+ NO. ITERATIONS=       1
+    \end{verbatim}
+    
+    The sum of the absolute deviations was 0.\newline
     
     \textbf{iii.}
-    
+    \includegraphics[width=\textwidth]{p3paiii}
+    The LAD approach creates a line that adjusts more for outliers, like at x = 2, than the least squares approach. The line goes through y = 0 has a generally steeper slope than the least squares line, and is not shifted by $a_0$ since it equals zero in this case.\newline
 \textbf{Part B:}
     
     \textbf{i.}
