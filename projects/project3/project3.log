@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 13:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 15:10
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -545,64 +545,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 490--491
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 548--549
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 
  []
 
-<p3paiii.png, id=58, 473.51906pt x 286.82156pt>
+<p3paiii.png, id=58, 504.38437pt x 288.3272pt>
 File: p3paiii.png Graphic file (type png)
  <use p3paiii.png>
-Package pdftex.def Info: p3paiii.png used on input line 551.
-(pdftex.def)             Requested size: 418.25555pt x 253.35344pt.
+Package pdftex.def Info: p3paiii.png used on input line 564.
+(pdftex.def)             Requested size: 418.25555pt x 239.09592pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 550--553
-
- []
-
-[13 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 556--562
+Underfull \hbox (badness 10000) in paragraph at lines 563--566
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--564
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 569--575
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 591--592
+Underfull \hbox (badness 10000) in paragraph at lines 576--577
 
  []
 
-<p3pbiii.png, id=64, 475.7775pt x 289.08pt>
+[14 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 629--630
+
+ []
+
+<p3pbiii.png, id=67, 474.27188pt x 289.83281pt>
 File: p3pbiii.png Graphic file (type png)
  <use p3pbiii.png>
-Package pdftex.def Info: p3pbiii.png used on input line 594.
-(pdftex.def)             Requested size: 418.25555pt x 254.13974pt.
+Package pdftex.def Info: p3pbiii.png used on input line 632.
+(pdftex.def)             Requested size: 418.25555pt x 255.61089pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--596
+Underfull \hbox (badness 10000) in paragraph at lines 631--634
 
  []
 
-[14] <p3pbiv.png, id=68, 502.12593pt x 287.57437pt>
+[15] <p3pbiv.png, id=71, 502.12593pt x 287.57437pt>
 File: p3pbiv.png Graphic file (type png)
  <use p3pbiv.png>
-Package pdftex.def Info: p3pbiv.png used on input line 599.
+Package pdftex.def Info: p3pbiv.png used on input line 637.
 (pdftex.def)             Requested size: 418.25555pt x 239.5511pt.
- [15 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png> <Z:/cs325/project
-s/CS-325/projects/project3/p3pbiv.png>] [16]
-Overfull \hbox (87.63383pt too wide) in paragraph at lines 666--666
+ [16 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png> <Z:/cs325/project
+s/CS-325/projects/project3/p3pbiv.png>] [17]
+Overfull \hbox (87.63383pt too wide) in paragraph at lines 719--719
 []\T1/pcr/m/n/10.95 Least Squares Line was produced in Excel (see graph above) 
 rather than LINDO.[] 
  []
 
 
 AED: lastpage setting LastPage
-[17] (Z:\cs325\projects\CS-325\projects\project3\project3.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[18] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
 Here is how much of TeX's memory you used:
  6528 strings out of 493921
  95163 string characters out of 3147291
@@ -611,24 +607,25 @@ Here is how much of TeX's memory you used:
  20579 words of font info for 57 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  39i,12n,47p,542b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\Ap
-pData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\User
-s\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <
-C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm109
-5.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-ecrm1440.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\
-dpi600\ecrm2074.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
-pen\ec\dpi600\ecrm1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-mi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on project3.pdf (17 pages, 229397 bytes).
+{C:/Program Fil
+es/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Loca
+l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <C:\Users\cj\AppDa
+ta\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\c
+j\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\
+Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.p
+k> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
+m1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
+600\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
+x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/urw/courier/ucrr8a.pfb>
+Output written on project3.pdf (18 pages, 216667 bytes).
 PDF statistics:
- 296 PDF objects out of 1000 (max. 8388607)
+ 299 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
