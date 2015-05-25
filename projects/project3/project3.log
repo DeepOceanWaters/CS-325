@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 15:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 15:48
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -597,8 +597,13 @@ rather than LINDO.[]
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 721--727
+
+ []
+
+[18] [19] 
 AED: lastpage setting LastPage
-[18] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
+[20] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
 Here is how much of TeX's memory you used:
  6528 strings out of 493921
  95163 string characters out of 3147291
@@ -623,9 +628,9 @@ am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/urw/courier/ucrr8a.pfb>
-Output written on project3.pdf (18 pages, 216667 bytes).
+Output written on project3.pdf (20 pages, 219975 bytes).
 PDF statistics:
- 299 PDF objects out of 1000 (max. 8388607)
+ 306 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

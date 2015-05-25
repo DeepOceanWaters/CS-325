@@ -482,7 +482,7 @@ $s.t.$\newline
 
     \textbf{i. General Problem Statement}\newline
 	Objective:\newline    
-    $Min \sum_{i=1}^{n}{b_i}$, for some b representing $\sum_{i=1}^{n}{|y_i - (a_1x_i + a_0)|}$\newline
+    $Min \sum_{i=1}^{n}{b_i}$, for some $b_i$ representing $|y_i - (a_1x_i + a_0)|$ for each i = 1...n\newline
     s.t.\newline
     For each i = 1...n, $b_i - (y_i - (a_1x_i + a_0)) >= 0$\newline
     For each i = 1...n, $b_i + (y_i - (a_1x_i + a_0)) >= 0$\newline
@@ -719,8 +719,77 @@ Least Squares Line was produced in Excel (see graph above) rather than LINDO.
     \end{verbatim}
     
 \textbf{Part C:}
+	Objective:\newline    
+    $Min \sum_{i=1}^{n}{b_i}$, for some $b_i$ representing $|y_i - (a_2 x_{2i} + a_1x_{1i} + a_0)|$ for each i = 1...n\newline
+    s.t.\newline
+    For each i = 1...n, $b_i - (y_i - (a_2 x_{2i} + a_1x_{1i} + a_0)) >= 0$\newline
+    For each i = 1...n, $b_i + (y_i - (a_2 x_{2i} + a_1x_{1i} + a_0)) >= 0$\newline
 	
+\begin{verbatim}
+MIN b1 + b2 + b3 + b4 + b5 + b6
+ST
+	   b1 + 1 a2 + 1 a1 + a0  >= 5
+	   b1 - 1 a2 - 1 a1 - a0 >= -5
+	   b2 + 2 a2 + 1 a1 + a0  >= 9
+	   b2 - 2 a2 - 1 a1 - a0 >= -9	
+	   b3 + 2 a2 + 2 a1 + a0  >= 12
+	   b3 - 2 a2 - 2 a1 - a0 >= -12
+	   b4 + 1 a2 + 0 a1 + a0  >= 3
+	   b4 - 1 a2 - 0 a1 - a0 >= -3
+	   b5 + 0 a2 + 0 a1 + a0  >= 0
+	   b5 - 0 a2 - 0 a1 - a0 >= 0
+	   b6 + 3 a2 + 1 a1 + a0  >= 11
+	   b6 - 3 a2 - 1 a1 - a0 >= -11
+	   b1 > 0
+	   b2 > 0
+	   b3 > 0
+	   b4 > 0
+	   b5 > 0
+	   b6 > 0
+END
 
+ LP OPTIMUM FOUND AT STEP      8
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      2.000000
+
+  VARIABLE        VALUE          REDUCED COST
+        B1         1.000000          0.000000
+        B2         0.000000          0.000000
+        B3         0.000000          0.500000
+        B4         0.000000          0.000000
+        B5         0.000000          0.500000
+        B6         1.000000          0.000000
+        A2         3.000000          0.000000
+        A1         3.000000          0.000000
+        A0         0.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         2.000000          0.000000
+        3)         0.000000         -1.000000
+        4)         0.000000         -1.000000
+        5)         0.000000          0.000000
+        6)         0.000000         -0.500000
+        7)         0.000000          0.000000
+        8)         0.000000         -1.000000
+        9)         0.000000          0.000000
+       10)         0.000000          0.000000
+       11)         0.000000         -0.500000
+       12)         2.000000          0.000000
+       13)         0.000000         -1.000000
+       14)         1.000000          0.000000
+       15)         0.000000          0.000000
+       16)         0.000000          0.000000
+       17)         0.000000          0.000000
+       18)         0.000000          0.000000
+       19)         1.000000          0.000000
+
+ NO. ITERATIONS=       8
+    \end{verbatim}
+    The sum of the absolute deviations was 2.\newline
+    The regression model is: $y = 3x_2 + 3x_1 + 0$
 
 \end{document}
 %-------------------------------------------------------------------------------
