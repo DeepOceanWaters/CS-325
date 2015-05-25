@@ -454,6 +454,31 @@ $s.t.$\newline
 
 \section{Problem 2}
 \textbf{Part A:}
+	
+	\textbf{i.}
+    
+    \textbf{ii.}
+    
+    \textbf{iii.}
+    
+\textbf{Part B:}
+    
+    \textbf{i.}
+    
+    \textbf{ii.}
+    
+    \textbf{iii.}
+    
+\textbf{Part C:}
+	
+    \textbf{i.}
+    
+    \textbf{ii.}
+    
+    \textbf{iii.}
+    
+\section{Problem 3}
+\textbf{Part A:}
 
     \textbf{i. General Problem Statement}\newline
 	Objective:\newline    
@@ -522,43 +547,123 @@ END
     
     The sum of the absolute deviations was 0.\newline
     
-    \textbf{iii.}
+    \textbf{iii. Graph}\newline
     \includegraphics[width=\textwidth]{p3paiii}
     The LAD approach creates a line that adjusts more for outliers, like at x = 2, than the least squares approach. The line goes through y = 0 has a generally steeper slope than the least squares line, and is not shifted by $a_0$ since it equals zero in this case.\newline
+    
 \textbf{Part B:}
     
-    \textbf{i.}
+    \textbf{i. General Problem Statement}\newline
+    Objective:\newline    
+    $Min$ b, for some b representing $Max |y_i - (a_1x_i + a_0)|$\newline
+    s.t.\newline
+    For each i = 1...n, $b_i - (y_i - (a_1x_i + a_0)) >= 0$\newline
+    For each i = 1...n, $b_i + (y_i - (a_1x_i + a_0)) >= 0$\newline
     
-    \textbf{ii.}
-    
-    \textbf{iii.}
-    
-\textbf{Part C:}
-	
-    \textbf{i.}
-    
-    \textbf{ii.}
-    
-    \textbf{iii.}
-    
-\section{Problem 3}
-\textbf{Part A:}
+    \textbf{ii. LINDO Code and Output}\newline
+    \begin{verbatim}
+MIN b
+ST
+	   b + 22 a1 + 7 a0 >= 71
+	   b - 22 a1 - 7 a0 >= -71
+END
 
-    \textbf{i.}
+
+ LP OPTIMUM FOUND AT STEP      0
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)     0.0000000E+00
+
+  VARIABLE        VALUE          REDUCED COST
+         B         0.000000          1.000000
+        A1         3.227273          0.000000
+        A0         0.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000          0.000000
+        3)         0.000000          0.000000
+
+ NO. ITERATIONS=       0
+    \end{verbatim}
     
-    \textbf{ii.}
+    The min of the max absolute deviations was 0.\newline
     
-    \textbf{iii.}
+    \textbf{iii. Graph}\newline
+    \includegraphics[width=\textwidth]{p3pbiii}
+    The MMAD makes up the same line as the LAD approach, and thus just like our LAD observation it creates a line that adjusts more for outliers, like at x = 2, than the least squares approach. The line goes through y = 0 has a generally steeper slope than the least squares line, and is not shifted by $a_0$ since it equals zero in this case.\newline
     
-\textbf{Part B:}
+    \textbf{iv. Same Line Data Set}\newline
+    Yes, the data set (x,y) = [(1,2), (2,4), (3,6)] computes the same line for all three methods.\newline
+    \includegraphics[width=\textwidth]{p3pbiv}
+    \begin{verbatim}
+LAD Method:    
     
-    \textbf{i.}
-    
-    \textbf{ii.}
-    
-    \textbf{iii.}
-    
-    \textbf{iv.}
+MIN b1 + b2 + b3
+ST
+	   b1 + 6 a1 + 3 a0 >= 12
+	   b1 - 6 a1 - 3 a0 >= -12
+	   b2 + 6 a1 + 3 a0 >= 12
+	   b2 - 6 a1 - 3 a0 >= -12
+	   b3 + 6 a1 + 3 a0 >= 12
+	   b3 - 6 a1 - 3 a0 >= -12
+END
+
+ LP OPTIMUM FOUND AT STEP      1
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)     0.0000000E+00
+
+  VARIABLE        VALUE          REDUCED COST
+        B1         0.000000          1.000000
+        B2         0.000000          1.000000
+        B3         0.000000          1.000000
+        A1         2.000000          0.000000
+        A0         0.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000          0.000000
+        3)         0.000000          0.000000
+        4)         0.000000          0.000000
+        5)         0.000000          0.000000
+        6)         0.000000          0.000000
+        7)         0.000000          0.000000
+
+ NO. ITERATIONS=       1
+ 
+MMAD Method:
+
+MIN b
+ST
+	   b + 6 a1 + 3 a0 >= 12
+	   b - 6 a1 - 3 a0 >= -12
+END
+
+
+ LP OPTIMUM FOUND AT STEP      1
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)     0.0000000E+00
+
+  VARIABLE        VALUE          REDUCED COST
+         B         0.000000          1.000000
+        A1         2.000000          0.000000
+        A0         0.000000          0.000000
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000          0.000000
+        3)         0.000000          0.000000
+
+ NO. ITERATIONS=       1
+
+Least Squares Line was produced in Excel (see graph above) rather than LINDO.
+
+    \end{verbatim}
     
 \textbf{Part C:}
 	

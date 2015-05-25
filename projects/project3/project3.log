@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 12:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 13:41
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -535,61 +535,100 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--453
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 458--464
+Underfull \hbox (badness 10000) in paragraph at lines 483--489
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
 
  []
 
-[11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 548--549
 
  []
 
 <p3paiii.png, id=58, 473.51906pt x 286.82156pt>
 File: p3paiii.png Graphic file (type png)
  <use p3paiii.png>
-Package pdftex.def Info: p3paiii.png used on input line 526.
+Package pdftex.def Info: p3paiii.png used on input line 551.
 (pdftex.def)             Requested size: 418.25555pt x 253.35344pt.
 
-Overfull \hbox (18.33902pt too wide) in paragraph at lines 525--529
-[]\T1/cmr/bx/n/10.95 iii. []
+Underfull \hbox (badness 10000) in paragraph at lines 550--553
+
  []
 
 [13 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 556--562
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--564
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 591--592
+
+ []
+
+<p3pbiii.png, id=64, 475.7775pt x 289.08pt>
+File: p3pbiii.png Graphic file (type png)
+ <use p3pbiii.png>
+Package pdftex.def Info: p3pbiii.png used on input line 594.
+(pdftex.def)             Requested size: 418.25555pt x 254.13974pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--596
+
+ []
+
+[14] <p3pbiv.png, id=68, 502.12593pt x 287.57437pt>
+File: p3pbiv.png Graphic file (type png)
+ <use p3pbiv.png>
+Package pdftex.def Info: p3pbiv.png used on input line 599.
+(pdftex.def)             Requested size: 418.25555pt x 239.5511pt.
+ [15 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png> <Z:/cs325/project
+s/CS-325/projects/project3/p3pbiv.png>] [16]
+Overfull \hbox (87.63383pt too wide) in paragraph at lines 666--666
+[]\T1/pcr/m/n/10.95 Least Squares Line was produced in Excel (see graph above) 
+rather than LINDO.[] 
+ []
+
 
 AED: lastpage setting LastPage
-[14] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
+[17] (Z:\cs325\projects\CS-325\projects\project3\project3.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6518 strings out of 493921
- 95020 string characters out of 3147291
+ 6528 strings out of 493921
+ 95163 string characters out of 3147291
  213454 words of memory out of 3000000
- 9704 multiletter control sequences out of 15000+200000
+ 9712 multiletter control sequences out of 15000+200000
  20579 words of font info for 57 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  39i,12n,47p,542b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Fil
-es/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Loca
-l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <C:\Users\cj\AppDa
-ta\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\c
-j\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\
-Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.p
-k> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecr
-m1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
-x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/courier/ucrr8a.pfb>
-Output written on project3.pdf (14 pages, 168451 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\Ap
+pData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\User
+s\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <
+C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm109
+5.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
+ecrm1440.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\
+dpi600\ecrm2074.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
+pen\ec\dpi600\ecrm1200.pk> <C:\Users\cj\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
+r\jknappen\ec\dpi600\eccc1095.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on project3.pdf (17 pages, 229397 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
+ 296 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
