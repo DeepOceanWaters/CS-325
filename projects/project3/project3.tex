@@ -545,16 +545,103 @@ The optimal ingredient mix is:
         SM         0.757556
     \end{verbatim}
     
-    \textbf{iii.}
-    The cost of this salad is: $0.561163 * .75 + 0.084189 * .45  + 0.757556 * 2.15 = \$2.0875 \approx \$2.09$
+    \textbf{iii.}\newline
+    The cost of this salad is: $(0.561163 * .75) + (0.084189 * .45)  + (0.757556 * 2.15) = \$2.0875 \approx \$2.09$.\newline
     
 \textbf{Part B:}
     
-    \textbf{i.}
+    \textbf{i. Linear Problem Formulation}\newline
     
-    \textbf{ii.}
+    Let each ingredient be represented as variables using the first two letters of the ingredient's name. For example spinach is "sp."\newline
     
-    \textbf{iii.}
+
+    Objective function:\newline
+    
+    Minimize:\newline
+    
+    1 to + .75 le + .5 sp + .5 ca + .45 su + 2.15 sm + .95 ch + 2 oi\newline
+	  
+	Subject To:\newline
+		
+		Nutrition Constraints:\newline
+		   0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm + 9 ch >= 15\newline
+		   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi >= 2\newline
+		   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi <= 8\newline
+		   4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 27 ch >= 4\newline
+		   9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <= 200\newline
+		   le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch - .4oi >= 0\newline
+		
+		Non-negativity Constraints:\newline
+		   le, sp, to, ca, su, sm, ch, oi >= 0\newline
+    
+    \textbf{ii. LINDO Code and Output}
+    \begin{verbatim}
+MIN 1 to + .75 le + .5 sp + .5 ca + .45 su + 2.15 sm + .95 ch + 2 oi
+ST
+   0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm + 9 ch >= 15
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi >= 2
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi <= 8
+   4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 27 ch >= 4
+   9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <= 200
+   le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch - .4oi >= 0
+   le > 0
+   sp > 0
+   to > 0
+   ca > 0
+   su > 0
+   sm > 0
+   ch > 0
+   oi > 0
+END
+
+ LP OPTIMUM FOUND AT STEP      2
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      1.554133
+
+  VARIABLE        VALUE          REDUCED COST
+        TO         0.000000          1.002081
+        LE         0.000000          0.402912
+        SP         0.832298          0.000000
+        CA         0.000000          0.486914
+        SU         0.096083          0.000000
+        SM         0.000000          0.405609
+        CH         1.152364          0.000000
+        OI         0.000000          7.281258
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000         -0.131261
+        3)         6.000000          0.000000
+        4)         0.000000          0.051847
+        5)        31.576324          0.000000
+        6)        55.651089          0.000000
+        7)         0.000000         -0.241358
+        8)         0.000000          0.000000
+        9)         0.832298          0.000000
+       10)         0.000000          0.000000
+       11)         0.000000          0.000000
+       12)         0.096083          0.000000
+       13)         0.000000          0.000000
+       14)         1.152364          0.000000
+       15)         0.000000          0.000000
+
+ NO. ITERATIONS=       2
+    \end{verbatim}
+    
+    The minimum cost of a salad while meeting the nutrition constraints is \$1.554133 $\approx$ \$1.55.
+
+The optimal ingredient mix is:
+    \begin{verbatim}
+	  Ingredient   Amount
+        SP         0.832298
+        SU         0.096083
+        CH         1.152364
+    \end{verbatim}
+    
+    \textbf{iii.}\newline
+    The caloric content of this salad is: $(0.832298 * 40) + (0.096083 * 585)  + (1.152364 * 164) = 278.488$ calories.
     
 \textbf{Part C:}
 	
