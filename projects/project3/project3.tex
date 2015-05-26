@@ -255,7 +255,7 @@
       W3R7       100
     \end{verbatim}
 
-	The optimal minimum cost is \$17,100\newline
+	The optimal minimum cost is \$17,100.\newline
     
 \textbf{Part B:}\newline
 	To remove Warehouse 2 and all its associated routes, we remove all variables in our equation that contain "w2" in it. The resulting LINDO code is as follows:
@@ -647,15 +647,17 @@ The optimal ingredient mix is:
 	
     \textbf{i. Finding Possible Alternatives}\newline
     First we have a manual way:\newline
+    
     She can look at the two optimal solutions provided above and first see which of the two is closest to her overall goal of a low calorie, low cost salad. She should notice that the low calorie salad is well under her calorie goal of 250, and it is only \$0.09 away from the margin she wants. The low cost salad provides a comparative benefit of \$0.54 (about 25\% less than the low calorie option) for a caloric increase of 175.1509 (about 70\% more than the low calorie option).\newline
-    Overall, she is probably going to notice that lowering cost quickly raises the cost of the salad. She should start with the low calorie option, and slowly replace low calorie, expensive ingredients with higher calorie variants until she finds a satisfactory ratio of cost to nutrition. To prioritize the effort, in this case, of the three ingredients in her salad, the smoked tofu is by far the most expensive. She should take away bits of smoked tofu and replace it with chickpeas. The chickpeas are similar enough across the board nutritionally and dramatically cheaper.\newline
+    
+    Overall, she is probably going to notice that lowering cost quickly raises the calories of the salad. She should start with the low calorie option, and slowly replace low calorie, expensive ingredients with higher calorie variants until she finds a satisfactory ratio of cost to nutrition. To prioritize the effort, in this case, of the three ingredients in her salad, the smoked tofu is by far the most expensive. She should take away bits of smoked tofu and replace it with chickpeas. The chickpeas are similar enough across the board nutritionally and dramatically cheaper.\newline
     
     Now a more automated way:\newline
     
     She could run two modified LINDO programs that incorporate the objective of one program as a constraint on the other and vice versa. Of course the nutrition-focused program will optimize more for nutrition and less for cost and the opposite is true for the cost-focused algorithm. Then it comes down to a business decision as to whether she wants to sell more units (lower calorie) or make more money per unit (cheaper).\newline
     
-    \textbf{ii.}\newline
-	I would suggest the following ingredient list based on wanting to prioritize the caloric content of the meal and just make enough margin on price:
+    \textbf{ii. Suggested Alternative}\newline
+	We would suggest the following ingredient list based on wanting to prioritize the caloric content of the meal and just make enough margin on price:
     \begin{verbatim}
     Ingredient   Amount
         LE         0.359265
@@ -666,7 +668,7 @@ The optimal ingredient mix is:
     
 	The cost of this lettuce, spinach, sunflower seed, and smoked tofu salad is exactly \$2.00 [$(0.359265*0.75)+(0.192344*0.5)+(0.085036*0.45)+(0.742378*2.15)$] and it is 106.0138 calories. This greatly exceeds our caloric goal of 250 calories and meets our profit goal of \$3.00 when sold at \$5.00.\newline
     
-    \textbf{iii.}\newline
+    \textbf{iii. Derivation of Solution}\newline
     We derived the solution by running the two LINDO programs mentioned above (cost- and calorie-focused) and the calorie-focused approach met our goals very well, while the cost approach couldn't adequately keep the calorie count below 250.
     
     \begin{verbatim}
