@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 17:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 17:45
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -617,69 +617,69 @@ Overfull \hbox (48.21388pt too wide) in paragraph at lines 536--536
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 569--575
+Underfull \hbox (badness 10000) in paragraph at lines 570--576
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 647--648
+Underfull \hbox (badness 10000) in paragraph at lines 648--649
 
  []
 
 <p3paiii.png, id=65, 504.38437pt x 288.3272pt>
 File: p3paiii.png Graphic file (type png)
  <use p3paiii.png>
-Package pdftex.def Info: p3paiii.png used on input line 650.
+Package pdftex.def Info: p3paiii.png used on input line 651.
 (pdftex.def)             Requested size: 418.25555pt x 239.09592pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 649--652
+Underfull \hbox (badness 10000) in paragraph at lines 650--653
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 655--661
+Underfull \hbox (badness 10000) in paragraph at lines 656--662
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 662--663
+Underfull \hbox (badness 10000) in paragraph at lines 663--664
 
  []
 
 [16 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 715--716
+Underfull \hbox (badness 10000) in paragraph at lines 716--717
 
  []
 
 <p3pbiii.png, id=73, 474.27188pt x 289.83281pt>
 File: p3pbiii.png Graphic file (type png)
  <use p3pbiii.png>
-Package pdftex.def Info: p3pbiii.png used on input line 718.
+Package pdftex.def Info: p3pbiii.png used on input line 719.
 (pdftex.def)             Requested size: 418.25555pt x 255.61089pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 717--720
+Underfull \hbox (badness 10000) in paragraph at lines 718--721
 
  []
 
 [17] <p3pbiv.png, id=77, 502.12593pt x 287.57437pt>
 File: p3pbiv.png Graphic file (type png)
  <use p3pbiv.png>
-Package pdftex.def Info: p3pbiv.png used on input line 723.
+Package pdftex.def Info: p3pbiv.png used on input line 724.
 (pdftex.def)             Requested size: 418.25555pt x 239.5511pt.
  [18 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png> <Z:/cs325/project
 s/CS-325/projects/project3/p3pbiv.png>] [19]
-Overfull \hbox (87.63383pt too wide) in paragraph at lines 805--805
+Overfull \hbox (87.63383pt too wide) in paragraph at lines 806--806
 []\T1/pcr/m/n/10.95 Least Squares Line was produced in Excel (see graph above) 
 rather than LINDO.[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 807--813
+Underfull \hbox (badness 10000) in paragraph at lines 808--814
 
  []
 
@@ -710,7 +710,7 @@ am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/urw/courier/ucrr8a.pfb>
-Output written on project3.pdf (22 pages, 223006 bytes).
+Output written on project3.pdf (22 pages, 225787 bytes).
 PDF statistics:
  312 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
