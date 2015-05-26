@@ -645,11 +645,89 @@ The optimal ingredient mix is:
     
 \textbf{Part C:}
 	
-    \textbf{i.}
+    \textbf{i. Finding Possible Alternatives}\newline
+    First we have a manual way:\newline
+    She can look at the two optimal solutions provided above and first see which of the two is closest to her overall goal of a low calorie, low cost salad. She should notice that the low calorie salad is well under her calorie goal of 250, and it is only \$0.09 away from the margin she wants. The low cost salad provides a comparative benefit of \$0.54 (about 25\% less than the low calorie option) for a caloric increase of 175.1509 (about 70\% more than the low calorie option).\newline
+    Overall, she is probably going to notice that lowering cost quickly raises the cost of the salad. She should start with the low calorie option, and slowly replace low calorie, expensive ingredients with higher calorie variants until she finds a satisfactory ratio of cost to nutrition. To prioritize the effort, in this case, of the three ingredients in her salad, the smoked tofu is by far the most expensive. She should take away bits of smoked tofu and replace it with chickpeas. The chickpeas are similar enough across the board nutritionally and dramatically cheaper.\newline
     
-    \textbf{ii.}
+    Now a more automated way:\newline
     
-    \textbf{iii.}
+    She could run two modified LINDO programs that incorporate the objective of one program as a constraint on the other and vice versa. Of course the nutrition-focused program will optimize more for nutrition and less for cost and the opposite is true for the cost-focused algorithm. Then it comes down to a business decision as to whether she wants to sell more units (lower calorie) or make more money per unit (cheaper).\newline
+    
+    \textbf{ii.}\newline
+	I would suggest the following ingredient list based on wanting to prioritize the caloric content of the meal and just make enough margin on price:
+    \begin{verbatim}
+    Ingredient   Amount
+        LE         0.359265
+        SP         0.192344
+        SU         0.085036
+        SM         0.742378
+    \end{verbatim}
+    
+	The cost of this lettuce, spinach, sunflower seed, and smoked tofu salad is exactly \$2.00 [$(0.359265*0.75)+(0.192344*0.5)+(0.085036*0.45)+(0.742378*2.15)$] and it is 106.0138 calories. This greatly exceeds our caloric goal of 250 calories and meets our profit goal of \$3.00 when sold at \$5.00.\newline
+    
+    \textbf{iii.}\newline
+    We derived the solution by running the two LINDO programs mentioned above (cost- and calorie-focused) and the calorie-focused approach met our goals very well, while the cost approach couldn't adequately keep the calorie count below 250.
+    
+    \begin{verbatim}
+CALORIE-FOCUSED:
+
+MIN 21 to + 16 le + 40 sp + 41 ca + 41 su + 120 sm + 164 ch + 884 oi
+ST
+   0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm + 9 ch >= 15
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi >= 2
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi <= 8
+   4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 27 ch >= 4
+   9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <= 200
+   le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch - .4oi >= 0
+   le > 0
+   sp > 0
+   to > 0
+   ca > 0
+   su > 0
+   sm > 0
+   ch > 0
+   oi > 0
+   1 to + .75 le + .5 sp + .5 ca + .45 su + 2.15 sm + .95 ch + 2 oi <= 2
+END
+
+ LP OPTIMUM FOUND AT STEP      1
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      106.0138
+
+  VARIABLE        VALUE          REDUCED COST
+        TO         0.000000         52.999741
+        LE         0.359265          0.000000
+        SP         0.192344          0.000000
+        CA         0.000000         56.100624
+        SU         0.085036          0.000000
+        SM         0.742378          0.000000
+        CH         0.000000         92.476135
+        OI         0.000000       1493.750610
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000        -14.010375
+        3)         6.000000          0.000000
+        4)         0.000000          5.370244
+        5)         1.052338          0.000000
+        6)        88.029716          0.000000
+        7)         0.000000        -28.866138
+        8)         0.359265          0.000000
+        9)         0.192344          0.000000
+       10)         0.000000          0.000000
+       11)         0.000000          0.000000
+       12)         0.085036          0.000000
+       13)         0.742378          0.000000
+       14)         0.000000          0.000000
+       15)         0.000000          0.000000
+       16)         0.000000         30.589922
+
+ NO. ITERATIONS=       1
+
+    \end{verbatim}
     
 \section{Problem 3}
 \textbf{Part A:}

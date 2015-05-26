@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 17:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.4.25)  25 MAY 2015 19:19
 entering extended mode
 **project3.tex
 (Z:\cs325\projects\CS-325\projects\project3\project3.tex
@@ -703,76 +703,144 @@ Overfull \hbox (48.21388pt too wide) in paragraph at lines 631--631
  - .4oi >= 0[] 
  []
 
-[14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 657--663
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 648--652
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 653--654
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--665
+Underfull \hbox (badness 10000) in paragraph at lines 655--656
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 667--668
+
+ []
+
+
+Overfull \hbox (28.5039pt too wide) in paragraph at lines 730--730
+[]\T1/pcr/m/n/10.95 MIN 21 to + 16 le + 40 sp + 41 ca + 41 su + 120 sm + 164 ch
+ + 884 oi[] 
+ []
+
+
+Overfull \hbox (48.21388pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm 
++ 9 ch >= 15[] 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 735--736
-
+Overfull \hbox (107.34381pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm +
+ 2.6 ch + 100 oi >= 2[] 
  []
 
-<p3paiii.png, id=71, 504.38437pt x 288.3272pt>
-File: p3paiii.png Graphic file (type png)
- <use p3paiii.png>
-Package pdftex.def Info: p3paiii.png used on input line 738.
-(pdftex.def)             Requested size: 418.25555pt x 239.09592pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 737--740
+Overfull \hbox (107.34381pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm +
+ 2.6 ch + 100 oi <= 8[] 
+ []
 
+
+Overfull \hbox (28.5039pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 2
+7 ch >= 4[] 
+ []
+
+
+Overfull \hbox (2.22394pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <
+= 200[] 
+ []
+
+
+Overfull \hbox (48.21388pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch
+ - .4oi >= 0[] 
+ []
+
+
+Overfull \hbox (54.78387pt too wide) in paragraph at lines 730--730
+[]   \T1/pcr/m/n/10.95 1 to + .75 le + .5 sp + .5 ca + .45 su + 2.15 sm + .95 c
+h + 2 oi <= 2[] 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 743--749
+Underfull \hbox (badness 10000) in paragraph at lines 735--741
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 750--751
+Underfull \hbox (badness 10000) in paragraph at lines 742--743
 
  []
 
-[18 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 803--804
+[18] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 813--814
 
  []
 
-<p3pbiii.png, id=79, 474.27188pt x 289.83281pt>
+<p3paiii.png, id=81, 504.38437pt x 288.3272pt>
+File: p3paiii.png Graphic file (type png)
+ <use p3paiii.png>
+Package pdftex.def Info: p3paiii.png used on input line 816.
+(pdftex.def)             Requested size: 418.25555pt x 239.09592pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 815--818
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--827
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--829
+
+ []
+
+[20 <Z:/cs325/projects/CS-325/projects/project3/p3paiii.png>] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 881--882
+
+ []
+
+<p3pbiii.png, id=89, 474.27188pt x 289.83281pt>
 File: p3pbiii.png Graphic file (type png)
  <use p3pbiii.png>
-Package pdftex.def Info: p3pbiii.png used on input line 806.
+Package pdftex.def Info: p3pbiii.png used on input line 884.
 (pdftex.def)             Requested size: 418.25555pt x 255.61089pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 805--808
+Underfull \hbox (badness 10000) in paragraph at lines 883--886
 
  []
 
-[19] <p3pbiv.png, id=84, 502.12593pt x 287.57437pt>
+<p3pbiv.png, id=90, 502.12593pt x 287.57437pt>
 File: p3pbiv.png Graphic file (type png)
  <use p3pbiv.png>
-Package pdftex.def Info: p3pbiv.png used on input line 811.
+Package pdftex.def Info: p3pbiv.png used on input line 889.
 (pdftex.def)             Requested size: 418.25555pt x 239.5511pt.
- [20 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png> <Z:/cs325/project
-s/CS-325/projects/project3/p3pbiv.png>] [21]
-Overfull \hbox (87.63383pt too wide) in paragraph at lines 893--893
+ [22 <Z:/cs325/projects/CS-325/projects/project3/p3pbiii.png>] [23 <Z:/cs325/pr
+ojects/CS-325/projects/project3/p3pbiv.png>] [24]
+Overfull \hbox (87.63383pt too wide) in paragraph at lines 971--971
 []\T1/pcr/m/n/10.95 Least Squares Line was produced in Excel (see graph above) 
 rather than LINDO.[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 895--901
+Underfull \hbox (badness 10000) in paragraph at lines 973--979
 
  []
 
-[22] [23] 
+[25] 
 AED: lastpage setting LastPage
-[24] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
+[26] (Z:\cs325\projects\CS-325\projects\project3\project3.aux) ) 
 Here is how much of TeX's memory you used:
  6528 strings out of 493921
  95163 string characters out of 3147291
@@ -780,7 +848,7 @@ Here is how much of TeX's memory you used:
  9712 multiletter control sequences out of 15000+200000
  20579 words of font info for 57 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 39i,12n,47p,542b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,47p,600b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc} <C:\Users\cj\AppData\Local\MiKTe
 X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\cj\AppData\Loca
@@ -797,9 +865,9 @@ am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/urw/courier/ucrr8a.pfb>
-Output written on project3.pdf (24 pages, 228471 bytes).
+Output written on project3.pdf (26 pages, 233614 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
+ 328 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
