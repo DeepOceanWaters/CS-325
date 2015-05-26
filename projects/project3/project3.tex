@@ -455,9 +455,85 @@ $s.t.$\newline
 \section{Problem 2}
 \textbf{Part A:}
 	
-	\textbf{i.}
+	\textbf{i. Linear Problem Formulation}\newline
     
-    \textbf{ii.}
+    Let each ingredient be represented as variables using the first two letters of the ingredient's name. For example spinach is "sp."\newline
+    
+
+    Objective function:\newline
+    
+    Minimize:\newline
+    
+    21 to + 16 le + 40 sp + 41 ca + 41 su + 120 sm + 164 ch + 884 oi\newline
+	  
+	Subject To:\newline
+		
+		Nutrition Constraints:\newline
+		   0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm + 9 ch >= 15\newline
+		   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi >= 2\newline
+		   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi <= 8\newline
+		   4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 27 ch >= 4\newline
+		   9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <= 200\newline
+		   le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch - .4oi >= 0\newline
+		
+		Non-negativity Constraints:\newline
+		   le, sp, to, ca, su, sm, ch, oi >= 0\newline
+    
+    \textbf{ii. LINDO Code and Output}
+    \begin{verbatim}
+MIN 21 to + 16 le + 40 sp + 41 ca + 41 su + 120 sm + 164 ch + 884 oi
+ST
+   0.85 to + 1.62 le + 2.86 sp + 0.93 ca + 23.4 su + 16 sm + 9 ch >= 15
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi >= 2
+   0.33 to + 0.20 le + 0.39 sp + 0.24 ca + 48.7 su + 5 sm + 2.6 ch + 100 oi <= 8
+   4.64 to + 2.37 le + 3.63 sp + 9.58 ca + 15 su + 3 sm + 27 ch >= 4
+   9 to + 28 le + 65 sp + 69 ca + 3.8 su + 120 sm + 78 ch <= 200
+   le + sp - .4le - .4sp - .4to - .4ca - .4su - .4sm - .4ch - .4oi >= 0
+   le > 0
+   sp > 0
+   to > 0
+   ca > 0
+   su > 0
+   sm > 0
+   ch > 0
+   oi > 0
+END
+
+ LP OPTIMUM FOUND AT STEP      8
+
+        OBJECTIVE FUNCTION VALUE
+
+        1)      103.3371
+
+  VARIABLE        VALUE          REDUCED COST
+        TO         0.000000         16.520000
+        LE         0.561163          0.000000
+        SP         0.000000         13.916369
+        CA         0.000000         35.535095
+        SU         0.084189          0.000000
+        SM         0.757556          0.000000
+        CH         0.000000         96.583527
+        OI         0.000000       1212.744385
+
+
+       ROW   SLACK OR SURPLUS     DUAL PRICES
+        2)         0.000000         -8.632957
+        3)         6.000000          0.000000
+        4)         0.000000          3.269654
+        5)         0.865455          0.000000
+        6)        93.060745          0.000000
+        7)         0.000000         -4.447570
+        8)         0.561163          0.000000
+        9)         0.000000          0.000000
+       10)         0.000000          0.000000
+       11)         0.000000          0.000000
+       12)         0.084189          0.000000
+       13)         0.757556          0.000000
+       14)         0.000000          0.000000
+       15)         0.000000          0.000000
+
+ NO. ITERATIONS=       8
+    \end{verbatim}
     
     \textbf{iii.}
     
