@@ -19,6 +19,7 @@
 
 import sys
 import copy
+import math
 
 def main():
     args = sys.argv
@@ -52,6 +53,20 @@ def main():
 def TSP(cities):
     cities
     return str(cities)
+
+# ---------------------------------------
+# Name: dist
+#
+# Description: Calculates distance between 2 coordinates
+# 
+# Receives: 
+# 2 tuples (x0,y0),(x1,y1)
+#
+# Returns:
+# distance as an integer
+# ---------------------------------------	
+def dist(t0,t1):
+    return int(math.sqrt((t1[0]-t0[0])**2+(t1[1]-t0[1])**2))
 
 # Call main function
 if __name__ == '__main__':
