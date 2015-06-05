@@ -46,15 +46,15 @@ def main():
     print coords
 
     # Initialize distance table
-    distanceTable = [[0]*len(cities)]*len(cities)
+    distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
     
     # Populate distance table
-    for i in range(0, len(coords)-1):
+    for i in range(0, len(coords)):
         j = 0
         for k in coords:
-            if j < len(coords)-1:
-                distanceTable[i][j] = dist(coords[j], coords[j+1])
-                print distanceTable[i][j]
+            if j < len(coords):
+                distance = dist(coords[i], coords[j])
+                distanceTable[i][j] = distance
                 j += 1
     
     print distanceTable
@@ -63,7 +63,6 @@ def main():
     # with open(args[1] + ".tour", "w") as f:
         # f.write(TSP(cities))
        
-
 # ---------------------------------------
 # Name: TSP
 #
@@ -99,23 +98,6 @@ def TSP(cities):
 # ---------------------------------------	
 def dist(t0,t1):
     return int(round(math.sqrt((t0[0]-t1[0])**2+(t0[1]-t1[1])**2)))
-    
-# ---------------------------------------
-# Name: distTable
-#
-# Description: Calculates distances for all
-# pairs of cities and saves them in a table.
-# 
-# Receives: 
-# Table, list of cities and coordinates
-#
-# Returns:
-# Table of all distance pairs
-# ---------------------------------------	
-# def distTable(table, cities):
-    # for i,j in cities:
-        # table[i][j] = dist(cities[1:2])
-    # print table
 
 # Call main function
 if __name__ == '__main__':
