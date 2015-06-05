@@ -19,6 +19,7 @@
 
 import sys
 import copy
+import math
 
 def main():
     args = sys.argv
@@ -36,6 +37,7 @@ def main():
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
         f.write(TSP(cities))
+       
 
 # ---------------------------------------
 # Name: TSP
@@ -50,8 +52,28 @@ def main():
 # [Return Values]
 # ---------------------------------------
 def TSP(cities):
-    cities
+    a = dist((0, 0), (1, 3))
+    b = dist((1, 3), (6, 0))
+    c = dist((6, 0), (0, 0))
+    print a
+    print b
+    print c
+    print a + b + c
     return str(cities)
+    
+# ---------------------------------------
+# Name: dist
+#
+# Description: Calculates distance between 2 coordinates
+# 
+# Receives: 
+# 2 tuples (x0,y0),(x1,y1)
+#
+# Returns:
+# distance as an integer
+# ---------------------------------------	
+def dist(t0,t1):
+    return int(round(math.sqrt((t0[0]-t1[0])**2+(t0[1]-t1[1])**2)))
 
 # Call main function
 if __name__ == '__main__':
