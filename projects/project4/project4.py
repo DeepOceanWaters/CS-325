@@ -24,6 +24,7 @@ import math
 def main():
     args = sys.argv
     cities = []
+    coords = []
 
     # Basic argument validation
     if len(args) < 2:
@@ -32,11 +33,35 @@ def main():
     # Open and read data from file
     with open(args[1], "r") as f:
         for line in f:
-            cities.append(line.split())
+            cities.append(line.split()[1:])
+        
+    print cities
     
-    # Create file, execute algorithms, and write results to file
-    with open(args[1] + ".tour", "w") as f:
-        f.write(TSP(cities))
+    for i in range(0, len(cities)):
+        x, y = cities[i]
+        x = int(x)
+        y = int(y)
+        coords.append((x, y))
+        
+    print coords
+
+    # Initialize distance table
+    distanceTable = [[0]*len(cities)]*len(cities)
+    
+    # Populate distance table
+    for i in range(0, len(coords)-1):
+        j = 0
+        for k in coords:
+            if j < len(coords)-1:
+                distanceTable[i][j] = dist(coords[j], coords[j+1])
+                print distanceTable[i][j]
+                j += 1
+    
+    print distanceTable
+    
+    # # Create file, execute algorithms, and write results to file
+    # with open(args[1] + ".tour", "w") as f:
+        # f.write(TSP(cities))
        
 
 # ---------------------------------------
@@ -74,6 +99,23 @@ def TSP(cities):
 # ---------------------------------------	
 def dist(t0,t1):
     return int(round(math.sqrt((t0[0]-t1[0])**2+(t0[1]-t1[1])**2)))
+    
+# ---------------------------------------
+# Name: distTable
+#
+# Description: Calculates distances for all
+# pairs of cities and saves them in a table.
+# 
+# Receives: 
+# Table, list of cities and coordinates
+#
+# Returns:
+# Table of all distance pairs
+# ---------------------------------------	
+# def distTable(table, cities):
+    # for i,j in cities:
+        # table[i][j] = dist(cities[1:2])
+    # print table
 
 # Call main function
 if __name__ == '__main__':
