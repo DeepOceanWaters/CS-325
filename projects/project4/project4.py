@@ -21,10 +21,13 @@ import sys
 import copy
 import math
 
+degrees = []
+
 def main():
     args = sys.argv
     cities = []
     coords = []
+    distList = []
 
     # Basic argument validation
     if len(args) < 2:
@@ -36,6 +39,8 @@ def main():
             cities.append(line.split()[1:])
         
     print cities
+    
+    degrees = [0 for i in range(len(cities))]
     
     for i in range(0, len(cities)):
         x, y = cities[i]
@@ -55,35 +60,46 @@ def main():
             if j < len(coords):
                 distance = dist(coords[i], coords[j])
                 distanceTable[i][j] = distance
+                distList.append((distance, i, j))
                 j += 1
-    
     print distanceTable
+    print distList
+    
+    print sorted(distList)
     
     # # Create file, execute algorithms, and write results to file
     # with open(args[1] + ".tour", "w") as f:
-        # f.write(TSP(cities))
+        # f.write(TSP(sorted(distList)))
        
 # ---------------------------------------
 # Name: TSP
 #
 # Description: Finds the solution to the
-# TSP by using the _______ method.
+# TSP by using the greedy method.
 #
 # Receives: 
 # List of cities and coordinates
 #
 # Returns:
-# [Return Values]
+# Cost, Route
 # ---------------------------------------
-def TSP(cities):
-    a = dist((0, 0), (1, 3))
-    b = dist((1, 3), (6, 0))
-    c = dist((6, 0), (0, 0))
-    print a
-    print b
-    print c
-    print a + b + c
-    return str(cities)
+def TSP(D):
+    cost = 0
+    route = []
+    
+    # Add lowest cost edge to route
+    # Select each subsequent edge such
+    # that it keeps all vertex degrees < 3
+    # and so no cycles are formed until
+    # the number of selected edges equals
+    # the number of vertices.
+    for i in D:
+        if degrees[i] < 3:
+            route.append(D[i][0])
+        
+        
+    
+    return cost, route
     
 # ---------------------------------------
 # Name: dist
