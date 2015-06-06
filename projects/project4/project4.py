@@ -71,7 +71,15 @@ def main():
     # with open(args[1] + ".tour", "w") as f:
         # f.write(TSP(sorted(distList)))
     
-    TSP(sorted(distList), degrees)
+    totalDistance, path = TSP(sorted(distList), degrees)
+    
+    # Create file, execute algorithms, and write results to file
+    with open(args[1] + ".tour", "w") as f:
+        f.write(str(totalDistance))
+        f.write("\n")
+        for i in range (0, len(path)):
+            f.write(str(path[i]))
+            f.write("\n")
        
 # ---------------------------------------
 # Name: TSP
@@ -84,6 +92,9 @@ def main():
 #
 # Returns:
 # Cost, Route
+#
+# Acknowledgements:
+# http://lcm.csa.iisc.ernet.in/dsa/node186.html
 # ---------------------------------------
 def TSP(D, degrees):
     cost = 0
@@ -153,7 +164,7 @@ def TSP(D, degrees):
             # print i
             # print "appending "
             # print i[1]
-            route.append(i[1])
+            # route.append(i[1])
             cost += i[0]
             degrees[x1] += 1
             x1 = x2
