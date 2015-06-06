@@ -20,6 +20,7 @@
 import sys
 import copy
 import math
+import time
 
 degrees = []
 
@@ -37,8 +38,6 @@ def main():
     with open(args[1], "r") as f:
         for line in f:
             cities.append(line.split()[1:])
-        
-    # print cities
     
     degrees = [0 for i in range(len(cities))]
     
@@ -47,8 +46,6 @@ def main():
         x = int(x)
         y = int(y)
         coords.append((x, y))
-        
-    # print coords
 
     # Initialize distance table
     distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
@@ -62,15 +59,8 @@ def main():
                 distanceTable[i][j] = distance
                 distList.append((distance, i, j))
                 j += 1
-    # print distanceTable
-    # print distList
     
-    # print sorted(distList)
-    
-    # # Create file, execute algorithms, and write results to file
-    # with open(args[1] + ".tour", "w") as f:
-        # f.write(TSP(sorted(distList)))
-    
+    # Solve TSP
     totalDistance, path = TSP(sorted(distList), degrees)
     
     # Create file, execute algorithms, and write results to file
@@ -105,8 +95,14 @@ def TSP(D, degrees):
     # route.append(D[0][1])
     # del D[0]
     # degrees[0] += 1
-    c1, x1, y1 = D[0]
-
+    for i in D:
+        if i[0] > 0:
+            c1, x1, y1 = i
+            route.append(i[1])
+            del D[D.index(i)]
+            degrees[x1] += 1
+            degrees[y1] += 1
+            break
     # print "inside TSP"
     # print route
     # print degrees
@@ -120,29 +116,57 @@ def TSP(D, degrees):
     while len(route) <= len(degrees):
         # print "inside while"
         for i in D:
-            # print i
             # print "inside for"
             x2 = i[1]
             y2 = i[2]
             # print "D = " + str(D)
-            # print "x2: " + str(x2)
+            # print "x1, y1: " + str(x1) + ", " + str(y1)
+            # print "x2, y2: " + str(x2) + ", " + str(y2)
+            # print "degrees: " + str(degrees)
             # print "y2: " + str(y2)
-            if degrees[i[1]] < 2 and y1 == x2 and degrees[y2] == 0 and x2 != y2:
+            # print route
+            # print "degrees[i[1]] = " + str(degrees[i[1]])
+            # time.sleep(1)
+            if degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2:
                 # print "inside if"
                 # print i
                 # print "appending "
                 # print i[1]
                 route.append(i[1])
-                cost += i[0]
-                degrees[x1] += 1
+                cost += i[0]         
+                # print "x1, y1: " + str(x1) + ", " + str(y1)
+                # print "x2, y2: " + str(x2) + ", " + str(y2)
+                degrees[x2] += 1
+                degrees[y2] += 1
+                # print "postappend degrees: " + str(degrees)
                 x1 = x2
                 y1 = y2
                 del D[D.index(i)]
                 # print "route: "
                 # print route
+                break
+            elif degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1:
+                # print "inside if"
+                # print i
+                # print "appending "
+                # print i[1]
+                route.append(i[1])
+                cost += i[0]         
+                # print "x1, y1: " + str(x1) + ", " + str(y1)
+                # print "x2, y2: " + str(x2) + ", " + str(y2)
+                degrees[x2] += 1
+                degrees[y2] += 1
+                # print "postappend degrees: " + str(degrees)
+                x1 = x2
+                y1 = y2
+                del D[D.index(i)]
+                # print "route: "
+                # print route
+                break
                 # if len(route) == len(degrees):
                     # break
         
+                
         if len(route) == len(degrees):
             break
     
@@ -159,14 +183,14 @@ def TSP(D, degrees):
         # print "x2: " + str(x2)
         # print "y2: " + str(y2)
         
-        if y2 == route[0]:
+        if y2 == route[0] and x2 != y2:
             # print "inside if2"
             # print i
             # print "appending "
             # print i[1]
             # route.append(i[1])
             cost += i[0]
-            degrees[x1] += 1
+            # degrees[x1] += 1
             x1 = x2
             y1 = y2
             del D[D.index(i)]
