@@ -31,6 +31,7 @@ def main():
     coords = []
     distList = []
     randRoute = []
+    for2Opt = []
 
     # Basic argument validation
     if len(args) < 2:
@@ -44,40 +45,49 @@ def main():
     degrees = [0 for i in range(len(cities))]
     
     # for greedy
-    # for i in range(0, len(cities)):
-        # x, y = cities[i]
-        # x = int(x)
-        # y = int(y)
-        # coords.append((x, y))
+    for i in range(0, len(cities)):
+        x, y = cities[i]
+        x = int(x)
+        y = int(y)
+        coords.append((x, y))
+    
+    # Initialize distance table
+    distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
+    
+    # # Populate distance table
+    for i in range(0, len(coords)):
+        j = 0
+        for k in coords:
+            if j < len(coords):
+                distance = dist(coords[i], coords[j])
+                distanceTable[i][j] = distance
+                distList.append((distance, i, j))
+                j += 1
+    
+    # Solve TSP
+    totalDistance, path = TSP(sorted(distList), degrees)
     
     # ----------------
     # for 2-opt
+    coords = []
     for i in range(0, len(cities)):
         x, y = cities[i]
         x = int(x)
         y = int(y)
         coords.append((i, x, y))
         
-    shuffle(coords)
+    # shuffle(coords)
     
-    totalDistance, path = twoOpt(coords)
-    # ----------------
-
-    # Initialize distance table
-    # distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
+    # combined greedy then 2-opt
+    for i in range(0, len(path)):
+        for2Opt.append(coords[path[i]])
+                
+    # print for2Opt
     
-    # # Populate distance table
-    # for i in range(0, len(coords)):
-        # j = 0
-        # for k in coords:
-            # if j < len(coords):
-                # distance = dist(coords[i], coords[j])
-                # distanceTable[i][j] = distance
-                # distList.append((distance, i, j))
-                # j += 1
+    totalDistance, path = twoOpt(for2Opt)
     
-    # # Solve TSP
-    # totalDistance, path = TSP(sorted(distList), degrees)
+    # totalDistance, path = twoOpt(coords)
+    # # ----------------
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
