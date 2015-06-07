@@ -41,60 +41,42 @@ def main():
     # Open and read data from file
     with open(args[1], "r") as f:
         for line in f:
-            cities.append(line.split()[1:])
+            city, x, y = line.split()
+            cities.append((int(city),int(x),int(y)))
     
     degrees = [0 for i in range(len(cities))]
     
-    # for greedy
-    for i in range(0, len(cities)):
-        x, y = cities[i]
-        x = int(x)
-        y = int(y)
-        coords.append((x, y))
+    coords = [(i[1],i[2]) for i in cities]
     
-    # Initialize distance table
-    distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
-    
-    # # Populate distance table
+    # Populate distance table
     for i in range(0, len(coords)):
-        j = 0
-        for k in coords:
-            if j < len(coords):
-                distance = dist(coords[i], coords[j])
-                distanceTable[i][j] = distance
+        for j in range(0, i):
+            distance = dist(coords[i], coords[j])
+            if distance > 0:
                 distList.append((distance, i, j))
-                j += 1
+                # distList.append((distance, j, i))
+    
+    distList.sort()
+    distListFull = [None]*(len(distList)+len(distList))
+    distListFull[::2] = distList
+    distListFull[1::2] = distList
+    
+    print "List is ready"
     
     # Solve TSP using greedy method
-    totalDistance, path = greedy(sorted(distList), degrees)
-    
-    # ----------------
-    # for 2-opt
-    coords = []
-    for i in range(0, len(cities)):
-        x, y = cities[i]
-        x = int(x)
-        y = int(y)
-        coords.append((i, x, y))
-        
-    # shuffle(coords)
-    
+    totalDistance, path = greedy(distList, degrees)
+
     # combined greedy then 2-opt
     for i in range(0, len(path)):
-        for2Opt.append(coords[path[i]])
-                
-    # print for2Opt
+        for2Opt.append(cities[path[i]])   
     
     totalDistance, path = twoOpt(for2Opt)
     
     # prep for second run through 2-opt
     for i in range(0, len(path)):
-        for2Opt2.append(coords[path[i]])
+        for2Opt2.append(cities[path[i]])
         
     totalDistance, path = twoOpt(for2Opt2)
-    
-    # totalDistance, path = twoOpt(coords)
-    # # ----------------
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
@@ -192,9 +174,7 @@ def twoOpt(randRoute):
         for i in range(len(currRoute)-2):
             for k in range(i+1, len(currRoute)-1):
                 newRoute = twoSwap(currRoute, i, k)
-
                 newDist = routeDist(newRoute)
-                
                 if(newDist < bestDist):
                     currRoute = newRoute
                     bestDist = newDist
@@ -228,15 +208,17 @@ def twoOpt(randRoute):
 def greedy(D, degrees):
     cost = 0
     route = []
+    visited = [0]*(len(D))
     
-    for i in D:
-        if i[0] > 0:
-            c1, x1, y1 = i
-            route.append(i[1])
-            del D[D.index(i)]
-            degrees[x1] += 1
-            degrees[y1] += 1
-            break
+    print "made it to greedy"
+    
+    # Get starting edge
+    c1, x1, y1 = D[0]
+    route.append(x1)
+    # del D[0]
+    visited[0] = 1
+    degrees[x1] += 1
+    degrees[y1] += 1
     
     # Add lowest cost edge to route.
     # Select each subsequent edge such
@@ -246,25 +228,31 @@ def greedy(D, degrees):
     # the number of vertices.
     while len(route) <= len(degrees):
         for i in D:
-            x2 = i[1]
-            y2 = i[2]
-            if degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2:
-                route.append(i[1])
+            if(D.index(i) % 2):
+                x2 = i[1]
+                y2 = i[2]
+            else:
+                x2 = i[2]
+                y2 = i[1]
+            if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[D.index(i)] == 0:
+                route.append(x2)
                 cost += i[0]         
                 degrees[x2] += 1
                 degrees[y2] += 1
                 x1 = x2
                 y1 = y2
-                del D[D.index(i)]
+                # del D[D.index(i)]
+                visited[D.index(i)] = 1
                 break
-            elif degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1:
-                route.append(i[1])
+            elif degrees[x2] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1 and visited[D.index(i)] == 0:
+                route.append(x2)
                 cost += i[0]         
                 degrees[x2] += 1
                 degrees[y2] += 1
                 x1 = x2
                 y1 = y2
-                del D[D.index(i)]
+                # del D[D.index(i)]
+                visited[D.index(i)] = 1
                 break
                 
         if len(route) == len(degrees):
@@ -272,14 +260,19 @@ def greedy(D, degrees):
     
     # Append final node to complete circuit
     for i in D:
-        x2 = i[1]
-        y2 = i[2]
+        if(D.index(i) % 2):
+            x2 = i[1]
+            y2 = i[2]
+        else:
+            x2 = i[2]
+            y2 = i[1]
         
-        if y2 == route[0] and x2 != y2:
+        if y2 == route[0] and x2 != y2 and visited[D.index(i)] == 0:
             cost += i[0]
             x1 = x2
             y1 = y2
-            del D[D.index(i)]
+            # del D[D.index(i)]
+            visited[D.index(i)] = 1
             break
     
     print cost
