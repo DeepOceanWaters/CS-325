@@ -43,8 +43,6 @@ def main():
     
     degrees = [0 for i in range(len(cities))]
     
-    
-    
     # for greedy
     # for i in range(0, len(cities)):
         # x, y = cities[i]
@@ -90,6 +88,38 @@ def main():
             f.write("\n")
 
 # ---------------------------------------
+# Name: routeDist
+#
+# Description: Finds distance of a route.
+#
+# Receives: 
+# Route of nodes
+#
+# Returns:
+# Route distance
+# ---------------------------------------
+def routeDist(route):
+    count = 0
+    i = 0
+    distance = 0
+    
+    for m in route:
+        c1, x1, y1 = route[i]
+        c2, x2, y2 = route[i+1]
+        distance += dist((x1, y1), (x2, y2))
+        count += 1
+        i += 1
+        if count == len(route)-1:
+            break
+    
+    c1, x1, y1 = route[len(route)-1]
+    c2, x2, y2 = route[0]
+    
+    distance += dist((x1, y1), (x2, y2))
+    
+    return distance
+            
+# ---------------------------------------
 # Name: twoSwap
 #
 # Description: Helper function for twoOpt.
@@ -126,7 +156,7 @@ def twoSwap(route, i, k):
 # TSP by using the 2-opt method.
 #
 # Receives: 
-# Sorted list of tuples (distance, x, y)
+# Random potential route as set of tuples (node, x, y)
 #
 # Returns:
 # Cost, Route
@@ -142,25 +172,7 @@ def twoOpt(randRoute):
     newDist = -1
     
     while newDist < bestDist:
-        newDist = 0
-        bestDist = 0
-        
-        # Get route's distance
-        count = 0
-        i = 0
-        for m in bestRoute:
-            c1, x1, y1 = bestRoute[i]
-            c2, x2, y2 = bestRoute[i+1]
-            bestDist += dist((x1, y1), (x2, y2))
-            count += 1
-            i += 1
-            if count == len(bestRoute)-1:
-                break
-        
-        c1, x1, y1 = bestRoute[len(bestRoute)-1]
-        c2, x2, y2 = bestRoute[0]
-        
-        bestDist += dist((x1, y1), (x2, y2))   
+        bestDist = routeDist(bestRoute)
         
         # Perform twoSwaps to find improved route
         for i in range(len(currRoute)-2):
@@ -169,21 +181,8 @@ def twoOpt(randRoute):
                 print "k = " + str(k)
                 newRoute = twoSwap(currRoute, i, k)
                 print newRoute
-                count = 0
-                j = 0
-                for m in newRoute:
-                    c1, x1, y1 = newRoute[j]
-                    c2, x2, y2 = newRoute[j+1]
-                    newDist += dist((x1, y1), (x2, y2))
-                    count += 1
-                    j += 1
-                    if count == len(newRoute)-1:
-                        break
-                
-                c1, x1, y1 = newRoute[len(newRoute)-1]
-                c2, x2, y2 = newRoute[0]
-                
-                newDist += dist((x1, y1), (x2, y2))
+
+                newDist = routeDist(bestRoute)
                 
                 if(newDist < bestDist):
                     currRoute = newRoute
