@@ -64,10 +64,18 @@ def main():
     # combined greedy then 2-opt
 
     for i in range(0, len(path)):
-        for2Opt.append(coords[path[i]])   
+        for2Opt.append(cities[path[i]])   
     #print for2Opt
     
     totalDistance, path = twoOpt(for2Opt)
+    
+
+    # prep for second run through 2-opt
+    for i in range(0, len(path)):
+        for2Opt2.append(cities[path[i]])
+        
+    totalDistance, path = twoOpt(for2Opt2)
+
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
