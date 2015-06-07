@@ -136,17 +136,32 @@ def routeDist(route):
 def twoSwap(route, i, k):
     route2 = []
     
-    print route
+    # print "twoSwap is going to:"
+
+    # if i-1 > 0:
+        # print "append 0 - " + str(i-1)
+    for m in range(0, i):
+        # print "append1: " + str(route.index(route[m]))
+        route2.append(route[m])       
+    # else:
+        # # print "append 0"
+        # print "append: 0"
+        # route2.append(route[0])
+        
+    # if k > 1:
+        # print "append " + str(k) + " - " + str(i)
+    for m in range(k, i-1, -1):
+        # print "append2: " + str(route.index(route[m]))
+        route2.append(route[m])           
+    # else:
+        # print "append2: 1"
+        # route2.append(route[1])
     
-    for m in range(0, i-1):
-        route2.append(route[m])
-        
-    for m in range(k, i):
-        route2.append(route[m])
-        
+    # print "append 0 - " + str(k+1) + str(len(route))
     for m in range(k+1, len(route)):
+        # print "append3: " + str(route.index(route[m]))
         route2.append(route[m])
-    
+           
     return route2
 
 # ---------------------------------------
@@ -165,33 +180,38 @@ def twoSwap(route, i, k):
 # http://en.wikipedia.org/wiki/2-opt
 # ---------------------------------------
 def twoOpt(randRoute):
-    bestRoute = randRoute
+    # bestRoute = randRoute
     currRoute = randRoute
     newRoute = []
     bestDist = 0
     newDist = -1
     
     while newDist < bestDist:
-        bestDist = routeDist(bestRoute)
+        bestDist = routeDist(currRoute)
         
-        # Perform twoSwaps to find improved route
+        # Perform twoSwap function to find improved route
         for i in range(len(currRoute)-2):
             for k in range(i+1, len(currRoute)-1):
-                print "i = " + str(i)
-                print "k = " + str(k)
+                # print "i = " + str(i)
+                # print "k = " + str(k)
+                # print "len going in = " + str(len(currRoute))
                 newRoute = twoSwap(currRoute, i, k)
-                print newRoute
+                # print "len coming out = " + str(len(currRoute))
+                # print newRoute
 
-                newDist = routeDist(bestRoute)
+                newDist = routeDist(newRoute)
+                # print "newDist" + str(newDist)
+                # print "bestDist" + str(bestDist)
                 
                 if(newDist < bestDist):
                     currRoute = newRoute
-                    break
-            if(newDist < bestDist):
-                break
+                    bestDist = newDist
+                    # break
+            # if(newDist < bestDist):
+                # break
                 
-        bestRoute = currRoute
-        bestDist = newDist
+    bestRoute = currRoute
+    # bestDist = newDist
         
     print bestRoute
     print bestDist
