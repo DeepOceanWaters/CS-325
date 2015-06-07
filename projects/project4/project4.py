@@ -21,6 +21,7 @@ import sys
 import copy
 import math
 import time
+from random import shuffle
 
 degrees = []
 
@@ -29,6 +30,7 @@ def main():
     cities = []
     coords = []
     distList = []
+    randRoute = []
 
     # Basic argument validation
     if len(args) < 2:
@@ -41,27 +43,43 @@ def main():
     
     degrees = [0 for i in range(len(cities))]
     
+    
+    
+    # for greedy
+    # for i in range(0, len(cities)):
+        # x, y = cities[i]
+        # x = int(x)
+        # y = int(y)
+        # coords.append((x, y))
+    
+    # ----------------
+    # for 2-opt
     for i in range(0, len(cities)):
         x, y = cities[i]
         x = int(x)
         y = int(y)
-        coords.append((x, y))
+        coords.append((i, x, y))
+        
+    shuffle(coords)
+    
+    totalDistance, path = twoOpt(coords)
+    # ----------------
 
     # Initialize distance table
-    distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
+    # distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
     
-    # Populate distance table
-    for i in range(0, len(coords)):
-        j = 0
-        for k in coords:
-            if j < len(coords):
-                distance = dist(coords[i], coords[j])
-                distanceTable[i][j] = distance
-                distList.append((distance, i, j))
-                j += 1
+    # # Populate distance table
+    # for i in range(0, len(coords)):
+        # j = 0
+        # for k in coords:
+            # if j < len(coords):
+                # distance = dist(coords[i], coords[j])
+                # distanceTable[i][j] = distance
+                # distList.append((distance, i, j))
+                # j += 1
     
-    # Solve TSP
-    totalDistance, path = TSP(sorted(distList), degrees)
+    # # Solve TSP
+    # totalDistance, path = TSP(sorted(distList), degrees)
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
@@ -70,7 +88,121 @@ def main():
         for i in range (0, len(path)):
             f.write(str(path[i]))
             f.write("\n")
-       
+
+# ---------------------------------------
+# Name: twoSwap
+#
+# Description: Helper function for twoOpt.
+#
+# Receives: 
+# Potential route of nodes
+#
+# Returns:
+# Swapped route
+#
+# Acknowledgements:
+# http://en.wikipedia.org/wiki/2-opt
+# ---------------------------------------
+def twoSwap(route, i, k):
+    route2 = []
+    
+    print route
+    
+    for m in range(0, i-1):
+        route2.append(route[m])
+        
+    for m in range(k, i):
+        route2.append(route[m])
+        
+    for m in range(k+1, len(route)):
+        route2.append(route[m])
+    
+    return route2
+
+# ---------------------------------------
+# Name: twoOpt
+#
+# Description: Finds the solution to the
+# TSP by using the 2-opt method.
+#
+# Receives: 
+# Sorted list of tuples (distance, x, y)
+#
+# Returns:
+# Cost, Route
+#
+# Acknowledgements:
+# http://en.wikipedia.org/wiki/2-opt
+# ---------------------------------------
+def twoOpt(randRoute):
+    bestRoute = randRoute
+    currRoute = randRoute
+    newRoute = []
+    bestDist = 0
+    newDist = -1
+    
+    while newDist < bestDist:
+        newDist = 0
+        bestDist = 0
+        
+        # Get route's distance
+        count = 0
+        i = 0
+        for m in bestRoute:
+            c1, x1, y1 = bestRoute[i]
+            c2, x2, y2 = bestRoute[i+1]
+            bestDist += dist((x1, y1), (x2, y2))
+            count += 1
+            i += 1
+            if count == len(bestRoute)-1:
+                break
+        
+        c1, x1, y1 = bestRoute[len(bestRoute)-1]
+        c2, x2, y2 = bestRoute[0]
+        
+        bestDist += dist((x1, y1), (x2, y2))   
+        
+        # Perform twoSwaps to find improved route
+        for i in range(len(currRoute)-2):
+            for k in range(i+1, len(currRoute)-1):
+                print "i = " + str(i)
+                print "k = " + str(k)
+                newRoute = twoSwap(currRoute, i, k)
+                print newRoute
+                count = 0
+                j = 0
+                for m in newRoute:
+                    c1, x1, y1 = newRoute[j]
+                    c2, x2, y2 = newRoute[j+1]
+                    newDist += dist((x1, y1), (x2, y2))
+                    count += 1
+                    j += 1
+                    if count == len(newRoute)-1:
+                        break
+                
+                c1, x1, y1 = newRoute[len(newRoute)-1]
+                c2, x2, y2 = newRoute[0]
+                
+                newDist += dist((x1, y1), (x2, y2))
+                
+                if(newDist < bestDist):
+                    currRoute = newRoute
+                    break
+            if(newDist < bestDist):
+                break
+                
+        bestRoute = currRoute
+        bestDist = newDist
+        
+    print bestRoute
+    print bestDist
+    
+    bestRouteForPrint = []
+    for m in bestRoute:
+        bestRouteForPrint.append(m[0])
+    
+    return bestDist, bestRouteForPrint
+            
 # ---------------------------------------
 # Name: TSP
 #
