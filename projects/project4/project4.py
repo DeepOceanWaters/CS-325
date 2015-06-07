@@ -41,60 +41,33 @@ def main():
     # Open and read data from file
     with open(args[1], "r") as f:
         for line in f:
-            cities.append(line.split()[1:])
+            city, x, y = line.split()
+            cities.append((int(city),int(x),int(y)))
     
     degrees = [0 for i in range(len(cities))]
     
-    # for greedy
-    for i in range(0, len(cities)):
-        x, y = cities[i]
-        x = int(x)
-        y = int(y)
-        coords.append((x, y))
-    
-    # Initialize distance table
-    distanceTable = [[None for i in range(len(cities))] for j in range(len(cities))]
+    coords = [(i[1],i[2]) for i in cities]
     
     # # Populate distance table
     for i in range(0, len(coords)):
-        j = 0
-        for k in coords:
-            if j < len(coords):
-                distance = dist(coords[i], coords[j])
-                distanceTable[i][j] = distance
+        for j in range(0, len(coords)):
+            distance = dist(coords[i], coords[j])
+            if distance > 0:
                 distList.append((distance, i, j))
-                j += 1
     
     # Solve TSP using greedy method
     totalDistance, path = greedy(sorted(distList), degrees)
     
     # ----------------
     # for 2-opt
-    coords = []
-    for i in range(0, len(cities)):
-        x, y = cities[i]
-        x = int(x)
-        y = int(y)
-        coords.append((i, x, y))
-        
-    # shuffle(coords)
-    
+
     # combined greedy then 2-opt
+
     for i in range(0, len(path)):
-        for2Opt.append(coords[path[i]])
-                
-    # print for2Opt
+        for2Opt.append(coords[path[i]])   
+    #print for2Opt
     
     totalDistance, path = twoOpt(for2Opt)
-    
-    # prep for second run through 2-opt
-    for i in range(0, len(path)):
-        for2Opt2.append(coords[path[i]])
-        
-    totalDistance, path = twoOpt(for2Opt2)
-    
-    # totalDistance, path = twoOpt(coords)
-    # # ----------------
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
