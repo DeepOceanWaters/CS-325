@@ -32,6 +32,7 @@ def main():
     distList = []
     randRoute = []
     for2Opt = []
+    for2Opt2 = []
 
     # Basic argument validation
     if len(args) < 2:
@@ -64,8 +65,8 @@ def main():
                 distList.append((distance, i, j))
                 j += 1
     
-    # Solve TSP
-    totalDistance, path = TSP(sorted(distList), degrees)
+    # Solve TSP using greedy method
+    totalDistance, path = greedy(sorted(distList), degrees)
     
     # ----------------
     # for 2-opt
@@ -85,6 +86,12 @@ def main():
     # print for2Opt
     
     totalDistance, path = twoOpt(for2Opt)
+    
+    # prep for second run through 2-opt
+    for i in range(0, len(path)):
+        for2Opt2.append(coords[path[i]])
+        
+    totalDistance, path = twoOpt(for2Opt2)
     
     # totalDistance, path = twoOpt(coords)
     # # ----------------
@@ -146,30 +153,13 @@ def routeDist(route):
 def twoSwap(route, i, k):
     route2 = []
     
-    # print "twoSwap is going to:"
-
-    # if i-1 > 0:
-        # print "append 0 - " + str(i-1)
     for m in range(0, i):
-        # print "append1: " + str(route.index(route[m]))
         route2.append(route[m])       
-    # else:
-        # # print "append 0"
-        # print "append: 0"
-        # route2.append(route[0])
         
-    # if k > 1:
-        # print "append " + str(k) + " - " + str(i)
     for m in range(k, i-1, -1):
-        # print "append2: " + str(route.index(route[m]))
         route2.append(route[m])           
-    # else:
-        # print "append2: 1"
-        # route2.append(route[1])
     
-    # print "append 0 - " + str(k+1) + str(len(route))
     for m in range(k+1, len(route)):
-        # print "append3: " + str(route.index(route[m]))
         route2.append(route[m])
            
     return route2
@@ -190,7 +180,6 @@ def twoSwap(route, i, k):
 # http://en.wikipedia.org/wiki/2-opt
 # ---------------------------------------
 def twoOpt(randRoute):
-    # bestRoute = randRoute
     currRoute = randRoute
     newRoute = []
     bestDist = 0
@@ -202,26 +191,15 @@ def twoOpt(randRoute):
         # Perform twoSwap function to find improved route
         for i in range(len(currRoute)-2):
             for k in range(i+1, len(currRoute)-1):
-                # print "i = " + str(i)
-                # print "k = " + str(k)
-                # print "len going in = " + str(len(currRoute))
                 newRoute = twoSwap(currRoute, i, k)
-                # print "len coming out = " + str(len(currRoute))
-                # print newRoute
 
                 newDist = routeDist(newRoute)
-                # print "newDist" + str(newDist)
-                # print "bestDist" + str(bestDist)
                 
                 if(newDist < bestDist):
                     currRoute = newRoute
                     bestDist = newDist
-                    # break
-            # if(newDist < bestDist):
-                # break
                 
     bestRoute = currRoute
-    # bestDist = newDist
         
     print bestRoute
     print bestDist
@@ -233,7 +211,7 @@ def twoOpt(randRoute):
     return bestDist, bestRouteForPrint
             
 # ---------------------------------------
-# Name: TSP
+# Name: greedy
 #
 # Description: Finds the solution to the
 # TSP by using the greedy method.
@@ -247,15 +225,10 @@ def twoOpt(randRoute):
 # Acknowledgements:
 # http://lcm.csa.iisc.ernet.in/dsa/node186.html
 # ---------------------------------------
-def TSP(D, degrees):
+def greedy(D, degrees):
     cost = 0
     route = []
     
-    # print D
-    
-    # route.append(D[0][1])
-    # del D[0]
-    # degrees[0] += 1
     for i in D:
         if i[0] > 0:
             c1, x1, y1 = i
@@ -264,9 +237,6 @@ def TSP(D, degrees):
             degrees[x1] += 1
             degrees[y1] += 1
             break
-    # print "inside TSP"
-    # print route
-    # print degrees
     
     # Add lowest cost edge to route.
     # Select each subsequent edge such
@@ -275,88 +245,41 @@ def TSP(D, degrees):
     # the number of selected edges equals
     # the number of vertices.
     while len(route) <= len(degrees):
-        # print "inside while"
         for i in D:
-            # print "inside for"
             x2 = i[1]
             y2 = i[2]
-            # print "D = " + str(D)
-            # print "x1, y1: " + str(x1) + ", " + str(y1)
-            # print "x2, y2: " + str(x2) + ", " + str(y2)
-            # print "degrees: " + str(degrees)
-            # print "y2: " + str(y2)
-            # print route
-            # print "degrees[i[1]] = " + str(degrees[i[1]])
-            # time.sleep(1)
             if degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2:
-                # print "inside if"
-                # print i
-                # print "appending "
-                # print i[1]
                 route.append(i[1])
                 cost += i[0]         
-                # print "x1, y1: " + str(x1) + ", " + str(y1)
-                # print "x2, y2: " + str(x2) + ", " + str(y2)
                 degrees[x2] += 1
                 degrees[y2] += 1
-                # print "postappend degrees: " + str(degrees)
                 x1 = x2
                 y1 = y2
                 del D[D.index(i)]
-                # print "route: "
-                # print route
                 break
             elif degrees[i[1]] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1:
-                # print "inside if"
-                # print i
-                # print "appending "
-                # print i[1]
                 route.append(i[1])
                 cost += i[0]         
-                # print "x1, y1: " + str(x1) + ", " + str(y1)
-                # print "x2, y2: " + str(x2) + ", " + str(y2)
                 degrees[x2] += 1
                 degrees[y2] += 1
-                # print "postappend degrees: " + str(degrees)
                 x1 = x2
                 y1 = y2
                 del D[D.index(i)]
-                # print "route: "
-                # print route
                 break
-                # if len(route) == len(degrees):
-                    # break
-        
                 
         if len(route) == len(degrees):
             break
     
     # Append final node to complete circuit
     for i in D:
-        # print "inside for"
         x2 = i[1]
         y2 = i[2]
-        # print "D = " + str(D)
-        
-        # print "x1: " + str(x1)
-        # print "y1: " + str(y1)
-        
-        # print "x2: " + str(x2)
-        # print "y2: " + str(y2)
         
         if y2 == route[0] and x2 != y2:
-            # print "inside if2"
-            # print i
-            # print "appending "
-            # print i[1]
-            # route.append(i[1])
             cost += i[0]
-            # degrees[x1] += 1
             x1 = x2
             y1 = y2
             del D[D.index(i)]
-            # print "route: "
-            # print route
             break
     
     print cost
