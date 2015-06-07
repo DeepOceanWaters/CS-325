@@ -33,6 +33,7 @@ def main():
     randRoute = []
     for2Opt = []
     for2Opt2 = []
+    nSize = 0
 
     # Basic argument validation
     if len(args) < 2:
@@ -43,6 +44,7 @@ def main():
         for line in f:
             city, x, y = line.split()
             cities.append((int(city),int(x),int(y)))
+            nSize += 1     
     
     degrees = [0 for i in range(len(cities))]
     
@@ -54,7 +56,6 @@ def main():
             distance = dist(coords[i], coords[j])
             if distance > 0:
                 distList.append((distance, i, j))
-                # distList.append((distance, j, i))
     
     distList.sort()
     distListFull = [None]*(len(distList)+len(distList))
@@ -64,19 +65,20 @@ def main():
     print "List is ready"
     
     # Solve TSP using greedy method
-    totalDistance, path = greedy(distList, degrees)
-
-    # combined greedy then 2-opt
-    for i in range(0, len(path)):
-        for2Opt.append(cities[path[i]])   
+    totalDistance, path = greedy(distListFull, degrees)
     
-    totalDistance, path = twoOpt(for2Opt)
-    
-    # prep for second run through 2-opt
-    for i in range(0, len(path)):
-        for2Opt2.append(cities[path[i]])
+    if(nSize <= 500):
+        # combined greedy then 2-opt
+        for i in range(0, len(path)):
+            for2Opt.append(cities[path[i]])   
         
-    totalDistance, path = twoOpt(for2Opt2)
+        totalDistance, path = twoOpt(for2Opt)
+        
+        # prep for second run through 2-opt
+        for i in range(0, len(path)):
+            for2Opt2.append(cities[path[i]])
+            
+        totalDistance, path = twoOpt(for2Opt2)
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
@@ -210,12 +212,15 @@ def greedy(D, degrees):
     route = []
     visited = [0]*(len(D))
     
+    print D[0]
+    print D[1]
+    print D[2]
+    
     print "made it to greedy"
     
     # Get starting edge
     c1, x1, y1 = D[0]
     route.append(x1)
-    # del D[0]
     visited[0] = 1
     degrees[x1] += 1
     degrees[y1] += 1
@@ -227,53 +232,56 @@ def greedy(D, degrees):
     # the number of selected edges equals
     # the number of vertices.
     while len(route) <= len(degrees):
+        idx = 0
         for i in D:
-            if(D.index(i) % 2):
+            if(idx % 2 == 0):
                 x2 = i[1]
                 y2 = i[2]
             else:
                 x2 = i[2]
                 y2 = i[1]
-            if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[D.index(i)] == 0:
+            if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[idx] == 0:
                 route.append(x2)
                 cost += i[0]         
                 degrees[x2] += 1
                 degrees[y2] += 1
                 x1 = x2
                 y1 = y2
-                # del D[D.index(i)]
-                visited[D.index(i)] = 1
+                visited[idx] = 1
                 break
-            elif degrees[x2] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1 and visited[D.index(i)] == 0:
+            elif degrees[x2] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1 and visited[idx] == 0:
                 route.append(x2)
                 cost += i[0]         
                 degrees[x2] += 1
                 degrees[y2] += 1
                 x1 = x2
                 y1 = y2
-                # del D[D.index(i)]
-                visited[D.index(i)] = 1
+                visited[idx] = 1
                 break
+                
+            idx += 1
                 
         if len(route) == len(degrees):
             break
     
     # Append final node to complete circuit
     for i in D:
-        if(D.index(i) % 2):
+        idx = 0
+        if(idx % 2 == 0):
             x2 = i[1]
             y2 = i[2]
         else:
             x2 = i[2]
             y2 = i[1]
         
-        if y2 == route[0] and x2 != y2 and visited[D.index(i)] == 0:
+        if y2 == route[0] and x2 != y2 and visited[idx] == 0:
             cost += i[0]
             x1 = x2
             y1 = y2
-            # del D[D.index(i)]
-            visited[D.index(i)] = 1
+            visited[idx] = 1
             break
+            
+        idx += 1
     
     print cost
     print route
