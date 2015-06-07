@@ -58,14 +58,14 @@ def main():
                 distList.append((distance, i, j))
     
     distList.sort()
-    distListFull = [None]*(len(distList)+len(distList))
-    distListFull[::2] = distList
-    distListFull[1::2] = distList
+    # distListFull = [None]*(len(distList)+len(distList))
+    # distListFull[::2] = distList
+    # distListFull[1::2] = distList
     
     print "List is ready"
     
     # Solve TSP using greedy method
-    totalDistance, path = greedy(distListFull, degrees)
+    totalDistance, path = greedy(distList, degrees)
     
     if(nSize <= 500):
         # combined greedy then 2-opt
@@ -212,12 +212,6 @@ def greedy(D, degrees):
     route = []
     visited = [0]*(len(D))
     
-    print D[0]
-    print D[1]
-    print D[2]
-    
-    print "made it to greedy"
-    
     # Get starting edge
     c1, x1, y1 = D[0]
     route.append(x1)
@@ -234,12 +228,37 @@ def greedy(D, degrees):
     while len(route) <= len(degrees):
         idx = 0
         for i in D:
-            if(idx % 2 == 0):
-                x2 = i[1]
-                y2 = i[2]
-            else:
-                x2 = i[2]
-                y2 = i[1]
+            # if(idx % 2 == 0):
+            x2 = i[1]
+            y2 = i[2]
+            # else:
+                # x2 = i[2]
+                # y2 = i[1]
+            if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[idx] == 0:
+                route.append(x2)
+                cost += i[0]         
+                degrees[x2] += 1
+                degrees[y2] += 1
+                x1 = x2
+                y1 = y2
+                visited[idx] = 1
+                break
+            elif degrees[x2] < 3 and y1 == x2 and degrees[y2] == 1 and x2 != y2 and len(route) == len(degrees)-1 and visited[idx] == 0:
+                route.append(x2)
+                cost += i[0]         
+                degrees[x2] += 1
+                degrees[y2] += 1
+                x1 = x2
+                y1 = y2
+                visited[idx] = 1
+                break
+                
+            # if(idx % 2 == 0):
+                # x2 = i[1]
+                # y2 = i[2]
+            # else:
+            x2 = i[2]
+            y2 = i[1]
             if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[idx] == 0:
                 route.append(x2)
                 cost += i[0]         
