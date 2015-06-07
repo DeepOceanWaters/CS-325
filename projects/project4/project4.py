@@ -11,7 +11,7 @@
 #
 # Class: CS325 Analysis of Algorithms
 #
-# Description: Program tries to find best
+# Description: Program finds
 # possible solutions to the Traveling
 # Salesman Problem (TSP) for a given input
 # file.
@@ -21,9 +21,11 @@ import sys
 import copy
 import math
 import time
+import datetime
 from random import shuffle
 
 degrees = []
+start = datetime.datetime.now()
 
 def main():
     args = sys.argv
@@ -34,10 +36,15 @@ def main():
     for2Opt = []
     for2Opt2 = []
     nSize = 0
+    maxtime = 9*30
 
     # Basic argument validation
     if len(args) < 2:
         sys.exit("Not enough arguments, please use the format: project4.py [filename]")
+    
+    # Get custom time limit if specified by user
+    if len(args) == 3:
+        maxtime = int(args[2])
     
     # Open and read data from file
     with open(args[1], "r") as f:
@@ -46,39 +53,52 @@ def main():
             cities.append((int(city),int(x),int(y)))
             nSize += 1     
     
-    degrees = [0 for i in range(len(cities))]
+    # Run inputs of 5000 or less through greedy-2-opt combo
+    if(nSize <= 5000):    
+        degrees = [0 for i in range(len(cities))]
+        coords = [(i[1],i[2]) for i in cities]
     
-    coords = [(i[1],i[2]) for i in cities]
-    
-    # Populate distance table
-    for i in range(0, len(coords)):
-        for j in range(0, i):
-            distance = dist(coords[i], coords[j])
-            if distance > 0:
-                distList.append((distance, i, j))
-    
-    distList.sort()
-    # distListFull = [None]*(len(distList)+len(distList))
-    # distListFull[::2] = distList
-    # distListFull[1::2] = distList
-    
-    print "List is ready"
-    
-    # Solve TSP using greedy method
-    totalDistance, path = greedy(distList, degrees)
-    
-    if(nSize <= 500):
-        # combined greedy then 2-opt
-        for i in range(0, len(path)):
-            for2Opt.append(cities[path[i]])   
+        # Populate distance table
+        for i in range(0, len(coords)):
+            for j in range(0, i):
+                distance = dist(coords[i], coords[j])
+                if distance > 0:
+                    distList.append((distance, i, j))
         
-        totalDistance, path = twoOpt(for2Opt)
+        distList.sort()
+    
+        # Solve TSP using greedy method
+        totalDistance, path = greedy(distList, degrees)
         
-        # prep for second run through 2-opt
-        for i in range(0, len(path)):
-            for2Opt2.append(cities[path[i]])
+        end = datetime.datetime.now()
+        delta = end - start
+        while(delta.seconds < maxtime):
+            totalDistanceLast = totalDistance
             
-        totalDistance, path = twoOpt(for2Opt2)
+            # Feed greedy result to 2-opt
+            for i in range(0, len(path)):
+                for2Opt.append(cities[path[i]])   
+            totalDistance, path = twoOpt(for2Opt, maxtime)
+            
+            if(totalDistance == totalDistanceLast):
+                break
+            
+            # Calculate time spent running so far
+            end = datetime.datetime.now()
+            delta = end - start
+
+            for2Opt = []     
+    # Excessively large inputs run through 2-opt only
+    else:
+        for i in range(0, len(cities)):
+            c, x, y = cities[i]
+            x = int(x)
+            y = int(y)
+            coords.append((i, x, y))
+            
+        shuffle(coords)
+        
+        totalDistance, path = twoOpt(coords, maxtime)
     
     # Create file, execute algorithms, and write results to file
     with open(args[1] + ".tour", "w") as f:
@@ -87,6 +107,10 @@ def main():
         for i in range (0, len(path)):
             f.write(str(path[i]))
             f.write("\n")
+            
+    end = datetime.datetime.now()
+    delta = end - start
+    print "Finish Time: " + str(delta)
 
 # ---------------------------------------
 # Name: routeDist
@@ -151,11 +175,11 @@ def twoSwap(route, i, k):
 # ---------------------------------------
 # Name: twoOpt
 #
-# Description: Finds the solution to the
+# Description: Finds solution to the
 # TSP by using the 2-opt method.
 #
 # Receives: 
-# Random potential route as set of tuples (node, x, y)
+# Route as set of tuples (node, x, y), time limit
 #
 # Returns:
 # Cost, Route
@@ -163,13 +187,18 @@ def twoSwap(route, i, k):
 # Acknowledgements:
 # http://en.wikipedia.org/wiki/2-opt
 # ---------------------------------------
-def twoOpt(randRoute):
+def twoOpt(randRoute, maxtime):
     currRoute = randRoute
     newRoute = []
     bestDist = 0
     newDist = -1
     
-    while newDist < bestDist:
+    # Calculate time spent running
+    end = datetime.datetime.now()
+    delta = end - start
+    
+    # 2-opt swap until no more improvements can be made
+    while (newDist < bestDist and delta.seconds < maxtime):
         bestDist = routeDist(currRoute)
         
         # Perform twoSwap function to find improved route
@@ -181,11 +210,21 @@ def twoOpt(randRoute):
                     currRoute = newRoute
                     bestDist = newDist
                 
+                # Calculate time spent running
+                end = datetime.datetime.now()
+                delta = end - start
+                
+                # Time is up
+                if(delta.seconds > maxtime):
+                    break
+            
+            # Time is up
+            if(delta.seconds > maxtime):
+                break
+                
     bestRoute = currRoute
-        
-    print bestRoute
-    print bestDist
     
+    # Convert route to printable format
     bestRouteForPrint = []
     for m in bestRoute:
         bestRouteForPrint.append(m[0])
@@ -195,11 +234,11 @@ def twoOpt(randRoute):
 # ---------------------------------------
 # Name: greedy
 #
-# Description: Finds the solution to the
+# Description: Finds solution to the
 # TSP by using the greedy method.
 #
 # Receives: 
-# Sorted list of tuples (distance, x, y)
+# Sorted list of tuples (distance, src, dst)
 #
 # Returns:
 # Cost, Route
@@ -228,12 +267,9 @@ def greedy(D, degrees):
     while len(route) <= len(degrees):
         idx = 0
         for i in D:
-            # if(idx % 2 == 0):
+            # Check edge
             x2 = i[1]
             y2 = i[2]
-            # else:
-                # x2 = i[2]
-                # y2 = i[1]
             if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[idx] == 0:
                 route.append(x2)
                 cost += i[0]         
@@ -252,11 +288,8 @@ def greedy(D, degrees):
                 y1 = y2
                 visited[idx] = 1
                 break
-                
-            # if(idx % 2 == 0):
-                # x2 = i[1]
-                # y2 = i[2]
-            # else:
+            
+            # Check inverse of edge
             x2 = i[2]
             y2 = i[1]
             if degrees[x2] < 3 and y1 == x2 and degrees[y2] == 0 and x2 != y2 and visited[idx] == 0:
@@ -283,40 +316,19 @@ def greedy(D, degrees):
         if len(route) == len(degrees):
             break
     
-    # Append final node to complete circuit
-    for i in D:
-        idx = 0
-        if(idx % 2 == 0):
-            x2 = i[1]
-            y2 = i[2]
-        else:
-            x2 = i[2]
-            y2 = i[1]
-        
-        if y2 == route[0] and x2 != y2 and visited[idx] == 0:
-            cost += i[0]
-            x1 = x2
-            y1 = y2
-            visited[idx] = 1
-            break
-            
-        idx += 1
-    
-    print cost
-    print route
-    
-    return cost, route
+    return cost+1, route
     
 # ---------------------------------------
 # Name: dist
 #
-# Description: Calculates distance between 2 coordinates
+# Description: Calculates distance between 
+# 2 coordinates
 # 
 # Receives: 
-# 2 tuples (x0,y0),(x1,y1)
+# Two tuples (x0,y0),(x1,y1)
 #
 # Returns:
-# distance as an integer
+# Distance as an integer
 # ---------------------------------------	
 def dist(t0,t1):
     return int(round(math.sqrt((t0[0]-t1[0])**2+(t0[1]-t1[1])**2)))
