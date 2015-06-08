@@ -95,7 +95,8 @@ def main():
             x = int(x)
             y = int(y)
             coords.append((i, x, y))
-            
+        
+        # Provide random starting path
         shuffle(coords)
         
         totalDistance, path = twoOpt(coords, maxtime)
@@ -107,10 +108,6 @@ def main():
         for i in range (0, len(path)):
             f.write(str(path[i]))
             f.write("\n")
-            
-    end = datetime.datetime.now()
-    delta = end - start
-    print "Finish Time: " + str(delta)
 
 # ---------------------------------------
 # Name: routeDist
